@@ -1,1 +1,49 @@
-<p>totem-listado works!</p>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <a class="navbar-brand" href="/aforo/admin/admin.php">
+            <h1>Listado de Totem</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Totem</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <form class="container">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 text-right">
+                <a class="btn btn-primary" routerLink="nuevo">Nuevo</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Código</th>
+                            <th>Dirección</th>
+                            <th>Descripción</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+    </form>
+</body>

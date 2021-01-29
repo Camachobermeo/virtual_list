@@ -8,50 +8,60 @@
   </nav>
   <br>
   <br>
-  <br>
-  <div class="text-center">
-    <h1>Generar Ticket</h1>
-  </div>
-  <br><br>
   <form class="container">
     <div class="row">
-      <div class="col-4">
+    <div class="col-2"></div>
+    <div class="col-8">
+    <div class="text card m-2">
+      <div class="card-header">
+        Registrar Empresa
       </div>
-      <div class="col-4">
-        <label>Seleccione el tipo de ticket</label>
-        <select class="form-select" aria-label="Default select example" required>
-          <option value="" disabled selected>Seleccione el tipo de ticket</option>
-          <option value="1">Tarjeta de credito</option>
-          <option value="2">Consulta de TOTEM</option>
-          <option value="3">Remodificar datos del TOTEM</option>
-        </select>
+      <div class="card-body">
         <br>
-        <label for="exampleInputEmail1">Correo Electronico</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Ejm: example_123@gmail.com" required>
-        <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
-          más.</small>
+          <div class="row ps-5 pe-5">
+            <div>
+              <label>Seleccione el tipo de ticket</label>
+              <select class="form-select" aria-label="Default select example" required>
+                <option value="" disabled selected>Seleccione el tipo de ticket</option>
+                <option value="1">Tarjeta de credito</option>
+                <option value="2">Consulta de TOTEM</option>
+                <option value="3">Remodificar datos del TOTEM</option>
+              </select>
+            </div>
+            <br>
+            <div>
+              <br>
+              <label for="exampleInputEmail1">Correo Electronico</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Ejm: example_123@gmail.com" required>
+              <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
+                más.</small>
+            </div>
+            <div>
+              <br>
+              <label>Telefono</label>
+              <input type="number" class="form-control" name="usuario" placeholder="Telefono">
 
-        <br>
-        <br>
+            </div>
 
-        <label>Telefono</label>
-        <input type="number" class="form-control" name="usuario" placeholder="Telefono">
+          <br>
+            <div class="text-center">
+              <br>
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label ms-2" for="exampleCheck1"> Añadir recordatorio</label>
+            </div>
 
-        <br>
-
-        <div class="text-center">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label ms-2" for="exampleCheck1"> Añadir recordatorio</label>
-        </div>
-
-        <br>
-        <br>
-        <div class="text-center">
-          <input type="submit" class="btn btn-success" value="Generar Ticket" />
+            <br>
+            <br>
+            <div class="text-center ">
+              <br>
+              <input type="submit" class="btn btn-success" value="Generar Ticket" />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-4"></div>
     </div>
+  <div class="col-2"></div>
+</div>
   </form>
 </body>

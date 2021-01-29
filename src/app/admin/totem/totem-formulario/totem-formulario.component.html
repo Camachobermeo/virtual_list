@@ -1,1 +1,68 @@
-<p>totem-formulario works!</p>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="font-weight-bold">
+            <a class="navbar-brand">
+                <h1>Registrar TOTEM</h1>
+            </a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="text-center">
+        </div>
+        <br>
+        <form>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="codigo">Código</label>
+                        <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                            placeholder="Codigo del Totem">
+                        <br>
+                        <label for="tienda">N° De Tienda</label>
+                        <input required name="tienda" class="form-control text-uppercase" id="tienda"
+                            placeholder="N° de  Tienda">
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input required name="direccion" class="form-control text-uppercase" id="direccion"
+                            placeholder="Direccion del Totem">
+                        <br>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea required name="descripcion" class="form-control  text-uppercase" id="descripcion"
+                            rows="3" placeholder="Descripcion del Totem"></textarea>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="text-center">
+                <button (click)="activarCargando(); guardar()" class="btn btn-success">Guardar</button>
+            </div>
+            <br>
+            <div class="text-center">
+                <div id="cargando" hidden class="spinner-border text-success" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </form>
+    </div>

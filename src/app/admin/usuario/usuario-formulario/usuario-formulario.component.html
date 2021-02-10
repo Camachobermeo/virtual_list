@@ -8,13 +8,16 @@
             <a class="navbar-brand" href="#">Virtual</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Totem</a>
+                    <a class="nav-link active" aria-current="page" routerLink="totem">Totem</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tienda</a>
+                    <a class="nav-link active" aria-current="page" routerLink="tienda">Tienda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Empresa</a>
+                    <a class="nav-link active" aria-current="page" routerLink="empresa">Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="usuario">Usuario</a>
                 </li>
             </ul>
             <form class="d-flex">
@@ -31,20 +34,24 @@
     <form>
         <div class="text card m-2">
             <div class="card-header">
-                Registrar Tienda
+                Registrar Usuario
             </div>
             <div class="card-body">
                 <br>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="direccion">Direccion</label>
-                            <input required name="direccion" class="form-control text-uppercase" id="direccion"
-                                placeholder="Direccion de la Empresa">
+                            <label for="nombre">Nombre: </label>
+                            <input required name="nombre" class="form-control text-uppercase" id="nombre"
+                                placeholder="Ingrese el nombre">
                             <br>
-                            <label for="rut">RUT</label>
-                            <input required name="rut" class="form-control text-uppercase" id="rut"
-                                placeholder="Ingrese el RUT">
+                            <label for="apellido">Apellido: </label>
+                            <input required name="apellido" class="form-control text-uppercase" id="apellido"
+                                placeholder="Ingrese el apellido">
+                            <br>
+                            <label for="usuario">Nombre de usuario: </label>
+                            <input required name="usuario" class="form-control" id="usuario"
+                                placeholder="Ejm; @example123">
                             <br>
                         </div>
                     </div>
@@ -52,38 +59,34 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="celular">Telefono/Celular</label>
+                            <label for="celular">Telefono/Celular: </label>
                             <input required name="celular" class="form-control text-uppercase" id="celular"
                                 placeholder="Ingrese su numero de Telefono o Celular">
                             <br>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="text">
-                        <label for="horario">Horarios De Atencion</label>
-                    </div>
-                    <div class="col-6">
-                        <br>
-                        <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <br>
-                        <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
-                        </div>
+                    <div class="col-12">
+                        <label>Sexo: </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Hombre
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Mujer
+                            </label>
+                          </div>
                     </div>
                 </div>
                 <br>
                 <div class="text-center">
-                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i> Guardar</button>
                 </div>
                 <br>
                 <div class="text-center">

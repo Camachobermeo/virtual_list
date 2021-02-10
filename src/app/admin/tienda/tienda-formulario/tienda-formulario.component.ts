@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tienda-formulario',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TiendaFormularioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
 
+  activarCargando() {
+    document.getElementById("cargando").hidden = false;
+  }
+
+  guardar() {
+    this.router.navigate(["tienda"]);
+  }
 }

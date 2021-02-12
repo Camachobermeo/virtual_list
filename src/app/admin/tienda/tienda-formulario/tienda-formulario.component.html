@@ -8,13 +8,16 @@
             <a class="navbar-brand" href="#">Virtual</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Totem</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/totem">Totem</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tienda</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/tienda">Tienda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Empresa</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/empresa">Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/usuario">Usuario</a>
                 </li>
             </ul>
             <form class="d-flex">
@@ -32,40 +35,52 @@
         <div class="text card m-2">
             <div class="card-header">
                 Registrar Tienda
+                <div class="row">
+                    <div class="col-md-11">
+                    </div>
+                    <div class="col-md-1">
+                        <a type="button" class="btn btn-secondary" routerLink="/tienda">Regresar</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <br>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="direccion">Direccion</label>
-                            <input required name="direccion" class="form-control text-uppercase" id="direccion"
-                                placeholder="Direccion de la Empresa">
-                            <br>
-                            <label for="rut">RUT</label>
-                            <input required name="rut" class="form-control text-uppercase" id="rut"
-                                placeholder="Ingrese el RUT">
-                            <br>
-                        </div>
+                    <div class="col-6">
+                        <label for="codigo">Codigo</label>
+                        <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                            placeholder="Ingrese el codigo de tienda" required>
+                        <br>
+                    </div>
+                    <div class="col-6">
+                        <label for="rut">RUT</label>
+                        <input required name="rut" class="form-control text-uppercase" id="rut"
+                            placeholder="Ingrese el RUT" required>
+                        <br>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="celular">Telefono/Celular</label>
-                            <input required name="celular" class="form-control text-uppercase" id="celular"
-                                placeholder="Ingrese su numero de Telefono o Celular">
-                            <br>
-                        </div>
+                    <div class="col-6">
+                        <label for="direccion">Direccion</label>
+                        <input required name="direccion" class="form-control text-uppercase" id="direccion"
+                            placeholder="Direccion de la Empresa" required>
+                        <br>
+                    </div>
+                    <div class="col-6">
+                        <label for="celular">Telefono/Celular</label>
+                        <input required name="celular" class="form-control text-uppercase" id="celular"
+                            placeholder="Ingrese su numero de Telefono o Celular" required>
+                        <br>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="text">
                         <label for="horario">Horarios De Atencion</label>
                     </div>
+                    <div class="text">
+                        <label for=""></label>
+                        <label class="text-decoration-underline" for="horario">Lunes</label>
+                    </div>
                     <div class="col-6">
-                        <br>
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
@@ -73,7 +88,114 @@
                         </div>
                     </div>
                     <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
                         <br>
+                        <label class="text-decoration-underline" for="horario">Martes</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <br>
+                        <label class="text-decoration-underline" for="horario">Miercoles</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <br>
+                        <label class="text-decoration-underline" for="horario">Jueves</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <br>
+                        <label class="text-decoration-underline" for="horario">Viernes</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <br>
+                        <label class="text-decoration-underline" for="horario">Sabado</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="text">
+                        <br>
+                        <label class="text-decoration-underline" for="horario">Domingo</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                                id="horario">
+                        </div>
+                    </div>
+                    <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
@@ -83,7 +205,8 @@
                 </div>
                 <br>
                 <div class="text-center">
-                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i> Guardar</button>
                 </div>
                 <br>
                 <div class="text-center">

@@ -4,6 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
+import { ApiRequestService } from './servicios/api-request.service';
+import { AppConfig } from './servicios/app-config';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UtilService } from './servicios/util.service';
 
 @NgModule({
   declarations: [
@@ -12,10 +17,12 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   exports: [EncabezadoComponent],
-  providers: [],
+  providers: [ApiRequestService, AppConfig, UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,53 +28,62 @@
     </div>
 </nav>
 <br>
-<br>
-<br>
 <div class="container">
-    <div class="text card m-2">
-        <div class="card-header">
-            Registrar TOTEM
-        </div>
-        <div class="card-body">
-            <br>
-            <form>
+    <div class="text-center">
+    </div>
+    <form>
+        <div class="text card m-2">
+            <div class="card-header">
+                Tipo Operacion
+            </div>
+            <div class="card-body">
+                <br>
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-10">
+                    <div class="col-12">
                         <div class="form-group">
-                            <label for="codigo">Código</label>
-                            <input required name="codigo" class="form-control text-uppercase" id="codigo"
-                                placeholder="Codigo del Totem" required>
-                            <br>
-                            <label>Seleccione el Tienda</label>
+                            <label>Seleccione el TOTEM</label>
                             <select class="form-select" aria-label="Default select example" required>
-                                <option value="" disabled selected>Seleccione el Tienda</option>
-                                <option value="1">TIENDA FARMACIA</option>
-                                <option value="2">TIENDA COMERCIAL</option>
-                                <option value="3">TIENDA EMPRESARIAL</option>
+                                <option value="" disabled selected>Seleccione el Totem</option>
+                                <option value="1">TOTEM FARMACIA</option>
+                                <option value="2">TOTEM COMERCIAL</option>
+                                <option value="3">TOTEM EMPRESARIAL</option>
                             </select>
-                            <br>
                         </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
                         <div class="form-group">
-                            <label for="ubicacion">Dirección</label>
-                            <input required name="direccion" class="form-control text-uppercase" id="direccion"
-                                placeholder="Direccion del Totem" required>
+                            <label for="codigo">Codigo</label>
+                            <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                                placeholder="Ingrese el codigo">
+                            <br>
+                            <label for="descripcion">Descripcón</label>
+                            <input required name="descripcion" class="form-control text-uppercase" id="descripcion"
+                                placeholder="Descripcion">
                             <br>
                         </div>
                     </div>
-                    <div class="col-1"></div>
                 </div>
                 <br>
                 <div class="text-center">
-                    <button (click)="activarCargando(); guardar()" class="btn btn-success">Guardar</button>
+                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i> Guardar</button>
                 </div>
                 <br>
                 <div class="text-center">
                     <div id="cargando" hidden class="spinner-border text-success" role="status">
-                        <span class="sr-only"></span>
+                        <span class="sr-only">Loading...</span>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
+
+<script>
+    function activarCargando() {
+        document.getElementById("cargando").hidden = false;
+    }
+</script>

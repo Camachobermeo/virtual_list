@@ -36,6 +36,11 @@ export class ApiRequestService {
         if (urlParam) {
             options['params'] = urlParam;
         }
+        if (body) {
+            // body["sisInfoTO"] = JSON.parse(localStorage.getItem(LS.KEY_SISINFOTO));
+            body["sisInfoTO"] ? body["sisInfoTO"].empresa = empresa : null;
+            options['body'] = JSON.stringify(body);
+        }
         return options;
     }
 
@@ -65,16 +70,16 @@ export class ApiRequestService {
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
     post(url: string, body: any, empresa: string): Promise<any> {
-        if (this.hayTiempoSession()) {
-            localStorage.setItem("tiempo", "" + new Date().getTime());
-            let requestOptions = this.getRequestOptions(empresa, undefined, body);
-            return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
-                .toPromise()
-                .then(resp => resp)
-                .catch(err => this.handleError(err));
-        } else {
-            this.cerrarSession();
-        }
+        // if (this.hayTiempoSession()) {
+        localStorage.setItem("tiempo", "" + new Date().getTime());
+        let requestOptions = this.getRequestOptions(empresa, undefined, body);
+        return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
+            .toPromise()
+            .then(resp => resp)
+            .catch(err => this.handleError(err));
+        // } else {
+        //     this.cerrarSession();
+        // }
     }
 
     postSinLogin(url: string, body: any, empresa: string): Promise<any> {

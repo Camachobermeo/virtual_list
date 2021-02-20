@@ -12,13 +12,12 @@ export class TotemService {
     private utilService: UtilService
   ) { }
 
-  listarInvListaBancosTO(parametro, contexto, porDefecto, empresaSelect) {
-    this.api.post("todocompuWS/bancoWebController/getListaBanBancoTO", parametro, empresaSelect)
+  listarTotems(parametro, contexto, empresaSelect) {
+    this.api.post("totem.php", parametro, empresaSelect)
       .then(respuesta => {
-        if (respuesta && respuesta.extraInfo) {
-          contexto.despuesDeListarInvListaBancosTO(respuesta.extraInfo, porDefecto);
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeListarTotems(respuesta.extraInfo);
         } else {
-          contexto.despuesDeListarInvListaBancosTO([], porDefecto, respuesta.operacionMensaje);
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

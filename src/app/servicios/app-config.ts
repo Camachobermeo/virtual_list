@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppConfig {
 
-    public baseApiPath: string = "http://localhost:8080/ShrimpSoftServer/";
+    public baseApiPath: string = "http://localhost/virtual-list-backend/";
     
     constructor() {
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TiendaService } from '../tienda.service';
 
 @Component({
   selector: 'app-tienda-listado',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TiendaListadoComponent implements OnInit {
 
-  constructor() { }
+  tiendas: any = new Array();
+
+  constructor(
+    public tiendaService: TiendaService
+  ) { }
 
   ngOnInit(): void {
+    this.listarTiendas();
+  }
+
+  listarTiendas() {
+    this.tiendaService.listarTiendas({}, this);
+  }
+
+  despuesDeListarTiendas(data) {
+    console.log(data);
+    this.tiendas = data;
   }
 
 }

@@ -31,15 +31,15 @@
     <div class="row">
         <div class="col-md-10">
             <div class="input-group mb-3">
-                <select class="form-control" aria-label="Default select example" required>
-                    <option value="" disabled selected>Seleccione Tipo De Tienda</option>
-                    <option value="1">TIENDA FARMACIA</option>
-                    <option value="2">TIENDA COMERCIAL</option>
-                    <option value="3">TIENDA EMPRESARIAL</option>
-                </select>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
+                name="tiendaSeleccionada" required>
+                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                  {{tienda.direccion}}
+                </option>
+              </select>
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button"><i class="fa fa-search"
-                            aria-hidden="true"></i></button>
+                            aria-hidden="true" (click)="listarTotems()"></i></button>
                 </div>
             </div>
         </div>

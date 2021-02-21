@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TiendaService } from '../../tienda/tienda.service';
 import { TotemService } from '../totem.service';
 
 @Component({
@@ -9,22 +10,28 @@ import { TotemService } from '../totem.service';
 export class TotemListadoComponent implements OnInit {
 
   totems: any = new Array();
+  tiendas: any = new Array();
+  tiendaSeleccionada: string = "";
 
   constructor(
-    public totemService: TotemService
+    public totemService: TotemService,
+    public tiendaService: TiendaService
   ) { }
 
   ngOnInit(): void {
-    this.listarTotems();
+    this.tiendaService.listarTiendas({}, this);
   }
 
   listarTotems() {
-    this.totemService.listarTotems({ tienda: 'T01' }, this);
+    this.totemService.listarTotems({ tienda:this.tiendaSeleccionada }, this);
   }
 
   despuesDeListarTotems(data) {
     console.log(data);
     this.totems = data;
+  }
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
   }
 
 }

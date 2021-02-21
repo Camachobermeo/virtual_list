@@ -8,6 +8,8 @@ import { TotemService } from '../totem.service';
 })
 export class TotemListadoComponent implements OnInit {
 
+  totems: any = new Array();
+
   constructor(
     public totemService: TotemService
   ) { }
@@ -22,6 +24,7 @@ export class TotemListadoComponent implements OnInit {
 
   despuesDeListarTotems(data) {
     console.log(data);
+    this.totems = data;
   }
 
 }

@@ -20,10 +20,6 @@
                     <a class="nav-link active" aria-current="page" routerLink="/usuario">Usuario</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
         </div>
     </div>
 </nav>
@@ -31,30 +27,51 @@
 <form class="container">
     <div class="row">
         <div class="col-md-10">
+            <div class="input-group mb-3">
+                <select class="form-control" aria-label="Default select example" required>
+                    <option value="" disabled selected>Seleccione Tipo De Tienda</option>
+                    <option value="1">TIENDA FARMACIA</option>
+                    <option value="2">TIENDA COMERCIAL</option>
+                    <option value="3">TIENDA EMPRESARIAL</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button"><i class="fa fa-search"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 text-right">
+        <div class="col-md-2" style="text-align: right;">
             <a class="btn btn-primary" routerLink="nuevo">Nuevo</a>
         </div>
+        <br>
     </div>
-    <br>
     <div class="row">
-        <div class="col-1">
-        </div>
-        <div class="col-10">
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Código</th>
-                        <th>Tienda</th>
-                        <th>Ubicacion</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="col-1">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Código</th>
+                            <th>Tienda</th>
+                            <th>Ubicacion</th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #ffffff;">
+                        <tr *ngFor="let totem of totems">
+                            <td>{{totem.codigo}}</td>
+                            <td>{{totem.codigo_tienda}}</td>
+                            <td>{{totem.ubicacion}}</td>
+                            <td class="text-center"><a class="btn btn-sm btn-success"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a class="btn btn-sm btn-danger"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </form>

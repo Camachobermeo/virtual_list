@@ -16,7 +16,7 @@ export class TotemService {
     this.api.post("totem.php", parametro, empresaSelect)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
-          contexto.despuesDeListarTotems(respuesta.extraInfo);
+          contexto.despuesDeListarTotems(respuesta.resultado);
         } else {
         }
       }).catch(err => this.utilService.handleError(err, contexto));

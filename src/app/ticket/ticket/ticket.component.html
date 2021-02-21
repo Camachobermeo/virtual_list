@@ -20,42 +20,40 @@
           Generar Ticket
         </div>
         <div class="card-body">
-          <br>
           <div class="row">
-            <div>
+            <div class="mb-3">
+              <label>Seleccione la tienda de su preferencia</label>
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
+                name="tiendaSeleccionada" required>
+                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                  {{tienda.direccion}}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
               <label>Seleccione el tipo de ticket</label>
               <select class="form-select" aria-label="Default select example" required>
-                <option value="" disabled selected>Seleccione el tipo de ticket</option>
                 <option value="1">Tarjeta de credito</option>
                 <option value="2">Consulta de TOTEM</option>
                 <option value="3">Remodificar datos del TOTEM</option>
               </select>
             </div>
-            <br>
-            <div>
-              <br>
+            <div class="mb-3">
               <label for="exampleInputEmail1">Correo Electronico</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 placeholder="Ejm: example_123@gmail.com" required>
               <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
                 más.</small>
             </div>
-            <div>
-              <br>
+            <div class="mb-3">
               <label>Telefono</label>
               <input type="number" class="form-control" name="usuario" placeholder="Telefono">
-
             </div>
-
-            <br>
-            <div class="text-center">
-              <br>
+            <div class="mb-3 text-center">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label ms-2" for="exampleCheck1"> Añadir recordatorio</label>
             </div>
-            <br>
-            <div class="text-center">
-              <br>
+            <div class="mb-3 text-center">
               <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane" aria-hidden="true"></i> Generar
                 Ticket</button>
             </div>

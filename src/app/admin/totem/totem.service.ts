@@ -12,8 +12,8 @@ export class TotemService {
     private utilService: UtilService
   ) { }
 
-  listarTotems(parametro, contexto, empresaSelect) {
-    this.api.post("totem.php", parametro, empresaSelect)
+  listarTotems(parametro, contexto) {
+    this.api.post("totem.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTotems(respuesta.resultado);

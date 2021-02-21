@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppConfig } from './app-config';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 export interface ObjetoJWT {
     userId: string;
@@ -29,7 +30,8 @@ export class ApiRequestService {
         return headers;
     }
 
-    getRequestOptions(empresa: string, urlParam?: HttpParams, body?: any): any {
+    getRequestOptions(urlParam?: HttpParams, body?: any): any {
+        let empresa = environment.empresa;
         let options = {
             headers: this.appendAuthHeader()
         };
@@ -38,14 +40,11 @@ export class ApiRequestService {
         }
         if (body) {
             // body["sisInfoTO"] = JSON.parse(localStorage.getItem(LS.KEY_SISINFOTO));
-            body["sisInfoTO"] ? body["sisInfoTO"].empresa = empresa : null;
+            // body["sisInfoTO"] ? body["sisInfoTO"].empresa = empresa : null;
+            body["empresa"] = empresa;
             options['body'] = JSON.stringify(body);
         }
         return options;
-    }
-
-    construirParametrosSocket(empresa: string, body: any) {
-        return JSON.stringify(null);
     }
 
     getRequestOptionsAlternativo(body: any): any {
@@ -55,10 +54,10 @@ export class ApiRequestService {
     }
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
-    get(url: string, empresa: string, urlParams?: HttpParams): Promise<any> {
+    get(url: string, urlParams?: HttpParams): Promise<any> {
         if (this.hayTiempoSession()) {
             localStorage.setItem("tiempo", "" + new Date().getTime());
-            let requestOptions = this.getRequestOptions(empresa, urlParams);
+            let requestOptions = this.getRequestOptions(urlParams);
             return this.http.request('GET', this.appConfig.baseApiPath + url, requestOptions)
                 .toPromise()
                 .then(resp => resp)
@@ -69,10 +68,10 @@ export class ApiRequestService {
     }
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
-    post(url: string, body: any, empresa: string): Promise<any> {
+    post(url: string, body: any): Promise<any> {
         // if (this.hayTiempoSession()) {
         localStorage.setItem("tiempo", "" + new Date().getTime());
-        let requestOptions = this.getRequestOptions(empresa, undefined, body);
+        let requestOptions = this.getRequestOptions(undefined, body);
         return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
             .toPromise()
             .then(resp => resp)
@@ -82,8 +81,8 @@ export class ApiRequestService {
         // }
     }
 
-    postSinLogin(url: string, body: any, empresa: string): Promise<any> {
-        let requestOptions = this.getRequestOptions(empresa, undefined, body);
+    postSinLogin(url: string, body: any): Promise<any> {
+        let requestOptions = this.getRequestOptions(undefined, body);
         return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
             .toPromise()
             .then(resp => resp)
@@ -107,9 +106,9 @@ export class ApiRequestService {
     }
 
     //login
-    login(url: string, body: any, empresa: string): Promise<any> {
+    login(url: string, body: any): Promise<any> {
         localStorage.setItem("tiempo", "" + new Date().getTime());
-        let requestOptions = this.getRequestOptions(empresa, undefined, body);
+        let requestOptions = this.getRequestOptions(undefined, body);
         return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
             .toPromise()
             .then(resp => resp)
@@ -117,10 +116,10 @@ export class ApiRequestService {
     }
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
-    put(url: string, body: any, empresa: string): Promise<any> {
+    put(url: string, body: any): Promise<any> {
         if (this.hayTiempoSession()) {
             localStorage.setItem("tiempo", "" + new Date().getTime());
-            let requestOptions = this.getRequestOptions(empresa, undefined, body);
+            let requestOptions = this.getRequestOptions(undefined, body);
             return this.http.request('PUT', this.appConfig.baseApiPath + url, requestOptions)
                 .toPromise()
                 .then(resp => resp)
@@ -131,10 +130,10 @@ export class ApiRequestService {
     }
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
-    delete(url: string, empresa: string): Promise<any> {
+    delete(url: string): Promise<any> {
         if (this.hayTiempoSession()) {
             localStorage.setItem("tiempo", "" + new Date().getTime());
-            let requestOptions = this.getRequestOptions(empresa);
+            let requestOptions = this.getRequestOptions();
             return this.http.request('DELETE', this.appConfig.baseApiPath + url, requestOptions)
                 .toPromise()
                 .then(resp => resp)

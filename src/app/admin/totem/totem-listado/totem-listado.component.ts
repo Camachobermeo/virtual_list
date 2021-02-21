@@ -19,7 +19,7 @@ export class TotemListadoComponent implements OnInit {
   }
 
   listarTotems() {
-    this.totemService.listarTotems({ tienda: 'T01' }, this, {});
+    this.totemService.listarTotems({ tienda: 'T01' }, this);
   }
 
   despuesDeListarTotems(data) {

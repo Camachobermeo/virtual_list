@@ -19,11 +19,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/usuario">Usuario</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/tipo-operacion">Tipo Operación</a>
+                </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
         </div>
     </div>
 </nav>
@@ -32,28 +31,35 @@
     <div class="row">
         <div class="col-md-10">
         </div>
-        <div class="col-md-2 text-right">
+        <div class="col-md-2" style="text-align: right;">
             <a class="btn btn-primary" routerLink="nuevo">Nuevo</a>
         </div>
     </div>
     <br>
     <div class="row">
-        <div class="col-1">
-        </div>
-        <div class="col-10">
+        <div class="col-md-12">
             <table class="table">
                 <thead class="table-dark">
                     <tr>
-                        <th>ID</th>
                         <th>Código</th>
+                        <th>Código Totem</th>
                         <th>Descripcón</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th class="text-center">Editar</th>
+                        <th class="text-center">Eliminar</th>
                     </tr>
                 </thead>
+                <tbody style="background-color: #ffffff;">
+                    <tr *ngFor="let tipo of tipos">
+                        <td>{{tipo.codigo}}</td>
+                        <td>{{tipo.codigo_totem}}</td>
+                        <td>{{tipo.descripcion}}</td>
+                        <td class="text-center"><a class="btn btn-sm btn-success"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></a></td>
+                        <td class="text-center"><a class="btn btn-sm btn-danger"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
             </table>
-        </div>
-        <div class="col-1">
         </div>
     </div>
 </form>

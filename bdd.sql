@@ -50,6 +50,9 @@
 CREATE TABLE ticket(
      secuencial serial not null primary key,
      codigo_tipo_operacion text not null,
+     email text not null,
+     telefono text,
+     recordatorio boolean not null default false,
      fecha_sacado timestamp not null,
      CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
       REFERENCES tipo_operacion (codigo) MATCH FULL

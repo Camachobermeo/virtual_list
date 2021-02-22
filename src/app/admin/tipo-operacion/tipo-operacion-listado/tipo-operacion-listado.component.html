@@ -33,6 +33,7 @@
             <div class="input-group mb-3">
                 <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
                 name="tiendaSeleccionada" required>
+                <option value="" disabled selected>Seleccione el Totem</option>
                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                   {{tienda.direccion}}
                 </option>

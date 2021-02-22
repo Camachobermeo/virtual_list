@@ -40,44 +40,57 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label>Seleccione el TOTEM</label>
-                            <select class="form-select" aria-label="Default select example" required>
-                                <option value="" disabled selected>Seleccione el Totem</option>
-                                <option value="1">TOTEM FARMACIA</option>
-                                <option value="2">TOTEM COMERCIAL</option>
-                                <option value="3">TOTEM EMPRESARIAL</option>
+                            <label>Seleccione la Tienda</label>
+                            <select class="form-select" aria-label="Default select example"
+                                [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()" name="tiendaSeleccionada" required>
+                                <option value="" disabled selected>Seleccione la Tienda</option>
+                                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                                    {{tienda.direccion}}
+                                </option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-12">
+                        <br>
                         <div class="form-group">
-                            <label for="codigo">Codigo</label>
-                            <input required name="codigo" class="form-control text-uppercase" id="codigo"
-                                placeholder="Ingrese el codigo">
-                            <br>
-                            <label for="descripcion">Descripcón</label>
-                            <input required name="descripcion" class="form-control text-uppercase" id="descripcion"
-                                placeholder="Descripcion">
-                            <br>
+                            <label>Seleccione la Totem</label>
+                            <select class="form-select" aria-label="Default select example"
+                                [(ngModel)]="totemSeleccionado" name="totemSeleccionado" required>
+                                <option value="" disabled selected>Seleccione la Totem</option>
+                                <option *ngFor="let totem of totems" [ngValue]="totem.codigo">{{totem.codigo}} --
+                                    {{totem.ubicacion}}
+                                </option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="codigo">Codigo</label>
+                                <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                                    placeholder="Ingrese el codigo">
+                                <br>
+                                <label for="descripcion">Descripcón</label>
+                                <input required name="descripcion" class="form-control text-uppercase" id="descripcion"
+                                    placeholder="Descripcion">
+                                <br>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="text-center">
-                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
-                            aria-hidden="true"></i> Guardar</button>
-                </div>
-                <br>
-                <div class="text-center">
-                    <div id="cargando" hidden class="spinner-border text-success" role="status">
-                        <span class="sr-only">Loading...</span>
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" onclick="activarCargando()" class="btn btn-success"><i
+                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <div id="cargando" hidden class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
     </form>
 </div>
 

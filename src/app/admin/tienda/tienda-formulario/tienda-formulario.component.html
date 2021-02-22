@@ -30,7 +30,7 @@
 <div class="container">
     <div class="text-center">
     </div>
-    <form>
+    <form #frmTienda='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
                 Registrar Tienda
@@ -46,13 +46,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="codigo">Codigo</label>
-                        <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                        <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="tienda.codigo"
                             placeholder="Ingrese el codigo de tienda" required>
                         <br>
                     </div>
                     <div class="col-6">
                         <label for="rut">RUT</label>
-                        <input required name="rut" class="form-control text-uppercase" id="rut"
+                        <input required name="rut" class="form-control text-uppercase" [(ngModel)]="tienda.rut"
                             placeholder="Ingrese el RUT" required>
                         <br>
                     </div>
@@ -60,13 +60,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="direccion">Direccion</label>
-                        <input required name="direccion" class="form-control text-uppercase" id="direccion"
+                        <input required name="direccion" class="form-control text-uppercase" [(ngModel)]="tienda.direccion"
                             placeholder="Direccion de la Empresa" required>
                         <br>
                     </div>
                     <div class="col-6">
                         <label for="celular">Telefono/Celular</label>
-                        <input required name="celular" class="form-control text-uppercase" id="celular"
+                        <input required name="celular" class="form-control text-uppercase" [(ngModel)]="tienda.telefono"
                             placeholder="Ingrese su numero de Telefono o Celular" required>
                         <br>
                     </div>
@@ -83,14 +83,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                            [(ngModel)]="tienda.l_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                            [(ngModel)]="tienda.l_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -101,14 +101,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.m_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.m_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -119,14 +119,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.mm_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.mm_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -137,14 +137,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.j_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.j_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -155,14 +155,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.v_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.v_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -173,14 +173,14 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.s_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.s_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -191,20 +191,20 @@
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.d_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="horario" type="time" class="form-control  text-uppercasem"
-                                id="horario">
+                                [(ngModel)]="tienda.d_fin_atencion">
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="text-center">
-                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
+                    <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success"><i class="fa fa-floppy-o"
                             aria-hidden="true"></i> Guardar</button>
                 </div>
                 <br>

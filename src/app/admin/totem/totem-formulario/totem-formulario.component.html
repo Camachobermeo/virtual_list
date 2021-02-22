@@ -36,18 +36,18 @@
         </div>
         <div class="card-body">
             <br>
-            <form>
+            <form #frmTotem='ngForm'>
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10">
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                            <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="totem.codigo"
                                 placeholder="Codigo del Totem" required>
                             <br>
                             <label>Seleccione la Tienda</label>
                             <select class="form-select" aria-label="Default select example"
-                                [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
+                                [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                     {{tienda.direccion}}
                                 </option>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ubicacion">Dirección</label>
-                            <input required name="direccion" class="form-control text-uppercase" id="direccion"
+                            <input required name="ubicacion" class="form-control text-uppercase" [(ngModel)]="totem.ubicacion"
                                 placeholder="Direccion del Totem" required>
                             <br>
                         </div>
@@ -65,7 +65,7 @@
                 </div>
                 <br>
                 <div class="text-center">
-                    <button (click)="activarCargando(); guardar()" class="btn btn-success">Guardar</button>
+                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success">Guardar</button>
                 </div>
                 <br>
                 <div class="text-center">

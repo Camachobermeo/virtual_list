@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TiendaService } from '../../tienda/tienda.service';
 import { TipoOperacionService } from '../tipo-operacion.service';
 
 @Component({
@@ -9,21 +10,26 @@ import { TipoOperacionService } from '../tipo-operacion.service';
 export class TipoOperacionListadoComponent implements OnInit {
 
   tipos: any = new Array();
+  tiendas: any = new Array();
+  tiendaSeleccionada: string = "";
 
   constructor(
-    public tipoService: TipoOperacionService
+    public tipoService: TipoOperacionService,
+    public tiendaService: TiendaService
   ) { }
 
   ngOnInit(): void {
-    this.listarTipos();
+    this.tiendaService.listarTiendas({}, this);
   }
   listarTipos() {
-    this.tipoService.listarTipos({tienda:'T01'}, this);
+    this.tipoService.listarTipos({tienda:this.tiendaSeleccionada}, this);
   }
 
   despuesDeListarTipos(data) {
     console.log(data);
     this.tipos = data;
   }
-
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
+  }
 }

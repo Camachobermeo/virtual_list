@@ -45,12 +45,12 @@
                             <input required name="codigo" class="form-control text-uppercase" id="codigo"
                                 placeholder="Codigo del Totem" required>
                             <br>
-                            <label>Seleccione el Tienda</label>
-                            <select class="form-select" aria-label="Default select example" required>
-                                <option value="" disabled selected>Seleccione el Tienda</option>
-                                <option value="1">TIENDA FARMACIA</option>
-                                <option value="2">TIENDA COMERCIAL</option>
-                                <option value="3">TIENDA EMPRESARIAL</option>
+                            <label>Seleccione la Tienda</label>
+                            <select class="form-select" aria-label="Default select example"
+                                [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
+                                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                                    {{tienda.direccion}}
+                                </option>
                             </select>
                             <br>
                         </div>

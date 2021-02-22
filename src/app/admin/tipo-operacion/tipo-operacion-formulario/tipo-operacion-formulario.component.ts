@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TiendaService } from '../../tienda/tienda.service';
+import { TotemService } from '../../totem/totem.service';
 
 @Component({
   selector: 'app-tipo-operacion-formulario',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TipoOperacionFormularioComponent implements OnInit {
 
-  constructor() { }
+  tiendas: any = new Array();
+  totems: any = new Array();
+  tiendaSeleccionada: string = "";
+  totemSeleccionado: string = "";
+
+  constructor(
+    public tiendaService: TiendaService,
+    public totemService: TotemService
+  ) { }
 
   ngOnInit(): void {
+    this.tiendaService.listarTiendas({}, this);
+  }
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
+  }
+
+  listarTotems() {
+    this.totemService.listarTotems({ tienda: this.tiendaSeleccionada }, this);
+  }
+  despuesDeListarTotems(data) {
+    this.totems = data;
   }
 
 }

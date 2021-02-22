@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { ApiRequestService } from "./api-request.service";
@@ -39,6 +40,16 @@ export class UtilService {
         break;
     }
     contexto.cargando = false;
+  }
+
+  establecerFormularioTocado(form: NgForm): boolean {
+    let touched = true;
+    let formControls = form.form.controls;
+    for (let element in formControls) {
+      form.controls[element].markAsTouched();
+      form.controls[element].updateValueAndValidity();
+    }
+    return touched;
   }
 
 

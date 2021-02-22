@@ -5,6 +5,7 @@ import { TiendaService } from 'src/app/admin/tienda/tienda.service';
 import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
 import { Ticket } from 'src/app/entidades/Ticket';
 import { UtilService } from 'src/app/servicios/util.service';
+import { TicketService } from './ticket.service';
 
 @Component({
   selector: 'app-ticket',
@@ -24,7 +25,8 @@ export class TicketComponent implements OnInit {
     public tiendaService: TiendaService,
     public tiposService: TipoOperacionService,
     public utilService: UtilService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public ticketService: TicketService
   ) { }
 
   ngOnInit(): void {
@@ -50,14 +52,16 @@ export class TicketComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      // let formaCobroCopia = JSON.parse(JSON.stringify(this.formaCobro));
-      // this.setearValoresInvComprasFormaCobro(formaCobroCopia);
-      // let parametro = { accion: 'I', carPagosCobrosFormaTO: formaCobroCopia };
-      // this.formaCobroService.accionCarCobrosForma(parametro, this, LS.KEY_EMPRESA_SELECT);
+      this.ticketService.generarTicket(this.ticket, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
       this.cargando = false;
     }
+  }
+
+  despuesDeGenerarTicket(data) {
+    this.cargando = false;
+    this.toastr.success(data.mensaje, "Aviso");
   }
 
 }

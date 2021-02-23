@@ -33,7 +33,16 @@
     <form #frmUsuario='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                Registrar Usuario
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3> Registrar Usuario</h3>
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <button type="button" routerLink="/usuario" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1" ><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i> Guardar</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <br>
@@ -66,10 +75,6 @@
                     </div>
                 </div>
                 <br>
-                <div class="text-center">
-                    <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success" ><i class="fa fa-floppy-o"
-                            aria-hidden="true" ></i> Guardar</button>
-                </div>
                 <br>
                 <div class="text-center">
                     <div id="cargando" hidden class="spinner-border text-success" role="status">

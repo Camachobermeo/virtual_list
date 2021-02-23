@@ -27,12 +27,19 @@
     </div>
 </nav>
 <br>
-<br>
-<br>
 <div class="container">
     <div class="text card m-2">
         <div class="card-header">
-            Registrar TOTEM
+            <div class="row">
+                <div class="col-md-8">
+                    <h3> Registrar Totem</h3>
+                </div>
+                <div class="col-md-4" style="text-align: right;">
+                    <button type="button" routerLink="/totem" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success ms-1">Guardar</button>
+                
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <br>
@@ -62,10 +69,6 @@
                         </div>
                     </div>
                     <div class="col-1"></div>
-                </div>
-                <br>
-                <div class="text-center">
-                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success">Guardar</button>
                 </div>
                 <br>
                 <div class="text-center">

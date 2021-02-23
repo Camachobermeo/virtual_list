@@ -6,7 +6,7 @@ import { UtilService } from 'src/app/servicios/util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TipoOperacionService {
+export class EmpresaService {
 
   constructor(
     private api: ApiRequestService,
@@ -14,21 +14,11 @@ export class TipoOperacionService {
     private toastr: ToastrService
   ) { }
 
-  listarTipos(parametro, contexto) {
-    this.api.post("tipo-operacion.php", parametro)
+  guardarEmpresa(parametro, contexto) {
+    this.api.post("guardarEmpresa.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
-          contexto.despuesDeListarTipos(respuesta.resultado);
-        } else {
-        }
-      }).catch(err => this.utilService.handleError(err, contexto));
-  }
-
-  guardarTipoOperacion(parametro, contexto) {
-    this.api.post("guardarTipoOperacion.php", parametro)
-      .then(respuesta => {
-        if (respuesta && respuesta.resultado) {
-          contexto.despuesDeGuardarTipoOperacion(respuesta);
+          contexto.despuesDeGuardarEmpresa(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
         }

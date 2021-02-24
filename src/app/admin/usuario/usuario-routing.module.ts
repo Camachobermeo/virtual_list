@@ -13,6 +13,11 @@ const routesModulos: Routes = [
     path: 'nuevo',
     component: UsuarioFormularioComponent,
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'editar/:codigo',
+    component: UsuarioFormularioComponent,
+    runGuardsAndResolvers: 'always'
   }
 ];
 

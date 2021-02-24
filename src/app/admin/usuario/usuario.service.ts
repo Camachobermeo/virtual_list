@@ -34,4 +34,16 @@ export class UsuarioService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
+  obtenerUsuario(parametro, contexto) {
+    this.api.post("obtenerUsuario.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeObtenerUsuario(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

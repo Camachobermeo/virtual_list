@@ -30,10 +30,20 @@
 <div class="container">
     <div class="text-center">
     </div>
-    <form>
+    <form #frmTipoOperacion='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                Tipo Operacion
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3> Registrar Tipo Operacion</h3>
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                        <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)" class="btn btn-success ms-1"><i
+                            class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <br>
@@ -53,43 +63,37 @@
                         <div class="form-group">
                             <label>Seleccione la Totem</label>
                             <select class="form-select" aria-label="Default select example"
-                                [(ngModel)]="totemSeleccionado" name="totemSeleccionado" required>
+                                [(ngModel)]="tipoOperacion.codigo_totem" name="totemSeleccionado" required>
                                 <option value="" disabled selected>Seleccione la Totem</option>
                                 <option *ngFor="let totem of totems" [ngValue]="totem.codigo">{{totem.codigo}} --
                                     {{totem.ubicacion}}
                                 </option>
                             </select>
                         </div>
-                        <br>
+                    </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="codigo">Codigo</label>
-                                <input required name="codigo" class="form-control text-uppercase" id="codigo"
+                                <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="tipoOperacion.codigo"
                                     placeholder="Ingrese el codigo">
                                 <br>
                                 <label for="descripcion">Descripcón</label>
-                                <input required name="descripcion" class="form-control text-uppercase" id="descripcion"
+                                <input required name="descripcion" class="form-control text-uppercase"[(ngModel)]="tipoOperacion.descripcion"
                                     placeholder="Descripcion">
                                 <br>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div class="text-center">
-                        <button type="submit" onclick="activarCargando()" class="btn btn-success"><i
-                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-                    </div>
                     <br>
                     <div class="text-center">
                         <div id="cargando" hidden class="spinner-border text-success" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
                     </div>
-                </div>
-            </div>
             </div>
     </form>
 </div>

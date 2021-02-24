@@ -19,11 +19,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/usuario">Usuario</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/tipo-operacion">Tipo Operación</a>
+                </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
         </div>
     </div>
 </nav>
@@ -31,10 +30,19 @@
 <div class="container">
     <div class="text-center">
     </div>
-    <form>
+    <form #frmUsuario='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                Registrar Usuario
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3> Registrar Usuario</h3>
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <button type="button" routerLink="/usuario" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1" ><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i> Guardar</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <br>
@@ -42,15 +50,15 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="nombre">Nombre: </label>
-                            <input required name="nombre" class="form-control text-uppercase" id="nombre"
+                            <input required name="nombre" class="form-control text-uppercase" [(ngModel)]="usuario.nombre"
                                 placeholder="Ingrese el nombre">
                             <br>
-                            <label for="apellido">Apellido: </label>
-                            <input required name="apellido" class="form-control text-uppercase" id="apellido"
+                            <label for="apellidos">Apellido: </label>
+                            <input required name="apellidos" class="form-control text-uppercase" [(ngModel)]="usuario.apellidos"
                                 placeholder="Ingrese el apellido">
                             <br>
-                            <label for="usuario">Nombre de usuario: </label>
-                            <input required name="usuario" class="form-control" id="usuario"
+                            <label for="codigo">Nombre de usuario: </label>
+                            <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="usuario.codigo"
                                 placeholder="Ejm; @example123">
                             <br>
                         </div>
@@ -59,35 +67,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="celular">Telefono/Celular: </label>
-                            <input required name="celular" class="form-control text-uppercase" id="celular"
+                            <label for="telefono">Telefono/Celular: </label>
+                            <input required name="telefono" class="form-control text-uppercase" [(ngModel)]="usuario.telefono"
                                 placeholder="Ingrese su numero de Telefono o Celular">
                             <br>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <label>Sexo: </label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Hombre
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Mujer
-                            </label>
-                          </div>
-                    </div>
-                </div>
                 <br>
-                <div class="text-center">
-                    <button type="submit" onclick="activarCargando()" class="btn btn-success"><i class="fa fa-floppy-o"
-                            aria-hidden="true"></i> Guardar</button>
-                </div>
                 <br>
                 <div class="text-center">
                     <div id="cargando" hidden class="spinner-border text-success" role="status">

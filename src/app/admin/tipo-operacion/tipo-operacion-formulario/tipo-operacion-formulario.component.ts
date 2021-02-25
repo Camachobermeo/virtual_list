@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
@@ -24,6 +24,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   esEdicion: boolean = false;
 
   constructor(
+    private router: Router,
     public tiendaService: TiendaService,
     public totemService: TotemService,
     public tipoOperacionService: TipoOperacionService,
@@ -66,6 +67,8 @@ export class TipoOperacionFormularioComponent implements OnInit {
     if (form && form.valid && formularioTocado) {
       if (this.esEdicion) {
         this.tipoOperacion['esEdicion'] = true;
+      } else {
+        this.tipoOperacion['esEdicion'] = false;
       }
       this.tipoOperacionService.guardarTipoOperacion(this.tipoOperacion, this);
     } else {
@@ -77,6 +80,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   despuesDeGuardarTipoOperacion(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.router.navigate(['tipo-operacion']);
   }
 
 }

@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-4" style="text-align: right;">
                         <button type="button" routerLink="/tienda" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ms-1" routerLink="/tienda"><i class="fa fa-floppy-o"
+                        <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ms-1" ><i class="fa fa-floppy-o"
                             aria-hidden="true"></i> Guardar</button>
                     </div>
                 </div>
@@ -79,127 +79,127 @@
                     </div>
                     <div class="text">
                         <label for=""></label>
-                        <label class="text-decoration-underline" for="horario">Lunes</label>
+                        <label class="text-decoration-underline" for="l_inicio_atencion">Lunes</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="l_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="l_inicio_atencion" type="time" class="form-control  text-uppercasem"
                             [(ngModel)]="tienda.l_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="l_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="l_fin_atencion" type="time" class="form-control  text-uppercasem"
                             [(ngModel)]="tienda.l_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Martes</label>
+                        <label class="text-decoration-underline" for="m_inicio_atencion">Martes</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="m_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="m_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.m_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="m_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="m_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.m_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Miercoles</label>
+                        <label class="text-decoration-underline" for="mm_inicio_atencion">Miercoles</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="mm_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="mm_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.mm_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="mm_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="mm_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.mm_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Jueves</label>
+                        <label class="text-decoration-underline" for="j_inicio_atencion">Jueves</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="j_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="j_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.j_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="j_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="j_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.j_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Viernes</label>
+                        <label class="text-decoration-underline" for="v_inicio_atencion">Viernes</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="v_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="v_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.v_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="v_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="v_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.v_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Sabado</label>
+                        <label class="text-decoration-underline" for="s_inicio_atencion">Sabado</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="s_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="s_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.s_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="s_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="s_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.s_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
                         <br>
-                        <label class="text-decoration-underline" for="horario">Domingo</label>
+                        <label class="text-decoration-underline" for="d_inicio_atencion">Domingo</label>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="d_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <input required name="d_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.d_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="horario"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
-                            <input required name="horario" type="time" class="form-control  text-uppercasem"
+                            <label for="d_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
+                            <input required name="d_fin_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.d_fin_atencion">
                         </div>
                     </div>

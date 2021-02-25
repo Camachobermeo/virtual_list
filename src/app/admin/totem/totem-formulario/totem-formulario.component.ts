@@ -49,10 +49,6 @@ export class TotemFormularioComponent implements OnInit {
     document.getElementById("cargando").hidden = false;
   }
 
-  guardar() {
-    this.router.navigate(["totem"]);
-  }
-
   despuesDeListarTiendas(data) {
     this.tiendas = data;
   }
@@ -63,6 +59,8 @@ export class TotemFormularioComponent implements OnInit {
     if (form && form.valid && formularioTocado) {
       if (this.esEdicion) {
         this.totem['esEdicion'] = true;
+      }else {
+        this.totem['esEdicion'] = false;
       }
       this.totemService.guardarTotem(this.totem, this);
     } else {
@@ -74,6 +72,7 @@ export class TotemFormularioComponent implements OnInit {
   despuesDeGuardarTotem(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.router.navigate(['totem']);
   }
 
 }

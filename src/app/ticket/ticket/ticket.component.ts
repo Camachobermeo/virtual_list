@@ -62,6 +62,7 @@ export class TicketComponent implements OnInit {
   despuesDeGenerarTicket(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.ticket = new Ticket();
   }
 
 }

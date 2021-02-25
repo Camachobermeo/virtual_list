@@ -54,6 +54,8 @@ CREATE TABLE ticket(
      telefono text,
      recordatorio boolean not null default false,
      fecha_sacado timestamp not null,
+     rut text not null,
+     nombres text not null,
      CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
       REFERENCES tipo_operacion (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION

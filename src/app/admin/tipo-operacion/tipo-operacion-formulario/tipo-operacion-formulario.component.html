@@ -28,6 +28,7 @@
 </nav>
 <br>
 <div class="container">
+    card
     <div class="text-center">
     </div>
     <form #frmTipoOperacion='ngForm'>
@@ -38,21 +39,22 @@
                         <h3> Registrar Tipo Operacion</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
-                        <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)" class="btn btn-success ms-1"><i
-                            class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-                </div>
+                        <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                        <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)"
+                            class="btn btn-success ms-1"  routerLink="/tipo-operacion"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Guardar</button>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
                 <br>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
                             <label>Seleccione la Tienda</label>
                             <select class="form-select" aria-label="Default select example"
-                                [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()" name="tiendaSeleccionada" required>
+                                [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()"
+                                name="tiendaSeleccionada" required>
                                 <option value="" disabled selected>Seleccione la Tienda</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                     {{tienda.direccion}}
@@ -71,30 +73,30 @@
                             </select>
                         </div>
                     </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="codigo">Codigo</label>
-                                <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="tipoOperacion.codigo"
-                                    placeholder="Ingrese el codigo">
-                                <br>
-                                <label for="descripcion">Descripcón</label>
-                                <input required name="descripcion" class="form-control text-uppercase"[(ngModel)]="tipoOperacion.descripcion"
-                                    placeholder="Descripcion">
-                                <br>
-                            </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="codigo">Codigo</label>
+                            <input required name="codigo" class="form-control text-uppercase"
+                                [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
+                            <br>
+                            <label for="descripcion">Descripcón</label>
+                            <input required name="descripcion" class="form-control text-uppercase"
+                                [(ngModel)]="tipoOperacion.descripcion" placeholder="Descripcion">
+                            <br>
                         </div>
                     </div>
-                    <br>
-                    <br>
-                    <div class="text-center">
-                        <div id="cargando" hidden class="spinner-border text-success" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
+                </div>
+                <br>
+                <br>
+                <div class="text-center">
+                    <div id="cargando" hidden class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
                     </div>
-            </div>
+                </div>
+        </div>
     </form>
 </div>
 

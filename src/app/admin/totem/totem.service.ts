@@ -35,4 +35,15 @@ export class TotemService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  obtenerTotem(parametro, contexto) {
+    this.api.post("obtenerTotem.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeObtenerTotem(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

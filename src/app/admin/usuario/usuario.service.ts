@@ -46,4 +46,15 @@ export class UsuarioService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  eliminarUsuario(parametro, contexto) {
+    this.api.post("eliminar.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeEliminarUsuario(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

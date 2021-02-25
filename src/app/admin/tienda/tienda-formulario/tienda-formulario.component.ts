@@ -38,6 +38,7 @@ export class TiendaFormularioComponent implements OnInit {
     this.tiendaService.obtenerTienda({ codigo: this.tienda.codigo }, this);
   }
 
+
   despuesDeObtenerTienda(data) {
     this.tienda = data;
   }
@@ -67,5 +68,6 @@ export class TiendaFormularioComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['tienda']);
   }
+
 
 }

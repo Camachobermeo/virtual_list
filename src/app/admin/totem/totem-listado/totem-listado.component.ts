@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Totem } from 'src/app/entidades/Totem';
 import { TiendaService } from '../../tienda/tienda.service';
 import { TotemService } from '../totem.service';
 
@@ -12,9 +14,12 @@ export class TotemListadoComponent implements OnInit {
   totems: any = new Array();
   tiendas: any = new Array();
   tiendaSeleccionada: string = "";
+  cargando: boolean;
+  seleccionado: Totem = new Totem();
 
   constructor(
     public totemService: TotemService,
+    public toastr: ToastrService,
     public tiendaService: TiendaService
   ) { }
 
@@ -23,7 +28,7 @@ export class TotemListadoComponent implements OnInit {
   }
 
   listarTotems() {
-    this.totemService.listarTotems({ tienda:this.tiendaSeleccionada }, this);
+    this.totemService.listarTotems({ tienda: this.tiendaSeleccionada }, this);
   }
 
   despuesDeListarTotems(data) {
@@ -32,6 +37,17 @@ export class TotemListadoComponent implements OnInit {
   }
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+  }
+
+  eliminar() {
+    this.totemService.eliminarTotem({ codigo: this.seleccionado.codigo, tabla: 'totem' }, this);
+  }
+
+  despuesDeEliminarTotem(data) {
+    this.cargando = false;
+    this.toastr.success(data.mensaje, "Aviso");
+    document.getElementById("cerrar").click();
+    this.listarTotems();
   }
 
 }

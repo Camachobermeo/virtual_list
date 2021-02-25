@@ -71,8 +71,9 @@
                             <td>{{totem.codigo}}</td>
                             <td>{{totem.codigo_tienda}}</td>
                             <td>{{totem.ubicacion}}</td>
-                            <td class="text-center"><a class="btn btn-sm btn-success"><i class="fa fa-pencil"
-                                        aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a class="btn btn-sm btn-success"
+                                [routerLink]="['editar', totem.codigo]"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></a></td>
                             <td class="text-center"><a class="btn btn-sm btn-danger"><i class="fa fa-trash"
                                         aria-hidden="true"></i></a></td>
                         </tr>

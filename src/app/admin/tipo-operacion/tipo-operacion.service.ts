@@ -34,4 +34,16 @@ export class TipoOperacionService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
+  obtenerTipoOperacion(parametro, contexto) {
+    this.api.post("obtenerTipoOperacion.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeObtenerTipoOperacion(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

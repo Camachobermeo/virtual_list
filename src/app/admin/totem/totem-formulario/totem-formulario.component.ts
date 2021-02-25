@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Totem } from 'src/app/entidades/Totem';
 import { UtilService } from 'src/app/servicios/util.service';
@@ -18,17 +18,31 @@ export class TotemFormularioComponent implements OnInit {
   tiendaSeleccionada: string = "";
   totem: Totem = new Totem ();
   cargando: boolean = false;
+  esEdicion: boolean = false;
 
   constructor(
     private router: Router,
     public tiendaService: TiendaService,
     public totemService: TotemService,
     public utilService: UtilService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.tiendaService.listarTiendas({}, this);
+    this.totem.codigo = this.route.snapshot.paramMap.get("codigo");
+    if (this.totem.codigo) {
+      this.esEdicion = true;
+      this.obtenerTotem();
+    }
+  }
+  obtenerTotem() {
+    this.totemService.obtenerTotem({ codigo: this.totem.codigo }, this);
+  }
+
+  despuesDeObtenerTotem(data) {
+    this.totem = data;
   }
 
   activarCargando() {
@@ -47,6 +61,9 @@ export class TotemFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
+      if (this.esEdicion) {
+        this.totem['esEdicion'] = true;
+      }
       this.totemService.guardarTotem(this.totem, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");

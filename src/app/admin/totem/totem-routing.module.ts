@@ -13,6 +13,11 @@ const routesModulos: Routes = [
     path: 'nuevo',
     component: TotemFormularioComponent,
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'editar/:codigo',
+    component: TotemFormularioComponent,
+    runGuardsAndResolvers: 'always'
   }
 ];
 

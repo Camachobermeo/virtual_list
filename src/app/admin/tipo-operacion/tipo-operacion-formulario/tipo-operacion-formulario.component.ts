@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
@@ -20,18 +21,34 @@ export class TipoOperacionFormularioComponent implements OnInit {
   tiendaSeleccionada: string = "";
   totemSeleccionado: string = "";
   cargando: boolean = false;
+  esEdicion: boolean = false;
 
   constructor(
     public tiendaService: TiendaService,
     public totemService: TotemService,
     public tipoOperacionService: TipoOperacionService,
     public utilService: UtilService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.tiendaService.listarTiendas({}, this);
+    this.tipoOperacion.codigo = this.route.snapshot.paramMap.get("codigo");
+    if (this.tipoOperacion.codigo) {
+      this.esEdicion = true;
+      this.obtenerTipoOperacion();
+    }
   }
+
+  obtenerTipoOperacion() {
+    this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipoOperacion.codigo }, this);
+  }
+
+  despuesDeObtenerTipoOperacion(data) {
+    this.tipoOperacion = data;
+  }
+
   despuesDeListarTiendas(data) {
     this.tiendas = data;
   }
@@ -47,6 +64,9 @@ export class TipoOperacionFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
+      if (this.esEdicion) {
+        this.tipoOperacion['esEdicion'] = true;
+      }
       this.tipoOperacionService.guardarTipoOperacion(this.tipoOperacion, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");

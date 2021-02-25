@@ -35,4 +35,14 @@ export class TiendaService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  obtenerTienda(parametro, contexto) {
+    this.api.post("obtenerTienda.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeObtenerTienda(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
 }

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { ApiRequestService } from './servicios/api-request.service';
 import { AppConfig } from './servicios/app-config';
 import { ToastrModule } from 'ngx-toastr';
@@ -14,8 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EncabezadoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  exports: [EncabezadoComponent],
+  exports: [],
   providers: [ApiRequestService, AppConfig, UtilService],
   bootstrap: [AppComponent]
 })

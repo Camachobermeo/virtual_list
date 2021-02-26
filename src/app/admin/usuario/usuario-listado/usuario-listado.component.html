@@ -1,31 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Virtual</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/totem">Totem</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/tienda">Tienda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/empresa">Empresa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/usuario">Usuario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/tipo-operacion">Tipo Operación</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div>
+<app-encabezado></app-encabezado>
+</div>
 <br>
 <form class="container">
     <div class="card">
@@ -40,8 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
+            <div class="table-responsive">
                 <table class="table table-bordered mb-0">
                     <thead class="table-dark">
                         <tr>
@@ -72,9 +46,9 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
 </form>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -100,3 +74,5 @@
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
+
+<app-pie-pagina></app-pie-pagina>

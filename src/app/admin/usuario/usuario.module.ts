@@ -4,6 +4,7 @@ import { UsuarioListadoComponent } from './usuario-listado/usuario-listado.compo
 import { UsuarioFormularioComponent } from './usuario-formulario/usuario-formulario.component';
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    UsuarioRoutingModule 
+    UsuarioRoutingModule,
+    ComponentesGeneralesModule
   ]
 })
 export class UsuarioModule { }

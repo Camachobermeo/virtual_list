@@ -11,7 +11,7 @@ import { TiendaService } from '../tienda.service';
 export class TiendaListadoComponent implements OnInit {
 
   tiendas: any = new Array();
-  cargando: boolean;
+  cargando: boolean = false;
   seleccionado: Tienda = new Tienda();
 
   constructor(
@@ -24,23 +24,25 @@ export class TiendaListadoComponent implements OnInit {
   }
 
   listarTiendas() {
+    this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
   }
 
   despuesDeListarTiendas(data) {
-    console.log(data);
+    this.cargando = false;
     this.tiendas = data;
   }
 
   eliminar() {
+    this.cargando = true;
     this.tiendaService.eliminarTienda({ codigo: this.seleccionado.codigo, tabla: 'tienda' }, this);
   }
 
   despuesDeEliminarTienda(data) {
-    this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
     document.getElementById("cerrar").click();
     this.listarTiendas();
+    this.cargando = false;
   }
 
 }

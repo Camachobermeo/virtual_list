@@ -38,9 +38,10 @@
                         <h3> Registrar Tienda</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
-                        <button type="button" routerLink="/tienda" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ms-1" ><i class="fa fa-floppy-o"
-                            aria-hidden="true"></i> Guardar</button>
+                        <button type="button" routerLink="/tienda" class="btn btn-secondary"><i class="fa fa-arrow-left"
+                                aria-hidden="true"></i> Regresar</button>
+                        <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ms-1"><i
+                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                     </div>
                 </div>
             </div>
@@ -62,8 +63,8 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="direccion">Direccion</label>
-                        <input required name="direccion" class="form-control text-uppercase" [(ngModel)]="tienda.direccion"
-                            placeholder="Direccion de la Empresa" required>
+                        <input required name="direccion" class="form-control text-uppercase"
+                            [(ngModel)]="tienda.direccion" placeholder="Direccion de la Empresa" required>
                         <br>
                     </div>
                     <div class="col-6">
@@ -83,16 +84,17 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="l_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="l_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="l_inicio_atencion" type="time" class="form-control  text-uppercasem"
-                            [(ngModel)]="tienda.l_inicio_atencion">
+                                [(ngModel)]="tienda.l_inicio_atencion">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="l_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input required name="l_fin_atencion" type="time" class="form-control  text-uppercasem"
-                            [(ngModel)]="tienda.l_fin_atencion">
+                                [(ngModel)]="tienda.l_fin_atencion">
                         </div>
                     </div>
                     <div class="text">
@@ -101,7 +103,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="m_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="m_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="m_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.m_inicio_atencion">
                         </div>
@@ -119,7 +122,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="mm_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="mm_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="mm_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.mm_inicio_atencion">
                         </div>
@@ -137,7 +141,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="j_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="j_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="j_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.j_inicio_atencion">
                         </div>
@@ -155,7 +160,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="v_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="v_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="v_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.v_inicio_atencion">
                         </div>
@@ -173,7 +179,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="s_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="s_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="s_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.s_inicio_atencion">
                         </div>
@@ -191,7 +198,8 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="d_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Inicio</label>
+                            <label for="d_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Inicio</label>
                             <input required name="d_inicio_atencion" type="time" class="form-control  text-uppercasem"
                                 [(ngModel)]="tienda.d_inicio_atencion">
                         </div>
@@ -204,19 +212,10 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="text-center">
-                    <div id="cargando" hidden class="spinner-border text-success" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
             </div>
         </div>
     </form>
 </div>
-
-<script>
-    function activarCargando() {
-        document.getElementById("cargando").hidden = false;
-    }
-</script>
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

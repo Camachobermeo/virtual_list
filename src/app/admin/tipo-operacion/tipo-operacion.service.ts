@@ -46,4 +46,15 @@ export class TipoOperacionService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  eliminarTipoOperacion(parametro, contexto) {
+    this.api.post("eliminar.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeEliminarTipoOperacion(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

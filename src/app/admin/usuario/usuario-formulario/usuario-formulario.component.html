@@ -38,9 +38,10 @@
                         <h3> Registrar Usuario</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
-                        <button type="button" routerLink="/usuario" class="btn btn-secondary" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1"><i class="fa fa-floppy-o"
-                            aria-hidden="true"></i> Guardar</button>
+                        <button type="button" routerLink="/usuario" class="btn btn-secondary"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1"><i
+                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                     </div>
                 </div>
             </div>
@@ -50,16 +51,16 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="nombre">Nombre: </label>
-                            <input required name="nombre" class="form-control text-uppercase" [(ngModel)]="usuario.nombre"
-                                placeholder="Ingrese el nombre">
+                            <input required name="nombre" class="form-control text-uppercase"
+                                [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
                             <br>
                             <label for="apellidos">Apellido: </label>
-                            <input required name="apellidos" class="form-control text-uppercase" [(ngModel)]="usuario.apellidos"
-                                placeholder="Ingrese el apellido">
+                            <input required name="apellidos" class="form-control text-uppercase"
+                                [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
                             <br>
                             <label for="codigo">Nombre de usuario: </label>
-                            <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="usuario.codigo"
-                                placeholder="Ejm; @example123">
+                            <input required name="codigo" class="form-control text-uppercase"
+                                [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
                             <br>
                         </div>
                     </div>
@@ -68,26 +69,18 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="telefono">Telefono/Celular: </label>
-                            <input required name="telefono" class="form-control text-uppercase" [(ngModel)]="usuario.telefono"
-                                placeholder="Ingrese su numero de Telefono o Celular">
+                            <input required name="telefono" class="form-control text-uppercase"
+                                [(ngModel)]="usuario.telefono" placeholder="Ingrese su numero de Telefono o Celular">
                             <br>
                         </div>
                     </div>
                 </div>
                 <br>
-                <br>
-                <div class="text-center">
-                    <div id="cargando" hidden class="spinner-border text-success" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
             </div>
         </div>
     </form>
 </div>
 
-<script>
-    function activarCargando() {
-        document.getElementById("cargando").hidden = false;
-    }
-</script>
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

@@ -11,7 +11,7 @@ import { UsuarioService } from '../usuario.service';
 export class UsuarioListadoComponent implements OnInit {
 
   usuarios: any = new Array();
-  cargando: boolean;
+  cargando: boolean = false;
   seleccionado: Usuario = new Usuario();
 
   constructor(
@@ -23,15 +23,17 @@ export class UsuarioListadoComponent implements OnInit {
     this.listarUsuarios();
   }
   listarUsuarios() {
+    this.cargando=true;
     this.usuarioService.listarUsuarios({}, this);
   }
 
   despuesDeListarUsuarios(data) {
-    console.log(data);
     this.usuarios = data;
+    this.cargando=false;
   }
 
   eliminar() {
+    this.cargando=true;
     this.usuarioService.eliminarUsuario({ codigo: this.seleccionado.codigo, tabla: 'usuario' }, this);
   }
 

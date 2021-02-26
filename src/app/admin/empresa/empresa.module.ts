@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EmpresaFormularioComponent } from './empresa-formulario/empresa-formulario.component';
 import { EmpresaRoutingModule } from './empresa-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    EmpresaRoutingModule
+    EmpresaRoutingModule,
+    ComponentesGeneralesModule
   ]
 })
 export class EmpresaModule { }

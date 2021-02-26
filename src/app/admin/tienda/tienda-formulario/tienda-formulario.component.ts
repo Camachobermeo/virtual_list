@@ -35,17 +35,16 @@ export class TiendaFormularioComponent implements OnInit {
   }
 
   obtenerTienda() {
+    this.cargando = true;
     this.tiendaService.obtenerTienda({ codigo: this.tienda.codigo }, this);
   }
 
 
   despuesDeObtenerTienda(data) {
     this.tienda = data;
+    this.cargando = false;
   }
-  activarCargando() {
-    document.getElementById("cargando").hidden = false;
-  }
-
+ 
   guardarTienda(form: NgForm) {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
@@ -64,9 +63,9 @@ export class TiendaFormularioComponent implements OnInit {
   }
 
   despuesDeGuardarTienda(data) {
-    this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['tienda']);
+    this.cargando = false;
   }
 
 

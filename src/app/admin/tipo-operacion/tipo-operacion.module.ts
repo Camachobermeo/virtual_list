@@ -4,6 +4,7 @@ import { TipoOperacionFormularioComponent } from './tipo-operacion-formulario/ti
 import { TipoOperacionListadoComponent } from './tipo-operacion-listado/tipo-operacion-listado.component';
 import { TipoOperacionRoutingModule } from './tipo-operaion-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    TipoOperacionRoutingModule
+    TipoOperacionRoutingModule,
+    ComponentesGeneralesModule
   ]
 })
 export class TipoOperacionModule { }

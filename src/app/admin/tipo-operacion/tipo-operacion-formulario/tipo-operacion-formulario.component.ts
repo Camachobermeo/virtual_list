@@ -34,6 +34,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
     this.tipoOperacion.codigo = this.route.snapshot.paramMap.get("codigo");
     if (this.tipoOperacion.codigo) {
@@ -43,22 +44,29 @@ export class TipoOperacionFormularioComponent implements OnInit {
   }
 
   obtenerTipoOperacion() {
+    this.cargando = true;
     this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipoOperacion.codigo }, this);
   }
 
   despuesDeObtenerTipoOperacion(data) {
     this.tipoOperacion = data;
+    this.cargando = false;
+
   }
 
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+    this.cargando = false;
   }
 
   listarTotems() {
+    this.cargando = true;
     this.totemService.listarTotems({ tienda: this.tiendaSeleccionada }, this);
   }
   despuesDeListarTotems(data) {
     this.totems = data;
+    this.cargando = false;
+
   }
 
   guardarTipoOperacion(form: NgForm) {

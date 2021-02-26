@@ -32,10 +32,11 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                <h3>Lista De Tienda</h3>
+                    <h3>Lista De Tienda</h3>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</a>
+                    <a class="btn btn-primary" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        Nuevo</a>
                 </div>
             </div>
         </div>
@@ -61,11 +62,12 @@
                             <td>{{tienda.telefono}}</td>
 
                             <td class="text-center"><button type="button" class="btn btn-sm btn-success"
-                                [routerLink]="['editar', tienda.codigo]"><i class="fa fa-pencil"
-                                    aria-hidden="true"></i></button></td>
+                                    [routerLink]="['editar', tienda.codigo]"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i></button></td>
                             <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
-                                  data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                     (click)="seleccionado = tienda;"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    (click)="seleccionado = tienda;"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -89,5 +91,12 @@
                 <button type="button" class="btn btn-primary" (click)="eliminar()">Confirmar</button>
             </div>
         </div>
+        <div *ngIf="cargando">
+            <app-cargando></app-cargando>
+        </div>
     </div>
+</div>
+
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
 </div>

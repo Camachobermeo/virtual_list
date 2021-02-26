@@ -32,15 +32,16 @@ export class UsuarioFormularioComponent implements OnInit {
       this.esEdicion = true;
       this.obtenerUsuario();
     }
-
   }
 
   obtenerUsuario() {
+    this.cargando = true;
     this.usuarioService.obtenerUsuario({ codigo: this.usuario.codigo }, this);
   }
 
   despuesDeObtenerUsuario(data) {
     this.usuario = data;
+    this.cargando = false;
   }
 
   guardarUsuario(form: NgForm) {
@@ -61,9 +62,10 @@ export class UsuarioFormularioComponent implements OnInit {
   }
 
   despuesDeGuardarUsuario(data) {
-    this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['usuario']);
+    this.cargando = false;
+
   }
 
 }

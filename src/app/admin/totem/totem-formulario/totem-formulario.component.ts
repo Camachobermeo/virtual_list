@@ -30,6 +30,7 @@ export class TotemFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
     this.totem.codigo = this.route.snapshot.paramMap.get("codigo");
     if (this.totem.codigo) {
@@ -38,19 +39,19 @@ export class TotemFormularioComponent implements OnInit {
     }
   }
   obtenerTotem() {
+    this.cargando = true;
     this.totemService.obtenerTotem({ codigo: this.totem.codigo }, this);
   }
 
   despuesDeObtenerTotem(data) {
     this.totem = data;
+    this.cargando = false;
   }
 
-  activarCargando() {
-    document.getElementById("cargando").hidden = false;
-  }
 
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+    this.cargando = false;
   }
 
   guardarTotem(form: NgForm) {

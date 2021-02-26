@@ -32,17 +32,21 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3>Listados De Tipos De Opereación</h3>
+                    <h3>Listados De Tipos De Operación</h3>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</a>
+                    <a class="btn btn-primary" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        Nuevo</a>
                 </div>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-12">
-                <div class="input-group mb-3 p-2">
+                <div class="p-1 ps-3">
+                    <h6> Seleccione el totem</h6>
+                </div>
+                <div class="input-group mb-3 p-2 pt-0">
                     <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
                         name="tiendaSeleccionada" required>
                         <option value="" disabled selected>Seleccione el Totem</option>
@@ -51,8 +55,8 @@
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" (click)="listarTipos()"><i class="fa fa-search" aria-hidden="true"
-                                ></i></button>
+                        <button class="btn btn-outline-primary" type="button" (click)="listarTipos()"><i
+                                class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <table class="table table-bordered mb-0">
@@ -71,10 +75,12 @@
                             <td>{{tipo.codigo_totem}}</td>
                             <td>{{tipo.descripcion}}</td>
                             <td class="text-center"><button type="button" class="btn btn-sm btn-success"
-                                [routerLink]="['editar', tipo.codigo]"><i class="fa fa-pencil"
-                                    aria-hidden="true"></i></button></td>
-                            <td class="text-center"><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"
+                                    [routerLink]="['editar', tipo.codigo]"><i class="fa fa-pencil"
                                         aria-hidden="true"></i></button></td>
+                            <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    (click)="seleccionado = tipo;">
+                                    <i class="fa fa-trash" aria-hidden="true"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -82,3 +88,27 @@
         </div>
     </div>
 </form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">TIPO OPERACION</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Esta seguro eliminar este registro tipo operacion con codigo {{seleccionado.codigo}}.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cerrar" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="eliminar()">Confirmar</button>
+            </div>
+        </div>
+        <div *ngIf="cargando">
+            <app-cargando></app-cargando>
+        </div>
+    </div>
+</div>
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

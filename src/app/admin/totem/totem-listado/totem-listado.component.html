@@ -43,10 +43,13 @@
         <div class="row">
             <div class="col-md-12">
                 <br>
-                <div class="input-group mb-3 p-2">
+                <div class="p-1 ps-3">
+                    <h6> Seleccione la Tienda</h6>
+                </div>
+                <div class="input-group mb-3 p-2 pt-0">
                     <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
                         name="tiendaSeleccionada" required>
-                        <option value="" disabled selected>Seleccione el Tienda</option>
+                        <option value="" disabled selected>Seleccione la Tienda</option>
                         <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                             {{tienda.direccion}}
                         </option>
@@ -104,5 +107,12 @@
                 <button type="button" class="btn btn-primary" (click)="eliminar()">Confirmar</button>
             </div>
         </div>
+        <div *ngIf="cargando">
+            <app-cargando></app-cargando>
+        </div>
     </div>
+</div>
+
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
 </div>

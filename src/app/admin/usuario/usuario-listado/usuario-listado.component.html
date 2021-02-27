@@ -24,6 +24,7 @@
                             <th>Apellidos</th>
                             <th>Usuario</th>
                             <th>Telefono</th>
+                            <th>Estado</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
@@ -35,6 +36,7 @@
                             <td>{{usuario.apellidos}}</td>
                             <td>{{usuario.codigo}}</td>
                             <td>{{usuario.telefono}} </td>
+                            <td>{{usuario.estado ? 'Activo' : 'Inactivo'}} </td>
                             <td class="text-center"><a class="btn btn-sm btn-success"
                                     [routerLink]="['editar', usuario.codigo]"><i class="fa fa-pencil"
                                         aria-hidden="true"></i></a></td>

@@ -20,6 +20,7 @@ export class TipoOperacionService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTipos(respuesta.resultado);
         } else {
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -31,6 +32,7 @@ export class TipoOperacionService {
           contexto.despuesDeGuardarTipoOperacion(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -42,6 +44,7 @@ export class TipoOperacionService {
           contexto.despuesDeObtenerTipoOperacion(respuesta.resultado);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -53,6 +56,7 @@ export class TipoOperacionService {
           contexto.despuesDeEliminarTipoOperacion(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

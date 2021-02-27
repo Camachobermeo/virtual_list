@@ -6,7 +6,7 @@ import { UtilService } from 'src/app/servicios/util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaService {
+export class LoginService {
 
   constructor(
     private api: ApiRequestService,
@@ -14,15 +14,16 @@ export class EmpresaService {
     private toastr: ToastrService
   ) { }
 
-  guardarEmpresa(parametro, contexto) {
-    this.api.post("guardarEmpresa.php", parametro)
+  obtenerLogin(parametro, contexto) {
+    this.api.post("login.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
-          contexto.despuesDeGuardarEmpresa(respuesta);
+          contexto.despuesDeObtenerLogin(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
           contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
 }

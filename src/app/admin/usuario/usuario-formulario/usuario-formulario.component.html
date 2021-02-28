@@ -1,6 +1,6 @@
 <app-encabezado></app-encabezado>
 <br>
-<div class="container">
+<div class="container pb-5 col-lg-10 col-md-12 col-sm-12">
     <div class="text-center">
     </div>
     <form #frmUsuario='ngForm'>
@@ -8,7 +8,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3> Registrar Usuario</h3>
+                        <h3> {{esEdicion?'Modificar':'Registrar'}} Usuario</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
                         <button type="button" routerLink="/usuario" class="btn btn-secondary"><i
@@ -32,11 +32,12 @@
                                 [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
                             <br>
                             <label for="codigo">Nombre de usuario: </label>
-                            <input required name="codigo" class="form-control text-uppercase"
+                            <input required name="codigo" [disabled]="esEdicion" class="form-control text-uppercase"
                                 [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
                             <br>
-                                <label for="clave" class="form-label">Contraseña</label>
-                                <input type="password" name="clave" class="form-control"  [(ngModel)]="usuario.clave">
+                            <label for="clave" class="form-label">Contraseña</label>
+                            <input type="password" name="clave" class="form-control text-uppercase"
+                                [(ngModel)]="usuario.clave">
                             <br>
                         </div>
                     </div>
@@ -55,7 +56,7 @@
                 <div class="mb-3 text-center">
                     <input type="checkbox" class="form-check-input" name="estado" [(ngModel)]="usuario.estado">
                     <label class="form-check-label ms-2" for="exampleCheck1">Activo</label>
-                  </div>
+                </div>
             </div>
         </div>
     </form>
@@ -64,5 +65,3 @@
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
-
-<app-pie-pagina></app-pie-pagina>

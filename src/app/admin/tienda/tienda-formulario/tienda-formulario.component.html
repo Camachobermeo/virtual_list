@@ -1,6 +1,6 @@
 <app-encabezado></app-encabezado>
 <br>
-<div class="container">
+<div class="container pb-5 col-lg-10 col-md-12 col-sm-12">
     <div class="text-center">
     </div>
     <form #frmTienda='ngForm'>
@@ -8,7 +8,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3> Registrar Tienda</h3>
+                        <h3> {{esEdicion?'Modificar':'Registrar'}} Tienda</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
                         <button type="button" routerLink="/tienda" class="btn btn-secondary"><i class="fa fa-arrow-left"
@@ -22,28 +22,22 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="codigo">Codigo</label>
-                        <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="tienda.codigo"
+                        <input required name="codigo" class="form-control text-uppercase" [(ngModel)]="tienda.codigo" [disabled]="esEdicion"
                             placeholder="Ingrese el codigo de tienda" required>
-                        <br>
-                    </div>
-                    <div class="col-6">
-                        <label for="rut">RUT</label>
-                        <input required name="rut" class="form-control text-uppercase" [(ngModel)]="tienda.rut"
-                            placeholder="Ingrese el RUT" required>
-                        <br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="direccion">Direccion</label>
-                        <input required name="direccion" class="form-control text-uppercase"
-                            [(ngModel)]="tienda.direccion" placeholder="Direccion de la Empresa" required>
                         <br>
                     </div>
                     <div class="col-6">
                         <label for="celular">Telefono/Celular</label>
                         <input required name="celular" class="form-control text-uppercase" [(ngModel)]="tienda.telefono"
                             placeholder="Ingrese su numero de Telefono o Celular" required>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="direccion">Direccion</label>
+                        <input required name="direccion" class="form-control text-uppercase"
+                            [(ngModel)]="tienda.direccion" placeholder="Direccion de la Empresa" required>
                         <br>
                     </div>
                 </div>
@@ -192,5 +186,3 @@
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
-
-<app-pie-pagina></app-pie-pagina>

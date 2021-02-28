@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UtilService } from './servicios/util.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from './componentes-generales/componentes-generales.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ComponentesGeneralesModule,
     ToastrModule.forRoot()
   ],
   exports: [],

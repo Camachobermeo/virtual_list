@@ -1,7 +1,6 @@
 <app-encabezado></app-encabezado>
 <br>
-<div class="container">
-    card
+<div class="container pb-5 col-lg-10 col-md-12 col-sm-12">
     <div class="text-center">
     </div>
     <form #frmTipoOperacion='ngForm'>
@@ -9,7 +8,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3> Registrar Tipo Operacion</h3>
+                        <h3> {{esEdicion?'Modificar':'Registrar'}} Tipo Operación</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
                         <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary"><i
@@ -54,7 +53,7 @@
                 <div class="col-10">
                     <div class="form-group">
                         <label for="codigo">Codigo</label>
-                        <input required name="codigo" class="form-control text-uppercase"
+                        <input required name="codigo" class="form-control text-uppercase" [disabled]="esEdicion"
                             [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
                         <br>
                         <label for="descripcion">Descripcón</label>
@@ -72,5 +71,3 @@
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
-
-<app-pie-pagina></app-pie-pagina>

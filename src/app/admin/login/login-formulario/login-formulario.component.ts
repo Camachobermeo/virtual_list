@@ -32,6 +32,7 @@ export class LoginFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
+      this.usuario.codigo=this.usuario.codigo.toUpperCase();
       this.loginService.obtenerLogin(this.usuario, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -43,5 +44,20 @@ export class LoginFormularioComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['empresa']);
     this.cargando = false;
+  }
+
+  visualizar(){
+    if(document.getElementById("clave")){
+      document.getElementById("clave")['type'] = "text";
+      document.getElementById("clave")['id']= "oculto";
+      document.getElementById("abierto").hidden=true;
+      document.getElementById("cerrado").hidden=false;
+    }else{
+      document.getElementById("oculto")['type'] = "password";
+      document.getElementById("oculto")['id']= "clave";
+      document.getElementById("abierto").hidden=false;
+      document.getElementById("cerrado").hidden=true;
+    }
+    
   }
 }

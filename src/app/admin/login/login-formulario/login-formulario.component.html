@@ -1,8 +1,8 @@
 <br><br><br><br>
 <div class="container">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-lg-1 col-md-12 col-sm-12"></div>
+        <div class="col-lg-10 col-md-12 col-sm-12">
             <div class="text-center">
             </div>
             <form #frmUsuario='ngForm'>
@@ -16,14 +16,18 @@
                         <div class="mb-3">
                             <label for="codigo" class="form-label"><i class="fa fa-user-o"
                                     aria-hidden="true"></i> Usuario</label>
-                            <input type="text" name="codigo" class="form-control" [(ngModel)]="usuario.codigo"
+                            <input type="text" name="codigo" class="form-control text-uppercase" [(ngModel)]="usuario.codigo"
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Nunca compartiremos su usuario con nadie más.</div>
                         </div>
                         <div class="mb-3">
                             <label for="clave" class="form-label"><i class="fa fa-unlock-alt"
                                     aria-hidden="true"></i> Contraseña</label>
-                            <input type="password" name="clave" class="form-control" [(ngModel)]="usuario.clave">
+                         <div class="input-group mb-3">
+                            <input type="password" name="clave" class="form-control" id="clave" [(ngModel)]="usuario.clave">
+                            <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                        </div>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -38,6 +42,10 @@
                 </div>
             </form>
         </div>
-        <div class="col-3"></div>
+        <div class="col-lg-1 col-md-12 col-sm-12"></div>
     </div>
+</div>
+
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
 </div>

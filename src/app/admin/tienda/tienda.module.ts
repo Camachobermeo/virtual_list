@@ -4,6 +4,7 @@ import { TiendaListadoComponent } from './tienda-listado/tienda-listado.componen
 import { TiendaFormularioComponent } from './tienda-formulario/tienda-formulario.component';
 import { TiendaRoutingModule } from './tienda-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    TiendaRoutingModule
+    TiendaRoutingModule,
+    ComponentesGeneralesModule
   ]
 })
 export class TiendaModule { }

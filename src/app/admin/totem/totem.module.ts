@@ -4,6 +4,7 @@ import { TotemListadoComponent } from './totem-listado/totem-listado.component';
 import { TotemFormularioComponent } from './totem-formulario/totem-formulario.component';
 import { TotemRoutingModule } from './totem-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    TotemRoutingModule 
+    TotemRoutingModule,
+    ComponentesGeneralesModule 
   ]
 })
 export class TotemModule { }

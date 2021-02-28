@@ -20,6 +20,7 @@ export class TiendaService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTiendas(respuesta.resultado);
         } else {
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -31,6 +32,7 @@ export class TiendaService {
           contexto.despuesDeGuardarTienda(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -42,6 +44,19 @@ export class TiendaService {
           contexto.despuesDeObtenerTienda(respuesta.resultado);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
+  eliminarTienda(parametro, contexto) {
+    this.api.post("eliminar.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeEliminarTienda(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

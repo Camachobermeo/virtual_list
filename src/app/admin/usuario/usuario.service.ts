@@ -20,6 +20,7 @@ export class UsuarioService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarUsuarios(respuesta.resultado);
         } else {
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -31,6 +32,7 @@ export class UsuarioService {
           contexto.despuesDeGuardarUsuario(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -42,6 +44,19 @@ export class UsuarioService {
           contexto.despuesDeObtenerUsuario(respuesta.resultado);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
+  eliminarUsuario(parametro, contexto) {
+    this.api.post("eliminar.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeEliminarUsuario(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

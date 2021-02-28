@@ -67,6 +67,8 @@ CREATE TABLE ticket(
      nombre text not null,
      apellidos text not null,
      telefono text not null,
+     clave text not null,
+     estado boolean not null default true,
      CONSTRAINT usuario_fk FOREIGN KEY (rut)
       REFERENCES empresa (rut) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION

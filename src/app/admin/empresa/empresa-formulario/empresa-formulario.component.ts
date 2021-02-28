@@ -36,8 +36,8 @@ export class EmpresaFormularioComponent implements OnInit {
   }
 
   despuesDeGuardarEmpresa(data) {
-    this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.cargando = false;
   }
 
 }

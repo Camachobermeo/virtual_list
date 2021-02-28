@@ -20,6 +20,7 @@ export class TotemService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTotems(respuesta.resultado);
         } else {
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -31,6 +32,7 @@ export class TotemService {
           contexto.despuesDeGuardarTotem(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -42,6 +44,19 @@ export class TotemService {
           contexto.despuesDeObtenerTotem(respuesta.resultado);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
+  eliminarTotem(parametro, contexto) {
+    this.api.post("eliminar.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeEliminarTotem(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando=false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

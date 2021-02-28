@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
@@ -24,6 +24,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   esEdicion: boolean = false;
 
   constructor(
+    private router: Router,
     public tiendaService: TiendaService,
     public totemService: TotemService,
     public tipoOperacionService: TipoOperacionService,
@@ -33,6 +34,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
     this.tipoOperacion.codigo = this.route.snapshot.paramMap.get("codigo");
     if (this.tipoOperacion.codigo) {
@@ -42,22 +44,29 @@ export class TipoOperacionFormularioComponent implements OnInit {
   }
 
   obtenerTipoOperacion() {
+    this.cargando = true;
     this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipoOperacion.codigo }, this);
   }
 
   despuesDeObtenerTipoOperacion(data) {
     this.tipoOperacion = data;
+    this.cargando = false;
+
   }
 
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+    this.cargando = false;
   }
 
   listarTotems() {
+    this.cargando = true;
     this.totemService.listarTotems({ tienda: this.tiendaSeleccionada }, this);
   }
   despuesDeListarTotems(data) {
     this.totems = data;
+    this.cargando = false;
+
   }
 
   guardarTipoOperacion(form: NgForm) {
@@ -66,6 +75,8 @@ export class TipoOperacionFormularioComponent implements OnInit {
     if (form && form.valid && formularioTocado) {
       if (this.esEdicion) {
         this.tipoOperacion['esEdicion'] = true;
+      } else {
+        this.tipoOperacion['esEdicion'] = false;
       }
       this.tipoOperacionService.guardarTipoOperacion(this.tipoOperacion, this);
     } else {
@@ -77,6 +88,7 @@ export class TipoOperacionFormularioComponent implements OnInit {
   despuesDeGuardarTipoOperacion(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.router.navigate(['tipo-operacion']);
   }
 
 }

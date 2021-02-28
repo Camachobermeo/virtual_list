@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
@@ -19,6 +19,7 @@ export class UsuarioFormularioComponent implements OnInit {
   esEdicion: boolean = false;
 
   constructor(
+    private router: Router,
     public usuarioService: UsuarioService,
     public utilService: UtilService,
     public toastr: ToastrService,
@@ -31,15 +32,16 @@ export class UsuarioFormularioComponent implements OnInit {
       this.esEdicion = true;
       this.obtenerUsuario();
     }
-
   }
 
   obtenerUsuario() {
+    this.cargando = true;
     this.usuarioService.obtenerUsuario({ codigo: this.usuario.codigo }, this);
   }
 
   despuesDeObtenerUsuario(data) {
     this.usuario = data;
+    this.cargando = false;
   }
 
   guardarUsuario(form: NgForm) {
@@ -49,6 +51,8 @@ export class UsuarioFormularioComponent implements OnInit {
       this.usuario.rut = environment.empresa;
       if (this.esEdicion) {
         this.usuario['esEdicion'] = true;
+      }else {
+        this.usuario['esEdicion'] = false;
       }
       this.usuarioService.guardarUsuario(this.usuario, this);
     } else {
@@ -58,8 +62,10 @@ export class UsuarioFormularioComponent implements OnInit {
   }
 
   despuesDeGuardarUsuario(data) {
-    this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
+    this.router.navigate(['usuario']);
+    this.cargando = false;
+
   }
 
 }

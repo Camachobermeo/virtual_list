@@ -1,53 +1,51 @@
 <br><br><br><br>
 <div class="container">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-lg-1 col-md-12 col-sm-12"></div>
+        <div class="col-lg-10 col-md-12 col-sm-12">
             <div class="text-center">
             </div>
-            <form>
+            <form #frmUsuario='ngForm'>
                 <div class="text card m-2">
                     <div class="card-header">
-                        iniciar Seción
+                        Iniciar Sesión
                     </div>
                     <div class="card-body">
                         <img src="assets/imagen/avatar1.png" width="150" height="100" class="rounded mx-auto d-block"
                             alt="Usuario">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label"><i class="fa fa-user-o"
+                            <label for="codigo" class="form-label"><i class="fa fa-user-o"
                                     aria-hidden="true"></i> Usuario</label>
-                            <input type="usuario" class="form-control" id="exampleInputEmail1"
+                            <input type="text" name="codigo" class="form-control text-uppercase" [(ngModel)]="usuario.codigo"
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Nunca compartiremos su usuario con nadie más.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label"><i class="fa fa-unlock-alt"
+                            <label for="clave" class="form-label"><i class="fa fa-unlock-alt"
                                     aria-hidden="true"></i> Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                         <div class="input-group mb-3">
+                            <input type="password" name="clave" class="form-control" id="clave" [(ngModel)]="usuario.clave">
+                            <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                        </div>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Recordar información</label>
                         </div>
                         <div class="text-center">
-                            <button type="submit" onclick="activarCargando()" class="btn btn-primary">Iniciar
-                                seccion</button>
+                            <button type="submit"(click)="iniciar(frmUsuario)" class="btn btn-primary">Iniciar
+                                Sesion</button>
                             <br>
-                        </div>
-                        <div class="text-center">
-                            <div id="cargando" hidden class="spinner-border text-success" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-3"></div>
+        <div class="col-lg-1 col-md-12 col-sm-12"></div>
     </div>
 </div>
-<script>
-    function activarCargando() {
-        document.getElementById("cargando").hidden = false;
-    }
-</script>
+
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

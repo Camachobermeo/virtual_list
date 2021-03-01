@@ -20,6 +20,7 @@ export class TicketService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeGenerarTicket(respuesta);
         } else {
+          contexto.cargando = false;
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
         }
       }).catch(err => this.utilService.handleError(err, contexto));

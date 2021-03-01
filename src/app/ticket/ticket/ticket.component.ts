@@ -30,21 +30,25 @@ export class TicketComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
   }
 
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+    this.cargando = false;
     if (this.tiendaSeleccionada) {
       this.listarTiposOperacion();
     }
   }
 
   listarTiposOperacion() {
+    this.cargando = true;
     this.tiposService.listarTipos({ tienda: this.tiendaSeleccionada }, this);
   }
 
   despuesDeListarTipos(data) {
+    this.cargando = false;
     this.tipos = data;
   }
 

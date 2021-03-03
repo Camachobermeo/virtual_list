@@ -36,8 +36,11 @@
                                 [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
                             <br>
                             <label for="clave" class="form-label">Contraseña</label>
-                            <input type="password" name="clave" class="form-control text-uppercase"
-                                [(ngModel)]="usuario.clave">
+                            <div class="input-group mb-3">
+                                <input type="password" name="clave" class="form-control" id="clave" [(ngModel)]="usuario.clave">
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </div>
                             <br>
                         </div>
                     </div>

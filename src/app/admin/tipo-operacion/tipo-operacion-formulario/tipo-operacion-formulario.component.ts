@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
+import { Totem } from 'src/app/entidades/Totem';
 import { UtilService } from 'src/app/servicios/util.service';
 import { TiendaService } from '../../tienda/tienda.service';
 import { TotemService } from '../../totem/totem.service';
@@ -50,8 +51,13 @@ export class TipoOperacionFormularioComponent implements OnInit {
 
   despuesDeObtenerTipoOperacion(data) {
     this.tipoOperacion = data;
-    this.cargando = false;
+    this.totemService.obtenerTotem({ codigo: this.tipoOperacion.codigo_totem }, this);
+  }
 
+  despuesDeObtenerTotem(data: Totem) {
+    this.totemSeleccionado = data.codigo;
+    this.tiendaSeleccionada = data.codigo_tienda;
+    this.listarTotems();
   }
 
   despuesDeListarTiendas(data) {
@@ -63,10 +69,10 @@ export class TipoOperacionFormularioComponent implements OnInit {
     this.cargando = true;
     this.totemService.listarTotems({ tienda: this.tiendaSeleccionada }, this);
   }
+
   despuesDeListarTotems(data) {
     this.totems = data;
     this.cargando = false;
-
   }
 
   guardarTipoOperacion(form: NgForm) {

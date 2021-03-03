@@ -43,6 +43,7 @@ export class LoginFormularioComponent implements OnInit {
   despuesDeObtenerLogin(data){
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['empresa']);
+    localStorage.setItem("codigo", this.usuario.codigo);
     this.cargando = false;
   }
 

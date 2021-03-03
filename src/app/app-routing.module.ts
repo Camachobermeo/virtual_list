@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'tipo-operacion',
     loadChildren: () => import('./admin/tipo-operacion/tipo-operacion.module').then(m => m.TipoOperacionModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./admin/perfil/perfil.module').then(m => m.PerfilModule)
+  },
 ];
 
 @NgModule({

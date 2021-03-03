@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./encabezado.component.css']
 })
 export class EncabezadoComponent implements OnInit {
-
+nombreUsuario = " "
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit( ): void {
+    this.nombreUsuario = localStorage.getItem("codigo")
   }
 
 }

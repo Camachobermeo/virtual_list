@@ -15,7 +15,7 @@ export class LoginService {
   ) { }
 
   obtenerLogin(parametro, contexto) {
-    this.api.post("login.php", parametro)
+    this.api.login("login.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeObtenerLogin(respuesta);

@@ -15,7 +15,7 @@ export class TiendaService {
   ) { }
 
   listarTiendas(parametro, contexto) {
-    this.api.post("tienda.php", parametro)
+    this.api.postSinLogin("tienda.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTiendas(respuesta.resultado);

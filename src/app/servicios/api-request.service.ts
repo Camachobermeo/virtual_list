@@ -69,16 +69,16 @@ export class ApiRequestService {
 
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
     post(url: string, body: any): Promise<any> {
-        // if (this.hayTiempoSession()) {
+        if (this.hayTiempoSession()) {
         localStorage.setItem("tiempo", "" + new Date().getTime());
         let requestOptions = this.getRequestOptions(undefined, body);
         return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
             .toPromise()
             .then(resp => resp)
             .catch(err => this.handleError(err));
-        // } else {
-        //     this.cerrarSession();
-        // }
+        } else {
+            this.cerrarSession();
+        }
     }
 
     postSinLogin(url: string, body: any): Promise<any> {

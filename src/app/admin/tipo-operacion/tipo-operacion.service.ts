@@ -15,7 +15,7 @@ export class TipoOperacionService {
   ) { }
 
   listarTipos(parametro, contexto) {
-    this.api.post("tipo-operacion.php", parametro)
+    this.api.postSinLogin("tipo-operacion.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTipos(respuesta.resultado);

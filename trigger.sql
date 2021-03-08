@@ -7,40 +7,37 @@ CREATE OR REPLACE FUNCTION actualizar_numero_ticket()
 $BODY$
   DECLARE
       nRegistrosAfectados integer;
-      numeroUltimaSecuencia text;
-      numeroUltimoPedido text;
+      numeroUltimaSecuencia integer;
   BEGIN
 	IF TG_OP='INSERT' THEN
-		EXECUTE $$SELECT num_secuencia
-		FROM inventario.inv_pedidos_numeracion
-		WHERE num_empresa = $1 AND
-		      num_sector = $2 AND
-		      num_motivo = $3$$
+		EXECUTE $$SELECT numero
+		FROM numeracion
+		WHERE codigo_tipo_operacion = $1 AND
+		      fecha = $2$$
 		INTO numeroUltimaSecuencia
-		USING NEW.ped_empresa, NEW.ped_sector, NEW.ped_motivo;
+		USING NEW.codigo_tipo_operacion, DATE(NEW.fecha_sacado);
 
-		numeroUltimaSecuencia := COALESCE(numeroUltimaSecuencia,'0000000');
+		numeroUltimaSecuencia := COALESCE(numeroUltimaSecuencia,1);
+		
+		EXECUTE $$UPDATE numeracion
+		     SET numero = $3
+		     WHERE codigo_tipo_operacion = $1 AND
+			   fecha = $2$$
+		USING NEW.codigo_tipo_operacion, DATE(NEW.fecha_sacado), (numeroUltimaSecuencia+1);
 
-		IF numeroUltimaSecuencia < NEW.ped_numero THEN
-			EXECUTE $$UPDATE inventario.inv_pedidos_numeracion
-			     SET num_secuencia = $4
-			     WHERE num_empresa = $1 AND
-			           num_sector = $2 AND
-				   num_motivo  = $3 $$
-			USING NEW.ped_empresa, NEW.ped_sector, NEW.ped_motivo, NEW.ped_numero;
+		GET DIAGNOSTICS nRegistrosAfectados = ROW_COUNT;
 
-			GET DIAGNOSTICS nRegistrosAfectados = ROW_COUNT;
-
-			IF nRegistrosAfectados=0 THEN
-				EXECUTE $$INSERT INTO inventario.inv_pedidos_numeracion(num_empresa, num_sector, num_motivo, num_secuencia)
-					VALUES ($1, $2, $3, $4)$$
-				USING NEW.ped_empresa, NEW.ped_sector, NEW.ped_motivo, NEW.ped_numero;
-			END IF;
+		IF nRegistrosAfectados=0 THEN
+			EXECUTE $$INSERT INTO numeracion(codigo_tipo_operacion, fecha, numero)
+				VALUES ($1, $2, $3)$$
+			USING NEW.codigo_tipo_operacion, DATE(NEW.fecha_sacado), (numeroUltimaSecuencia);
 		END IF;
+
+		NEW.numeracion := numeroUltimaSecuencia;
+		
 		RETURN NEW;
 	END IF;
     END;
   $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION actualizar_numero_ticket();

@@ -56,6 +56,7 @@ CREATE TABLE ticket(
      fecha_sacado timestamp not null,
      rut text not null,
      nombres text not null,
+     numeracion integer not null,
      CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
       REFERENCES tipo_operacion (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
@@ -73,3 +74,19 @@ CREATE TABLE ticket(
       REFERENCES empresa (rut) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
+
+CREATE TABLE numeracion(
+     codigo_tipo_operacion text not null,
+     fecha date not null,
+     numero integer not null,
+     CONSTRAINT numeracion_pk PRIMARY KEY (codigo_tipo_operacion, fecha)
+ );
+
+
+DROP TRIGGER IF EXISTS actualizar_numero_ticket ON ticket;
+
+CREATE TRIGGER actualizar_numero_ticket
+  BEFORE INSERT
+  ON ticket
+  FOR EACH ROW
+  EXECUTE PROCEDURE actualizar_numero_ticket();

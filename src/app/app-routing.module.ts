@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from './servicios/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'totem',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/totem/totem.module').then(m => m.TotemModule)
   },
   {
@@ -12,14 +14,17 @@ const routes: Routes = [
   },
   {
     path: 'empresa',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/empresa/empresa.module').then(m => m.EmpresaModule)
   },
   {
     path: 'tienda',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/tienda/tienda.module').then(m => m.TiendaModule)
   },
   {
     path: 'usuario',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/usuario/usuario.module').then(m => m.UsuarioModule)
   },
   {
@@ -28,10 +33,12 @@ const routes: Routes = [
   },
   {
     path: 'tipo-operacion',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/tipo-operacion/tipo-operacion.module').then(m => m.TipoOperacionModule)
   },
   {
     path: 'perfil',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/perfil/perfil.module').then(m => m.PerfilModule)
   },
 ];
@@ -41,7 +48,7 @@ const routes: Routes = [
     onSameUrlNavigation: 'reload',
     useHash: true,
     relativeLinkResolution: 'legacy'
-})],
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

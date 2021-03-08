@@ -15,7 +15,7 @@ export class TicketService {
   ) { }
 
   generarTicket(parametro, contexto) {
-    this.api.post("ticket.php", parametro)
+    this.api.postSinLogin("ticket.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeGenerarTicket(respuesta);

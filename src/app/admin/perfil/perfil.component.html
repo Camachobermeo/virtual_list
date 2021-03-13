@@ -38,21 +38,21 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="nombre">Nombre: </label>
-                                        <input required name="nombre" class="form-control text-uppercase"
+                                        <input required name="nombre" class="form-control form-control-sm text-uppercase"
                                             [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
                                         <br>
                                         <label for="apellidos">Apellido: </label>
-                                        <input required name="apellidos" class="form-control text-uppercase"
+                                        <input required name="apellidos" class="form-control form-control-sm text-uppercase"
                                             [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
                                         <br>
                                         <label for="codigo">Nombre de usuario: </label>
                                         <input required name="codigo" [disabled]="obtenerUsuario"
-                                            class="form-control text-uppercase" [(ngModel)]="usuario.codigo"
+                                            class="form-control form-control-sm text-uppercase" [(ngModel)]="usuario.codigo"
                                             placeholder="Ejm; @example123">
                                         <br>
                                         <label for="clave" class="form-label">Contraseña</label>
                                         <div class="input-group mb-3">
-                                            <input type="password" name="clave" class="form-control" id="clave"
+                                            <input type="password" name="clave" class="form-control form-control-sm" id="clave"
                                                 [(ngModel)]="usuario.clave">
                                             <span class="input-group-text" type="button" (click)="visualizar()"
                                                 id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
@@ -68,7 +68,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="telefono">Telefono/Celular: </label>
-                                        <input required name="telefono" class="form-control text-uppercase"
+                                        <input required name="telefono" class="form-control form-control-sm text-uppercase"
                                             [(ngModel)]="usuario.telefono"
                                             placeholder="Ingrese su numero de Telefono o Celular">
                                         <br>

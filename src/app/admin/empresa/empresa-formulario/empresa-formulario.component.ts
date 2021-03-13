@@ -22,8 +22,18 @@ export class EmpresaFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.obtenerEmpresa();
   }
 
+  obtenerEmpresa() {
+    this.cargando = true;
+    this.empresaService.obtenerEmpresa({}, this);
+  }
+
+  despuesDeObtenerEmpresa(data) {
+    this.empresa = data;
+    this.cargando = false;
+  }
   guardarEmpresa(form: NgForm) {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);

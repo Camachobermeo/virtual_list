@@ -8,7 +8,7 @@
                     <h3>Listado de totem</h3>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         Nuevo</a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     <h6> Seleccione la Tienda</h6>
                 </div>
                 <div class="input-group mb-3 p-2 pt-0">
-                    <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
+                    <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
                         name="tiendaSeleccionada" required>
                         <option value="" disabled selected>Seleccione la Tienda</option>
                         <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
@@ -28,7 +28,7 @@
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" (click)="listarTotems()"> <i
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="listarTotems()"> <i
                                 class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </div>

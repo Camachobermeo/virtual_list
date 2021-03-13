@@ -8,9 +8,9 @@
                     <h3> {{esEdicion?'Modificar':'Registrar'}} Totem</h3>
                 </div>
                 <div class="col-md-4" style="text-align: right;">
-                    <button type="button" routerLink="/totem" class="btn btn-secondary"><i class="fa fa-arrow-left"
+                    <button type="button" routerLink="/totem" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"
                             aria-hidden="true"></i> Regresar</button>
-                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success ms-1">Guardar</button>
+                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success ms-1 btn-sm">Guardar</button>
 
                 </div>
             </div>
@@ -23,11 +23,11 @@
                     <div class="col-10">
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input required name="codigo" class="form-control text-uppercase" [disabled]="esEdicion" [(ngModel)]="totem.codigo"
+                            <input required name="codigo" class="form-control form-control-sm text-uppercase" [disabled]="esEdicion" [(ngModel)]="totem.codigo"
                                 placeholder="Codigo del Totem" required>
                             <br>
                             <label>Seleccione la Tienda</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select form-select-sm" aria-label="Default select example"
                                 [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required >
                                 <option value="" disabled selected>Seleccione la Tienda</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ubicacion">Dirección</label>
-                            <input required name="ubicacion" class="form-control text-uppercase"
+                            <input required name="ubicacion" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="totem.ubicacion" placeholder="Direccion del Totem" required>
                             <br>
                         </div>

@@ -41,6 +41,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/perfil/perfil.module').then(m => m.PerfilModule)
   },
+  {
+    path: 'principal',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./admin/principal/principal.module').then(m => m.PrincipalModule)
+  },
 ];
 
 @NgModule({

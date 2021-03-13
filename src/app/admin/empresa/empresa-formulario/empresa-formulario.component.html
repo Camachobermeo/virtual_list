@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="rut">RUT</label>
-                            <input required name="rut" class="form-control text-uppercase"  [(ngModel)]="empresa.rut"
+                            <input required name="rut" class="form-control form-control-sm text-uppercase" [disabled]="true" [(ngModel)]="empresa.rut"
                                 placeholder="Ingrese el RUT">
                             <br>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="razon_social">Razon Social</label>
-                            <input required name="celular" class="form-control text-uppercase"  [(ngModel)]="empresa.razon_social"
+                            <input required name="celular" class="form-control form-control-sm text-uppercase" [disabled]="true" [(ngModel)]="empresa.razon_social"
                                 placeholder="Ingrese su razon social.">
                             <br>
                         </div>
@@ -32,9 +32,9 @@
                 </div>
 
                 <br>
-                <div class="text-center">
-                    <button type="submit" (click)="guardarEmpresa(frmEmpresa)" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-                </div>
+                <!-- <div class="text-center">
+                    <button type="submit" (click)="guardarEmpresa(frmEmpresa)" [disabled]="true" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                </div> -->
             </div>
         </div>
     </form>

@@ -11,9 +11,9 @@
                         <h3> {{esEdicion?'Modificar':'Registrar'}} Usuario</h3>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
-                        <button type="button" routerLink="/usuario" class="btn btn-secondary"><i
+                        <button type="button" routerLink="/usuario" class="btn btn-secondary btn-sm"><i
                                 class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1"><i
+                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1 btn-sm"><i
                                 class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                     </div>
                 </div>
@@ -24,20 +24,20 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="nombre">Nombre: </label>
-                            <input required name="nombre" class="form-control text-uppercase"
+                            <input required name="nombre" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
                             <br>
                             <label for="apellidos">Apellido: </label>
-                            <input required name="apellidos" class="form-control text-uppercase"
+                            <input required name="apellidos" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
                             <br>
                             <label for="codigo">Nombre de usuario: </label>
-                            <input required name="codigo" [disabled]="esEdicion" class="form-control text-uppercase"
-                                [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
+                            <input required name="codigo" [disabled]="esEdicion" class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="usuario.codigo" placeholder="Ejm; example123">
                             <br>
                             <label for="clave" class="form-label">Contraseña</label>
                             <div class="input-group mb-3">
-                                <input type="password" name="clave" class="form-control" id="clave" [(ngModel)]="usuario.clave">
+                                <input type="password" name="clave" class="form-control form-control-sm" id="clave" [(ngModel)]="usuario.clave">
                                 <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
                                 <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
                             </div>
@@ -49,7 +49,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="telefono">Telefono/Celular: </label>
-                            <input required name="telefono" class="form-control text-uppercase"
+                            <input required name="telefono" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.telefono" placeholder="Ingrese su numero de Telefono o Celular">
                             <br>
                         </div>

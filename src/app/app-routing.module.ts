@@ -46,6 +46,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/principal/principal.module').then(m => m.PrincipalModule)
   },
+  {
+    path: 'actualizar',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./admin/actualizar/actualizar.module').then(m => m.ActualizarModule)
+  },
+  {
+    path: 'tickets',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./admin/tickets/tickets.module').then(m => m.TicketsModule)
+  },
 ];
 
 @NgModule({

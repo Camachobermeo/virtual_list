@@ -55,6 +55,20 @@ export class TiendaFormularioComponent implements OnInit {
       }else {
         this.tienda['esEdicion'] = false;
       }
+      this.tienda.l_inicio_atencion = this.tienda.l_inicio_atencion || null;
+      this.tienda.m_inicio_atencion = this.tienda.m_inicio_atencion || null;
+      this.tienda.mm_inicio_atencion = this.tienda.mm_inicio_atencion || null;
+      this.tienda.j_inicio_atencion = this.tienda.j_inicio_atencion || null;
+      this.tienda.v_inicio_atencion = this.tienda.v_inicio_atencion || null;
+      this.tienda.s_inicio_atencion = this.tienda.s_inicio_atencion || null;
+      this.tienda.d_inicio_atencion = this.tienda.d_inicio_atencion || null;
+      this.tienda.l_fin_atencion = this.tienda.l_fin_atencion || null;
+      this.tienda.m_fin_atencion = this.tienda.m_fin_atencion || null;
+      this.tienda.mm_fin_atencion = this.tienda.mm_fin_atencion || null;
+      this.tienda.j_fin_atencion = this.tienda.j_fin_atencion || null;
+      this.tienda.v_fin_atencion = this.tienda.v_fin_atencion || null;
+      this.tienda.s_fin_atencion = this.tienda.s_fin_atencion || null;
+      this.tienda.d_fin_atencion = this.tienda.d_fin_atencion || null;
       this.tiendaService.guardarTienda(this.tienda, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");

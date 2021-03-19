@@ -54,7 +54,7 @@ const routes: Routes = [
   {
     path: 'tickets',
     canActivate: [AuthGuardService],
-    loadChildren: () => import('./admin/tickets/tickets.module').then(m => m.TicketsModule)
+    loadChildren: () => import('./admin/listado-tickets/listado-tickets.module').then(m => m.ListadoTicketsModule)
   },
 ];
 

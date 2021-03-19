@@ -5,7 +5,7 @@ import { UtilService } from 'src/app/servicios/util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TicketsService {
+export class ListadoTicketsService {
 
   constructor(
     private api: ApiRequestService,
@@ -22,5 +22,5 @@ export class TicketsService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
-
+  
 }

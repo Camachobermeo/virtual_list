@@ -5,46 +5,48 @@
     <div class="card-header">
       <div class="row">
         <div class="col-md-12">
-          <h3>Tickets Generados</h3>
+          <b>Tickets Generados</b>
         </div>
       </div>
     </div>
-    <div class="p-1 ps-3">
-      <h6>Fecha</h6>
-    </div>
-    <div class="input-group mb-3 p-2 pt-0">
-      <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
-        [(ngModel)]="fecha_sacado">
-      <div class="input-group-append">
-        <button class="btn btn-outline-primary btn-sm" type="button" (click)="listarTickets()"><i class="fa fa-search"
-            aria-hidden="true"></i></button>
+    <div class="card-body">
+      <div class="p-1 ps-3">
+        <h6>Fecha</h6>
       </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-bordered mb-0">
-        <thead class="table-dark">
-          <tr>
-            <th>RUT</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Fecha</th>
-            <th>Codigo</th>
-            <th>Numeración</th>
-          </tr>
-        </thead>
-        <tbody style="background-color: #ffffff;">
-          <tr *ngFor="let ticket of tickets">
-            <td>{{ticket.rut}}</td>
-            <td>{{ticket.nombres}}</td>
-            <td>{{ticket.email}}</td>
-            <td>{{ticket.telefono}}</td>
-            <td>{{ticket.fecha_sacado}} </td>
-            <td>{{ticket.codigo_tipo_operacion}}</td>
-            <td>{{ticket.numeracion}} </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="input-group mb-3 p-2 pt-0">
+        <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
+          [(ngModel)]="fecha_sacado">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary btn-sm" type="button" (click)="listarTickets()"><i class="fa fa-search"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered mb-0">
+          <thead>
+            <tr>
+              <th>RUT</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Telefono</th>
+              <th>Fecha</th>
+              <th>Codigo</th>
+              <th>Numeración</th>
+            </tr>
+          </thead>
+          <tbody style="background-color: #ffffff;">
+            <tr *ngFor="let ticket of tickets">
+              <td>{{ticket.rut}}</td>
+              <td>{{ticket.nombres}}</td>
+              <td>{{ticket.email}}</td>
+              <td>{{ticket.telefono}}</td>
+              <td>{{ticket.fecha_sacado}} </td>
+              <td>{{ticket.codigo_tipo_operacion}}</td>
+              <td>{{ticket.numeracion}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </form>

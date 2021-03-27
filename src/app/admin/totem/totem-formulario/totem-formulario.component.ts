@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Tienda } from 'src/app/entidades/Tienda';
 import { Totem } from 'src/app/entidades/Totem';
 import { UtilService } from 'src/app/servicios/util.service';
 import { TiendaService } from '../../tienda/tienda.service';
@@ -14,9 +15,8 @@ import { TotemService } from '../totem.service';
 })
 export class TotemFormularioComponent implements OnInit {
 
-  tiendas: any = new Array();
-  tiendaSeleccionada: string = "";
-  totem: Totem = new Totem ();
+  tiendas: Array<Tienda> = new Array();
+  totem: Totem = new Totem();
   cargando: boolean = false;
   esEdicion: boolean = false;
 
@@ -38,6 +38,7 @@ export class TotemFormularioComponent implements OnInit {
       this.obtenerTotem();
     }
   }
+
   obtenerTotem() {
     this.cargando = true;
     this.totemService.obtenerTotem({ codigo: this.totem.codigo }, this);
@@ -48,9 +49,9 @@ export class TotemFormularioComponent implements OnInit {
     this.cargando = false;
   }
 
-
   despuesDeListarTiendas(data) {
     this.tiendas = data;
+    this.totem.codigo_tienda = this.totem.codigo_tienda || (this.tiendas[0] && this.tiendas[0].codigo);
     this.cargando = false;
   }
 
@@ -60,7 +61,7 @@ export class TotemFormularioComponent implements OnInit {
     if (form && form.valid && formularioTocado) {
       if (this.esEdicion) {
         this.totem['esEdicion'] = true;
-      }else {
+      } else {
         this.totem['esEdicion'] = false;
       }
       this.totemService.guardarTotem(this.totem, this);

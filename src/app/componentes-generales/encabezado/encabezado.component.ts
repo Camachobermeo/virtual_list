@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encabezado',
@@ -6,11 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./encabezado.component.css']
 })
 export class EncabezadoComponent implements OnInit {
-nombreUsuario = " "
-  constructor() { }
 
-  ngOnInit( ): void {
+  nombreUsuario = " "
+
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem("codigo")
+  }
+
+  salir() {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
 }

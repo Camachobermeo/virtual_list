@@ -5,17 +5,19 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3>Listado de usuario</h3>
+                    <b>Listado de usuario</b>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
                         Nuevo</a>
                 </div>
             </div>
         </div>
+        <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered mb-0">
-                    <thead class="table-dark">
+                <table class="table table-bordered table-sm mb-0">
+                    <thead >
                         <tr>
                             <th>RUT Empresa</th>
                             <th>Nombre</th>
@@ -46,6 +48,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
     </div>
 </form>
 
@@ -74,4 +77,3 @@
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
-

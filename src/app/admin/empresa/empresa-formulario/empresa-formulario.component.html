@@ -6,7 +6,7 @@
     <form #frmEmpresa='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-              <h3>Registrar Empresa</h3>
+                <b>Información de Empresa</b>
             </div>
             <div class="card-body">
                 <br>
@@ -14,8 +14,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="rut">RUT</label>
-                            <input required name="rut" class="form-control form-control-sm text-uppercase" [disabled]="true" [(ngModel)]="empresa.rut"
-                                placeholder="Ingrese el RUT">
+                            <input required name="rut" class="form-control form-control-sm text-uppercase"
+                                [disabled]="true" [(ngModel)]="empresa.rut" placeholder="Ingrese el RUT">
                             <br>
                         </div>
                     </div>
@@ -24,7 +24,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="razon_social">Razon Social</label>
-                            <input required name="celular" class="form-control form-control-sm text-uppercase" [disabled]="true" [(ngModel)]="empresa.razon_social"
+                            <input required name="celular" class="form-control form-control-sm text-uppercase"
+                                [disabled]="true" [(ngModel)]="empresa.razon_social"
                                 placeholder="Ingrese su razon social.">
                             <br>
                         </div>

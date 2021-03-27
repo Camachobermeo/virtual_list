@@ -5,44 +5,47 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3>Listado de tienda</h3>
+                    <b>Listado de tienda</b>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
                         Nuevo</a>
                 </div>
             </div>
         </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>RUT</th>
+                            <th>Dirección</th>
+                            <th>Telefono</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #ffffff;">
+                        <tr *ngFor="let tienda of tiendas">
+                            <td>{{tienda.codigo}}</td>
+                            <td>{{tienda.rut}}</td>
+                            <td>{{tienda.direccion}}</td>
+                            <td>{{tienda.telefono}}</td>
 
-        <div class="table-responsive">
-            <table class="table table-bordered mb-0">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Código</th>
-                        <th>RUT</th>
-                        <th>Dirección</th>
-                        <th>Telefono</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody style="background-color: #ffffff;">
-                    <tr *ngFor="let tienda of tiendas">
-                        <td>{{tienda.codigo}}</td>
-                        <td>{{tienda.rut}}</td>
-                        <td>{{tienda.direccion}}</td>
-                        <td>{{tienda.telefono}}</td>
-
-                        <td class="text-center"><button type="button" class="btn btn-sm btn-success"
-                                [routerLink]="['editar', tienda.codigo]"><i class="fa fa-pencil"
-                                    aria-hidden="true"></i></button></td>
-                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                (click)="seleccionado = tienda;"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <td class="text-center"><button type="button" class="btn btn-sm btn-success"
+                                    [routerLink]="['editar', tienda.codigo]"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i></button></td>
+                            <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    (click)="seleccionado = tienda;"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </form>

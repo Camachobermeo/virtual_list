@@ -32,7 +32,7 @@ export class LoginFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.usuario.codigo=this.usuario.codigo.toUpperCase();
+      this.usuario.codigo = this.usuario.codigo.toUpperCase();
       this.loginService.obtenerLogin(this.usuario, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -40,7 +40,7 @@ export class LoginFormularioComponent implements OnInit {
     }
   }
 
-  despuesDeObtenerLogin(data){
+  despuesDeObtenerLogin(data) {
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['principal']);
     localStorage.setItem("codigo", this.usuario.codigo);
@@ -48,18 +48,18 @@ export class LoginFormularioComponent implements OnInit {
     this.cargando = false;
   }
 
-  visualizar(){
-    if(document.getElementById("clave")){
+  visualizar() {
+    if (document.getElementById("clave")) {
       document.getElementById("clave")['type'] = "text";
-      document.getElementById("clave")['id']= "oculto";
-      document.getElementById("abierto").hidden=true;
-      document.getElementById("cerrado").hidden=false;
-    }else{
+      document.getElementById("clave")['id'] = "oculto";
+      document.getElementById("abierto").hidden = true;
+      document.getElementById("cerrado").hidden = false;
+    } else {
       document.getElementById("oculto")['type'] = "password";
-      document.getElementById("oculto")['id']= "clave";
-      document.getElementById("abierto").hidden=false;
-      document.getElementById("cerrado").hidden=true;
+      document.getElementById("oculto")['id'] = "clave";
+      document.getElementById("abierto").hidden = false;
+      document.getElementById("cerrado").hidden = true;
     }
-    
+
   }
 }

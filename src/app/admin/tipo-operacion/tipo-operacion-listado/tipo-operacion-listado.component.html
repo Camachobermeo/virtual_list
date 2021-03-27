@@ -5,23 +5,23 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3>Listado de tipo de operación</h3>
+                    <b>Listado de tipo de operación</b>
                 </div>
                 <div class="col-md-2" style="text-align: right;">
-                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle"
+                            aria-hidden="true"></i>
                         Nuevo</a>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
+        <div class="card-body">
             <div class="col-md-12">
                 <div class="p-1 ps-3">
-                    <h6> Seleccione el totem</h6>
+                    <h6> Seleccione Tienda</h6>
                 </div>
                 <div class="input-group mb-3 p-2 pt-0">
-                    <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
-                        name="tiendaSeleccionada" required>
+                    <select class="form-select form-select-sm" aria-label="Default select example"
+                        [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
                         <option value="" disabled selected>Seleccione el Totem</option>
                         <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                             {{tienda.direccion}}
@@ -33,8 +33,8 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
-                        <thead class="table-dark">
+                    <table class="table table-sm table-bordered mb-0">
+                        <thead>
                             <tr>
                                 <th>Código</th>
                                 <th>Código Totem</th>

@@ -62,7 +62,8 @@ export class TipoOperacionFormularioComponent implements OnInit {
 
   despuesDeListarTiendas(data) {
     this.tiendas = data;
-    this.cargando = false;
+    this.tiendaSeleccionada = this.tiendaSeleccionada || (this.tiendas[0] && this.tiendas[0].codigo);
+    this.listarTotems();
   }
 
   listarTotems() {

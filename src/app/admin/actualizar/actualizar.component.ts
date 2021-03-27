@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsService } from '../tickets/tickets.service';
+import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
 
 @Component({
   selector: 'app-actualizar',
@@ -13,7 +13,7 @@ export class ActualizarComponent implements OnInit {
   fecha_sacado: Date = new Date();
   
   constructor(
-    public ticketsService: TicketsService
+    public ticketsService: ListadoTicketsService
   ) { }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsService } from '../tickets/tickets.service';
+import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
 
 @Component({
   selector: 'app-actualizar',
@@ -11,9 +11,10 @@ export class ActualizarComponent implements OnInit {
   tickets: any = new Array();
   cargando: boolean = false;
   fecha_sacado: Date = new Date();
+  ticketSeleccionado : any ;
   
   constructor(
-    public ticketsService: TicketsService
+    public ticketsService: ListadoTicketsService
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +27,8 @@ export class ActualizarComponent implements OnInit {
   }
 
   despuesDeListarTickets(data) {
-    this.tickets = data;
+    this.tickets = data; 
+    this.ticketSeleccionado = this.tickets [0].codigo_tipo_operacion + "-" + this.tickets [0].numeracion;
     this.cargando=false;
   }
 

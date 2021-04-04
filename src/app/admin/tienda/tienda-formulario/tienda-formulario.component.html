@@ -4,28 +4,24 @@
     <form #frmTienda='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                <div class="row">
-                    <div class="col-md-8">
-                        <b> {{esEdicion?'Modificar':'Registrar'}} Tienda</b>
-                    </div>
-                    <div class="col-md-4" style="text-align: right;">
-                        <button type="button" routerLink="/tienda" class="btn btn-secondary btn-sm"><i
-                                class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ms-1 btn-sm"><i
-                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-                    </div>
+                <b> {{esEdicion?'Modificar':'Registrar'}} Tienda</b>
+                <div class="btn-actions-pane-right">
+                    <button type="button" routerLink="/tienda" class="btn btn-secondary btn-sm"><i
+                            class="fa pe-7s-angle-left-circle" aria-hidden="true"></i> Regresar</button>
+                    <button type="submit" (click)="guardarTienda(frmTienda)" class="btn btn-success ml-1 btn-sm"><i
+                            class="fa pe-7s-diskette" aria-hidden="true"></i> Guardar</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="codigo">Codigo</label>
                         <input required name="codigo" class="form-control form-control-sm text-uppercase"
                             [(ngModel)]="tienda.codigo" [disabled]="esEdicion" placeholder="Ingrese el codigo de tienda"
                             required>
                         <br>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="celular">Telefono/Celular</label>
                         <input required name="celular" class="form-control form-control-sm text-uppercase"
                             [(ngModel)]="tienda.telefono" placeholder="Ingrese su numero de Telefono o Celular"
@@ -41,15 +37,16 @@
                         <br>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="text">
-                        <label for="horario">Horarios De Atencion</label>
-                    </div>
-                    <div class="text">
-                        <label for=""></label>
-                        <label class="text-decoration-underline" for="l_inicio_atencion">Lunes</label>
-                    </div>
-                    <div class="col-6">
+                <div class="text">
+                    <label for="horario">Horarios De Atencion</label>
+                </div>
+                <div class="text">
+                    <label for=""></label>
+                    <label class="text-decoration-underline" for="l_inicio_atencion">Lunes</label>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="l_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
                                 Inicio</label>
@@ -58,7 +55,7 @@
                                 [(ngModel)]="tienda.l_inicio_atencion">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="l_fin_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i> Fin</label>
                             <input name="l_fin_atencion" type="time"
@@ -66,10 +63,12 @@
                                 [(ngModel)]="tienda.l_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="m_inicio_atencion">Martes</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="m_inicio_atencion">Martes</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="m_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -87,10 +86,12 @@
                                 [(ngModel)]="tienda.m_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="mm_inicio_atencion">Miercoles</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="mm_inicio_atencion">Miercoles</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="mm_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -108,10 +109,12 @@
                                 [(ngModel)]="tienda.mm_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="j_inicio_atencion">Jueves</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="j_inicio_atencion">Jueves</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="j_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -129,10 +132,12 @@
                                 [(ngModel)]="tienda.j_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="v_inicio_atencion">Viernes</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="v_inicio_atencion">Viernes</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="v_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -150,10 +155,12 @@
                                 [(ngModel)]="tienda.v_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="s_inicio_atencion">Sabado</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="s_inicio_atencion">Sabado</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="s_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -171,10 +178,12 @@
                                 [(ngModel)]="tienda.s_fin_atencion">
                         </div>
                     </div>
-                    <div class="text">
-                        <br>
-                        <label class="text-decoration-underline" for="d_inicio_atencion">Domingo</label>
-                    </div>
+                </div>
+                <div class="text">
+                    <br>
+                    <label class="text-decoration-underline" for="d_inicio_atencion">Domingo</label>
+                </div>
+                <div class="form-row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="d_inicio_atencion"><i class="fa fa-calendar-o" aria-hidden="true"></i>

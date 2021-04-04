@@ -1,18 +1,14 @@
 <app-encabezado></app-encabezado>
 <br>
-<form class="container pb-5 col-lg-10 col-md-12 col-sm-12">
+<form class="container pb-5 col-lg-12 col-md-10 col-sm-12">
     <div class="card">
         <div class="card-header">
-            <div class="row">
-                <div class="col-md-10">
                     <b>Listado de totem</b>
-                </div>
-                <div class="col-md-2" style="text-align: right;">
+                <div class="btn-actions-pane-right">
                     <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle"
                             aria-hidden="true"></i>
                         Nuevo</a>
                 </div>
-            </div>
         </div>
         <div class="card-body">
             <div class="col-md-12">
@@ -20,7 +16,7 @@
                     <h6> Seleccione la Tienda</h6>
                 </div>
                 <div class="input-group mb-3 p-2 pt-0">
-                    <select class="form-select form-select-sm" aria-label="Default select example"
+                    <select class="form-control form-control-sm " aria-label="Default select example"
                         [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
                         <option value="" disabled selected>Seleccione la Tienda</option>
                         <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
@@ -64,10 +60,6 @@
         </div>
     </div>
 
-    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        Basic Modal
-                                    </button>
 </form>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,27 +83,6 @@
     </div>
 </div>
 
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <div *ngIf="cargando">
     <app-cargando></app-cargando>

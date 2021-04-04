@@ -35,7 +35,6 @@ export class TipoOperacionListadoComponent implements OnInit {
   }
 
   despuesDeListarTipos(data) {
-    console.log(data);
     this.tipos = data;
     this.cargando = false;
   }

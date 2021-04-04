@@ -30,7 +30,6 @@
               <th>Email</th>
               <th>Telefono</th>
               <th>Fecha</th>
-              <th>Codigo</th>
               <th>Numeración</th>
             </tr>
           </thead>
@@ -41,36 +40,11 @@
               <td>{{ticket.email}}</td>
               <td>{{ticket.telefono}}</td>
               <td>{{ticket.fecha_sacado}} </td>
-              <td>{{ticket.codigo_tipo_operacion}}</td>
-              <td>{{ticket.numeracion}} </td>
+              <td>{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}} </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-bordered mb-0">
-        <thead class="table-dark">
-          <tr>
-            <th>RUT</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Fecha</th>
-            <th>Numeración</th>
-          </tr>
-        </thead>
-        <tbody style="background-color: #ffffff;">
-          <tr *ngFor="let ticket of tickets">
-            <td>{{ticket.rut}}</td>
-            <td>{{ticket.nombres}}</td>
-            <td>{{ticket.email}}</td>
-            <td>{{ticket.telefono}}</td>
-            <td>{{ticket.fecha_sacado}} </td>
-            <td>{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}} </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </form>

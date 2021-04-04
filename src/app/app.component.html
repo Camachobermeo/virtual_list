@@ -1,61 +1,8 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#/principal">Virtual</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/empresa" routerLink="/empresa">
-                        <span class="badge bg-secondary">Empresa</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/usuario" routerLink="/usuario">
-                        <span class="badge bg-secondary">Usuario</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/tienda" routerLink="/tienda">
-                        <span class="badge bg-secondary">Tienda</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/totem" routerLink="/totem">
-                        <span class="badge bg-secondary">Totem</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/tipo-operacion" routerLink="/tipo-operacion">
-                        <span class="badge bg-secondary">Tipo Operación</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/actualizar" routerLink="/actualizar">
-                        <span class="badge bg-secondary">Actualizar</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/tickets" routerLink="/tickets">
-                        <span class="badge bg-secondary">Tickets</span>
-                    </a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <a class="nav-link active" href="#/perfil" routerLink="/perfil"><i class="fa fa-user-circle"
-                        aria-hidden="true"></i> </a>
-            </form>
-            <form class="d-flex">
-                <a class="nav-link active" style="cursor: pointer;" (click)="salir()"><i class="fa fa-power-off"
-                        aria-hidden="true"></i></a>
-            </form>
-        </div>
-    </div>
-</nav> -->
+<div *ngIf="ocultarMenu">
+    <router-outlet></router-outlet>
+</div>
 
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header" *ngIf="!ocultarMenu">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
             <div class="logo-src"></div>
@@ -114,9 +61,10 @@
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                         class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0"  routerLink="/perfil" class="dropdown-item"><i class="fa fa-user-circle" aria-hidden="true"> </i>  Perfil</button>
-                                        <button type="button" tabindex="0" (click)="salir()"
-                                            class="dropdown-item"><i class="fa fa-power-off" aria-hidden="true"> </i>  Salir</button>
+                                        <button type="button" tabindex="0" routerLink="/perfil" class="dropdown-item"><i
+                                                class="fa fa-user-circle" aria-hidden="true"> </i> Perfil</button>
+                                        <button type="button" tabindex="0" (click)="salir()" class="dropdown-item"><i
+                                                class="fa fa-power-off" aria-hidden="true"> </i> Salir</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +73,7 @@
                                     {{nombreUsuario}}
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -656,7 +604,6 @@
         <div class="app-main__outer">
             <div class="app-main__inner">
                 <!-- cuerpo -->
-
                 <router-outlet></router-outlet>
             </div>
             <div class="app-wrapper-footer">

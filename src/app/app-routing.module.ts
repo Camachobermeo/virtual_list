@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthGuardService } from './servicios/auth-guard.service';
 
 const routes: Routes = [
@@ -10,7 +10,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
+    loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule),
+    resolve: {
+      ocultarMenu: 'ocultarMenu'
+    }
   },
   {
     path: 'empresa',
@@ -29,7 +32,10 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./admin/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./admin/login/login.module').then(m => m.LoginModule),
+    resolve: {
+      ocultarMenu: 'ocultarMenu'
+    }
   },
   {
     path: 'tipo-operacion',
@@ -69,6 +75,12 @@ const routes: Routes = [
     useHash: true,
     relativeLinkResolution: 'legacy'
   })],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: 'ocultarMenu',
+      useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => 'ocultarMenu'
+    }
+  ]
 })
 export class AppRoutingModule { }

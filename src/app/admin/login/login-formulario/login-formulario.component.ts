@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
-import { environment } from 'src/environments/environment';
 import { LoginService } from '../login.service';
 
 @Component({

@@ -28,9 +28,10 @@ export class TipoOperacionListadoComponent implements OnInit {
     this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
   }
+
   listarTipos() {
     this.cargando = true;
-    this.tipoService.listarTipos({tienda:this.tiendaSeleccionada}, this);
+    this.tipoService.listarTipos({ tienda: this.tiendaSeleccionada }, this);
   }
 
   despuesDeListarTipos(data) {
@@ -38,9 +39,14 @@ export class TipoOperacionListadoComponent implements OnInit {
     this.tipos = data;
     this.cargando = false;
   }
+
   despuesDeListarTiendas(data) {
     this.tiendas = data;
-    this.cargando = false;
+    this.tiendaSeleccionada = this.tiendas[0] && this.tiendas[0].codigo;
+    if (this.tiendaSeleccionada) {
+      this.listarTipos();
+    } else
+      this.cargando = false;
   }
 
   eliminar() {

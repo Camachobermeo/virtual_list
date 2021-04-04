@@ -8,18 +8,18 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3> {{esEdicion?'Modificar':'Registrar'}} Usuario</h3>
+                        <b> {{esEdicion?'Modificar':'Registrar'}} Usuario</b>
                     </div>
                     <div class="col-md-4" style="text-align: right;">
                         <button type="button" routerLink="/usuario" class="btn btn-secondary btn-sm"><i
                                 class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                        <button type="button" (click)="guardarUsuario(frmUsuario)" class="btn btn-success ms-1 btn-sm"><i
-                                class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                        <button type="button" (click)="guardarUsuario(frmUsuario)"
+                            class="btn btn-success ms-1 btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Guardar</button>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <br>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -32,16 +32,19 @@
                                 [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
                             <br>
                             <label for="codigo">Nombre de usuario: </label>
-                            <input required name="codigo" [disabled]="esEdicion" class="form-control form-control-sm text-uppercase"
-                                [(ngModel)]="usuario.codigo" placeholder="Ejm; example123">
+                            <input required name="codigo" [disabled]="esEdicion"
+                                class="form-control form-control-sm text-uppercase" [(ngModel)]="usuario.codigo"
+                                placeholder="Ejm; example123">
                             <br>
                             <label for="clave" class="form-label">Contraseña</label>
                             <div class="input-group mb-3">
-                                <input type="password" name="clave" class="form-control form-control-sm" id="clave" [(ngModel)]="usuario.clave">
-                                <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                                <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                <input type="password" name="clave" class="form-control form-control-sm" id="clave"
+                                    [(ngModel)]="usuario.clave">
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i
+                                        class="fa fa-eye" aria-hidden="true"></i></span>
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado"
+                                    hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
                             </div>
-                            <br>
                         </div>
                     </div>
                 </div>
@@ -55,8 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="mb-3 text-center">
+                <div class="mb-0 text-center">
                     <input type="checkbox" class="form-check-input" name="estado" [(ngModel)]="usuario.estado">
                     <label class="form-check-label ms-2" for="exampleCheck1">Activo</label>
                 </div>

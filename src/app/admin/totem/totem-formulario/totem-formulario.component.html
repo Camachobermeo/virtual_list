@@ -5,30 +5,30 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3> {{esEdicion?'Modificar':'Registrar'}} Totem</h3>
+                    <b> {{esEdicion?'Modificar':'Registrar'}} Totem</b>
                 </div>
                 <div class="col-md-4" style="text-align: right;">
-                    <button type="button" routerLink="/totem" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"
-                            aria-hidden="true"></i> Regresar</button>
+                    <button type="button" routerLink="/totem" class="btn btn-secondary btn-sm"><i
+                            class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
                     <button (click)="guardarTotem(frmTotem)" class="btn btn-success ms-1 btn-sm">Guardar</button>
 
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <br>
             <form #frmTotem='ngForm'>
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10">
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input required name="codigo" class="form-control form-control-sm text-uppercase" [disabled]="esEdicion" [(ngModel)]="totem.codigo"
-                                placeholder="Codigo del Totem" required>
+                            <input required name="codigo" class="form-control form-control-sm text-uppercase"
+                                [disabled]="esEdicion" [(ngModel)]="totem.codigo" placeholder="Codigo del Totem"
+                                required>
                             <br>
                             <label>Seleccione la Tienda</label>
                             <select class="form-select form-select-sm" aria-label="Default select example"
-                                [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required >
+                                [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required>
                                 <option value="" disabled selected>Seleccione la Tienda</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                     {{tienda.direccion}}
@@ -37,15 +37,13 @@
                             <br>
                         </div>
                         <div class="form-group">
-                            <label for="ubicacion">Dirección</label>
+                            <label for="ubicacion">Ubicación</label>
                             <input required name="ubicacion" class="form-control form-control-sm text-uppercase"
-                                [(ngModel)]="totem.ubicacion" placeholder="Direccion del Totem" required>
-                            <br>
+                                [(ngModel)]="totem.ubicacion" placeholder="Ubicación del Totem" required>
                         </div>
                     </div>
                     <div class="col-1"></div>
                 </div>
-                <br>
                 <div class="text-center">
                     <div id="cargando" hidden class="spinner-border text-success" role="status">
                         <span class="sr-only"></span>

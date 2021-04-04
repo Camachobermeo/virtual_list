@@ -1,19 +1,15 @@
 <app-encabezado></app-encabezado>
-<br>
-<div class="container pb-5 col-lg-10 col-md-12 col-sm-12">
+<div class="container pb-5 col-lg-12 col-md-10 col-sm-12">
     <div class="text card m-2">
         <div class="card-header">
-            <div class="row">
-                <div class="col-md-8">
                     <b> {{esEdicion?'Modificar':'Registrar'}} Totem</b>
-                </div>
-                <div class="col-md-4" style="text-align: right;">
+                <div class="btn-actions-pane-right">
                     <button type="button" routerLink="/totem" class="btn btn-secondary btn-sm"><i
-                            class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
-                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success ms-1 btn-sm">Guardar</button>
+                            class="fa pe-7s-angle-left-circle" aria-hidden="true"></i> Regresar</button>
+                    <button (click)="guardarTotem(frmTotem)" class="btn btn-success ml-1 btn-sm"><i
+                        class="fa pe-7s-diskette" aria-hidden="true"></i>Guardar</button>
 
                 </div>
-            </div>
         </div>
         <div class="card-body">
             <form #frmTotem='ngForm'>
@@ -27,7 +23,7 @@
                                 required>
                             <br>
                             <label>Seleccione la Tienda</label>
-                            <select class="form-select form-select-sm" aria-label="Default select example"
+                            <select class="form-control form-control-sm " aria-label="Default select example"
                                 [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required>
                                 <option value="" disabled selected>Seleccione la Tienda</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --

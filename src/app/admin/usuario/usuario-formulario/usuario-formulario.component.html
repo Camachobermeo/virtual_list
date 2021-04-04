@@ -6,18 +6,14 @@
     <form #frmUsuario='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                <div class="row">
-                    <div class="col-md-8">
                         <b> {{esEdicion?'Modificar':'Registrar'}} Usuario</b>
-                    </div>
-                    <div class="col-md-4" style="text-align: right;">
+                    <div class="btn-actions-pane-right">
                         <button type="button" routerLink="/usuario" class="btn btn-secondary btn-sm"><i
-                                class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button>
+                                class="fa pe-7s-angle-left-circle" aria-hidden="true"></i> Regresar</button>
                         <button type="button" (click)="guardarUsuario(frmUsuario)"
-                            class="btn btn-success ms-1 btn-sm"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            class="btn btn-success ml-1 btn-sm"><i class="fa pe-7s-diskette" aria-hidden="true"></i>
                             Guardar</button>
                     </div>
-                </div>
             </div>
             <div class="card-body">
                 <div class="row">

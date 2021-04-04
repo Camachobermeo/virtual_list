@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthGuardService } from './servicios/auth-guard.service';
 
 @Component({
   selector: 'app-root',
@@ -14,25 +15,21 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private api: AuthGuardService
+  ) {
+    this.api.getMenuCambio$().subscribe(() => {
+      this.ocultarMenu = location.hash == '#/login' || location.hash == '#/';
+    });
+  }
 
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem("codigo");
-    this.ocultarMenu = this.route.snapshot.data['ocultarMenu'];
-
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation.extras.state as {
-      transId: string,
-      workQueue: boolean,
-      services: number,
-      code: string
-    };
-    this.test = "Transaction Key:" + state.transId + "<br /> Configured:" + state.workQueue + "<br /> Services:" + state.services + "<br /> Code: " + state.code;
   }
 
   salir() {
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['login']).then(() => {
+      window.location.reload();
+    });
   }
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ComponentesGeneralesModule } from './componentes-generales/componentes-generales.module';
 import { AuthGuardService } from './servicios/auth-guard.service';
+import { MenuResolve } from './servicios/menu.resolve';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AuthGuardService } from './servicios/auth-guard.service';
     ToastrModule.forRoot()
   ],
   exports: [],
-  providers: [ApiRequestService, AppConfig, UtilService, AuthGuardService],
+  providers: [ApiRequestService, AppConfig, UtilService, AuthGuardService, MenuResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

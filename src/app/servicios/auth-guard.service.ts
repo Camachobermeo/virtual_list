@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad, Route } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
+
+    private menuC$ = new Subject<boolean>();
 
     constructor(
         private router: Router
@@ -31,6 +34,14 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
             return false;
         }
     }
+
+    getMenuCambio$(): Observable<boolean> {
+        return this.menuC$.asObservable();
+    }
+
+    getMenus(): any {
+        this.menuC$.next(true);
+    };
 
     hayToken(): boolean {
         let objJWT = this.getObjetoJWT();

@@ -45,7 +45,7 @@
             </ul>
             <form class="d-flex">
                 <a class="nav-link active" href="#/perfil" routerLink="/perfil"><i class="fa fa-user-circle"
-                        aria-hidden="true"></i> {{nombreUsuario}}</a>
+                        aria-hidden="true"></i> </a>
             </form>
             <form class="d-flex">
                 <a class="nav-link active" style="cursor: pointer;" (click)="salir()"><i class="fa fa-power-off"
@@ -114,17 +114,15 @@
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                         class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item">Perfil</button>
-                                        <button type="button" tabindex="0" class="dropdown-item">Salir</button>
+                                        <button type="button" tabindex="0"  routerLink="/perfil" class="dropdown-item">Perfil</button>
+                                        <button type="button" tabindex="0" (click)="salir()"
+                                            class="dropdown-item">Salir</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
                                 <div class="widget-heading">
-                                    Alina Mclourd
-                                </div>
-                                <div class="widget-subheading">
-                                    VP People Manager
+                                    {{nombreUsuario}}
                                 </div>
                             </div>
                             <div class="widget-content-right header-user-info ml-3">

@@ -25,9 +25,12 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/assets/main.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/scripts/main.js"
+            ]
           },
           "configurations": {
             "production": {

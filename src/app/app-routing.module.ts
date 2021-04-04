@@ -56,6 +56,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () => import('./admin/listado-tickets/listado-tickets.module').then(m => m.ListadoTicketsModule)
   },
+  {
+    path: 'correo',
+    canActivate: [AuthGuardService],
+    loadChildren: () => import('./admin/correo/correo.module').then(m => m.CorreoModule)
+  },
 ];
 
 @NgModule({

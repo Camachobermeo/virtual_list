@@ -11,6 +11,7 @@ export class ActualizarComponent implements OnInit {
   tickets: any = new Array();
   cargando: boolean = false;
   fecha_sacado: Date = new Date();
+  ticketSeleccionado : any ;
   
   constructor(
     public ticketsService: ListadoTicketsService
@@ -26,7 +27,8 @@ export class ActualizarComponent implements OnInit {
   }
 
   despuesDeListarTickets(data) {
-    this.tickets = data;
+    this.tickets = data; 
+    this.ticketSeleccionado = this.tickets [0].codigo_tipo_operacion + "-" + this.tickets [0].numeracion;
     this.cargando=false;
   }
 

@@ -19,10 +19,8 @@
             </div>
         </div>
         <div class="row-container" style="background-color: #ffffff;">
-            <div class="col-12 text-center" >
-                <h1>
-                   <label *ngFor="let ticket of tickets">{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}}</label>
-                </h1>
+            <div class="col-12 text-center">
+               <h1><input class="form-control-center" style="text-align: center;" type="text" name="ticketSeleccionado" [(ngModel)]="ticketSeleccionado" disabled></h1>
             </div>
         </div>
         <br>
@@ -40,3 +38,7 @@
         <p></p>
     </div>
 </form>
+
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

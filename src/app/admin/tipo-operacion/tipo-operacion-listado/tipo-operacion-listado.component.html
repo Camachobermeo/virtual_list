@@ -42,13 +42,12 @@
                                 <td>{{tipo.codigo}}</td>
                                 <td>{{tipo.codigo_totem}}</td>
                                 <td>{{tipo.descripcion}}</td>
-                                <td class="text-center"><button type="button" class="btn btn-sm btn-success"
+                                <td class="text-center"><a type="button" class="btn btn-sm btn-success"
                                         [routerLink]="['editar', tipo.codigo]"><i class="fa fa-edit"
-                                            aria-hidden="true"></i></button></td>
-                                <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        (click)="seleccionado = tipo;">
-                                        <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                            aria-hidden="true"></i></a></td>
+                                <td class="text-center"><a type="button" class="btn btn-sm btn-danger" href="#modal"
+                                        (click)="abrir(tipo)">
+                                        <i class="fa fa-trash" style="color: #ffffff;" aria-hidden="true"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -58,18 +57,20 @@
     </div>
 </form>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div id="modal" class="modal" style="margin-top:80px; display: inline;">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">TIPO OPERACION</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" (click)="cerrar()" data-bs-dismiss="modal"
+                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                Esta seguro eliminar este registro tipo operacion con codigo {{seleccionado.codigo}}.
+                <p>¿Esta seguro eliminar este registro tipo operacion con codigo {{seleccionado.codigo}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="cerrar" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="cerrar" (click)="cerrar()"
+                    data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" (click)="eliminar()">Confirmar</button>
             </div>
         </div>
@@ -77,6 +78,7 @@
             <app-cargando></app-cargando>
         </div>
     </div>
+    <div class="overlay"></div>
 </div>
 <div *ngIf="cargando">
     <app-cargando></app-cargando>

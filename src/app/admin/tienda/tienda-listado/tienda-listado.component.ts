@@ -45,4 +45,13 @@ export class TiendaListadoComponent implements OnInit {
     this.cargando = false;
   }
 
+  cerrar() {
+    document.getElementById("modal").hidden = true;
+  }
+
+  abrir(tienda) {
+    this.seleccionado = tienda;
+    document.getElementById("modal").hidden = false;
+  }
+
 }

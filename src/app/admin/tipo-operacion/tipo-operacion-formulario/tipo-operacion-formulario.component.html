@@ -1,4 +1,3 @@
-<app-encabezado></app-encabezado>
 <div class="container pb-5 col-lg-12 col-md-12 col-sm-12">
     <div class="text-center">
     </div>
@@ -15,44 +14,44 @@
                 </div>
             </div>
             <div class="card-body">
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Seleccione la Tienda</label>
-                        <select class="form-control form-control-sm" aria-label="Default select example"
-                            [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()" name="tiendaSeleccionada"
-                            required>
-                            <option value="" disabled selected>Seleccione la Tienda</option>
-                            <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
-                                {{tienda.direccion}}
-                            </option>
-                        </select>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Seleccione la Tienda</label>
+                            <select class="form-control form-control-sm" aria-label="Default select example"
+                                [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()"
+                                name="tiendaSeleccionada" required>
+                                <option value="" disabled selected>Seleccione la Tienda</option>
+                                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                                    {{tienda.direccion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Seleccione la Totem</label>
+                            <select class="form-control form-control-sm" aria-label="Default select example"
+                                [(ngModel)]="tipoOperacion.codigo_totem" name="totemSeleccionado" required>
+                                <option value="" disabled selected>Seleccione el Totem</option>
+                                <option *ngFor="let totem of totems" [ngValue]="totem.codigo">{{totem.codigo}} --
+                                    {{totem.ubicacion}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Seleccione la Totem</label>
-                        <select class="form-control form-control-sm" aria-label="Default select example"
-                            [(ngModel)]="tipoOperacion.codigo_totem" name="totemSeleccionado" required>
-                            <option value="" disabled selected>Seleccione el Totem</option>
-                            <option *ngFor="let totem of totems" [ngValue]="totem.codigo">{{totem.codigo}} --
-                                {{totem.ubicacion}}
-                            </option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="codigo">Codigo</label>
+                    <input required name="codigo" class="form-control form-control-sm text-uppercase"
+                        [disabled]="esEdicion" [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
+                    <br>
+                    <label for="descripcion">Descripcón</label>
+                    <input required name="descripcion" class="form-control form-control-sm text-uppercase"
+                        [(ngModel)]="tipoOperacion.descripcion" placeholder="Descripcion">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="codigo">Codigo</label>
-                <input required name="codigo" class="form-control form-control-sm text-uppercase" [disabled]="esEdicion"
-                    [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
-                <br>
-                <label for="descripcion">Descripcón</label>
-                <input required name="descripcion" class="form-control form-control-sm text-uppercase"
-                    [(ngModel)]="tipoOperacion.descripcion" placeholder="Descripcion">
             </div>
         </div>
-    </div>
     </form>
 </div>
 <div *ngIf="cargando">

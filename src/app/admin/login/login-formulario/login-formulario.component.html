@@ -11,31 +11,34 @@
                         <b>Iniciar Sesión</b>
                     </div>
                     <div class="card-body">
-                        <img src="assets/images/avatars/lol.png" width="125" height="125" class="rounded mx-auto d-block"
-                            alt="Usuario">
-                            <br>
+                        <img src="assets/images/avatars/lol.png" width="125" height="125"
+                            class="rounded mx-auto d-block" alt="Usuario">
+                        <br>
                         <div class="mb-3">
-                            <label for="codigo" class="form-label"><i class="fa fa-street-view"
-                                    aria-hidden="true"></i> Usuario</label>
-                            <input type="text" name="codigo" class="form-control form-control-sm text-uppercase" [(ngModel)]="usuario.codigo"
-                                aria-describedby="emailHelp">
+                            <label for="codigo" class="form-label"><i class="fa fa-street-view" aria-hidden="true"></i>
+                                Usuario</label>
+                            <input type="text" name="codigo" class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="usuario.codigo" aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Nunca compartiremos su usuario con nadie más.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="clave" class="form-label"><i class="fa fa-unlock-alt"
-                                    aria-hidden="true"></i> Contraseña</label>
-                         <div class="input-group mb-3">
-                            <input type="password" name="clave" class="form-control form-control-sm" id="clave" [(ngModel)]="usuario.clave">
-                            <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                            <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado" hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
-                        </div>
+                            <label for="clave" class="form-label"><i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                Contraseña</label>
+                            <div class="input-group mb-3">
+                                <input type="password" name="clave" class="form-control form-control-sm" id="clave"
+                                    [(ngModel)]="usuario.clave">
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="abierto"><i
+                                        class="fa fa-eye" aria-hidden="true"></i></span>
+                                <span class="input-group-text" type="button" (click)="visualizar()" id="cerrado"
+                                    hidden><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </div>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Recordar información</label>
                         </div>
                         <div class="text-center">
-                            <button type="submit"(click)="iniciar(frmUsuario)" class="btn btn-primary btn-sm">Iniciar
+                            <button type="submit" (click)="iniciar(frmUsuario)" class="btn btn-primary btn-sm">Iniciar
                                 Sesion</button>
                             <br>
                         </div>

@@ -1,88 +1,83 @@
-<app-encabezado></app-encabezado>
 <br>
 <div class="container pb-5 col-lg-12 col-md-12 col-sm-12 ">
     <div class="card">
         <div class="card-header">
             <b>Perfil</b>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mt-2 ms-2 mb-2">
-                    <div class="card-header">
-                        <b>Usuario</b>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <h1><img src="assets/imagen/niso.png" width="350" height="428"
-                                    class="rounded mx-auto d-block img-thumbnail"></h1>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mt-2 ms-2 mb-2">
+                        <div class="card-header">
+                            <b>Usuario</b>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h1><img src="assets/images/avatars/lole.png" width="365" height="428"
+                                        class="rounded mx-auto d-block img-thumbnail"></h1>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <form #frmUsuario='ngForm'>
-                    <div class="card mt-2 me-2 mb-2">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <b>Información</b>
-                                </div>
-                                <div class="col-md-6" style="text-align: right;">
+                <div class="col-md-6">
+                    <form #frmUsuario='ngForm'>
+                        <div class="card mt-2 me-2 mb-2">
+                            <div class="card-header">
+                                <b>Información</b>
+                                <div class="btn-actions-pane-right">
                                     <button type="button" (click)="guardarUsuario(frmUsuario)"
-                                        class="btn btn-success btn-sm ms-1"><i class="fa fa-floppy-o"
+                                        class="btn btn-success btn-sm ms-1"><i class="fa pe-7s-diskette pr-1"
                                             aria-hidden="true"></i> Guardar</button>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="nombre">Nombre: </label>
-                                        <input required name="nombre"
-                                            class="form-control form-control-sm text-uppercase"
-                                            [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
-                                        <br>
-                                        <label for="apellidos">Apellido: </label>
-                                        <input required name="apellidos"
-                                            class="form-control form-control-sm text-uppercase"
-                                            [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
-                                        <br>
-                                        <label for="codigo">Nombre de usuario: </label>
-                                        <input required name="codigo" [disabled]="obtenerUsuario"
-                                            class="form-control form-control-sm text-uppercase"
-                                            [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
-                                        <br>
-                                        <label for="clave" class="form-label">Contraseña</label>
-                                        <div class="input-group mb-3">
-                                            <input type="password" name="clave" class="form-control form-control-sm"
-                                                id="clave" [(ngModel)]="usuario.clave">
-                                            <span class="input-group-text" type="button" (click)="visualizar()"
-                                                id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                                            <span class="input-group-text" type="button" (click)="visualizar()"
-                                                id="cerrado" hidden><i class="fa fa-eye-slash"
-                                                    aria-hidden="true"></i></span>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre: </label>
+                                            <input required name="nombre"
+                                                class="form-control form-control-sm text-uppercase"
+                                                [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
+                                            <br>
+                                            <label for="apellidos">Apellido: </label>
+                                            <input required name="apellidos"
+                                                class="form-control form-control-sm text-uppercase"
+                                                [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
+                                            <br>
+                                            <label for="codigo">Nombre de usuario: </label>
+                                            <input required name="codigo" [disabled]="obtenerUsuario"
+                                                class="form-control form-control-sm text-uppercase"
+                                                [(ngModel)]="usuario.codigo" placeholder="Ejm; @example123">
+                                            <br>
+                                            <label for="clave" class="form-label">Contraseña</label>
+                                            <div class="input-group mb-3">
+                                                <input type="password" name="clave" class="form-control form-control-sm"
+                                                    id="clave" [(ngModel)]="usuario.clave">
+                                                <span class="input-group-text" type="button" (click)="visualizar()"
+                                                    id="abierto"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                                <span class="input-group-text" type="button" (click)="visualizar()"
+                                                    id="cerrado" hidden><i class="fa fa-eye-slash"
+                                                        aria-hidden="true"></i></span>
+                                            </div>
                                         </div>
-                                        <br>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="telefono">Telefono/Celular: </label>
-                                        <input required name="telefono"
-                                            class="form-control form-control-sm text-uppercase"
-                                            [(ngModel)]="usuario.telefono"
-                                            placeholder="Ingrese su numero de Telefono o Celular">
-                                        <br>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="telefono">Telefono/Celular: </label>
+                                            <input required name="telefono"
+                                                class="form-control form-control-sm text-uppercase"
+                                                [(ngModel)]="usuario.telefono"
+                                                placeholder="Ingrese su numero de Telefono o Celular">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

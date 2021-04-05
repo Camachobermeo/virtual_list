@@ -56,14 +56,16 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="assets/images/avatars/lol.png" alt="">
+                                        <img width="42" class="rounded-circle" src="assets/images/avatars/lol.png"
+                                            alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                         class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0"  routerLink="/perfil" class="dropdown-item"><i class="fa fa-user-circle pr-2" aria-hidden="true"></i>Perfil</button>
-                                        <button type="button" tabindex="0" (click)="salir()"
-                                            class="dropdown-item"><i class="fa fa-power-off pr-2" aria-hidden="true"> </i> Salir</button>
+                                        <button type="button" tabindex="0" routerLink="/perfil" class="dropdown-item"><i
+                                                class="fa fa-user-circle pr-2" aria-hidden="true"></i>Perfil</button>
+                                        <button type="button" tabindex="0" (click)="salir()" class="dropdown-item"><i
+                                                class="fa fa-power-off pr-2" aria-hidden="true"> </i> Salir</button>
                                     </div>
                                 </div>
                             </div>
@@ -486,14 +488,14 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Bienvenido</li>
                         <li>
-                            <a href="#/principal" class="mm-active">
+                            <a routerLink="principal" routerLinkActive="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Inicio
                             </a>
                         </li>
                         <li class="app-sidebar__heading">Administración</li>
                         <li>
-                            <a href="#/empresa">
+                            <a routerLink="empresa" routerLinkActive="mm-active">
                                 <i class="metismenu-icon pe-7s-portfolio"></i>
                                 Empresa
                             </a>
@@ -506,13 +508,13 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#/usuario">
+                                    <a routerLink="usuario" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Listado
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#/usuario/nuevo">
+                                    <a routerLink="usuario/nuevo" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Registrar
                                     </a>
@@ -527,13 +529,13 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#/tienda">
+                                    <a routerLink="tienda" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Listado
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#/tienda/nuevo">
+                                    <a routerLink="tienda/nuevo" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Registrar
                                     </a>
@@ -548,13 +550,13 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#/totem">
+                                    <a routerLink="totem" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Listado
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#/totem/nuevo">
+                                    <a routerLink="totem/nuevo" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Registrar
                                     </a>
@@ -569,13 +571,13 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#/tipo-operacion">
+                                    <a routerLink="tipo-operacion" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Listado
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#/tipo-operacion/nuevo">
+                                    <a routerLink="tipo-operacion/nuevo" routerLinkActive="mm-active">
                                         <i class="metismenu-icon">
                                         </i>Registrar
                                     </a>
@@ -584,13 +586,13 @@
                         </li>
                         <li class="app-sidebar__heading">Complemento</li>
                         <li>
-                            <a href="#/actualizar">
+                            <a routerLink="actualizar" routerLinkActive="mm-active">
                                 <i class="metismenu-icon pe-7s-repeat"></i>
                                 Actualizar
                             </a>
                         </li>
                         <li>
-                            <a href="#/tickets">
+                            <a routerLink="tickets" routerLinkActive="mm-active">
                                 <i class="metismenu-icon pe-7s-ribbon"></i>
                                 Tickets
                             </a>

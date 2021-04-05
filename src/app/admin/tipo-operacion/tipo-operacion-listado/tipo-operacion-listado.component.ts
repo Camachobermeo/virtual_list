@@ -61,4 +61,13 @@ export class TipoOperacionListadoComponent implements OnInit {
 
   }
 
+  cerrar() {
+    document.getElementById("modal").hidden = true;
+  }
+
+  abrir(tipo) {
+    this.seleccionado = tipo;
+    document.getElementById("modal").hidden = false;
+  }
+
 }

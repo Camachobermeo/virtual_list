@@ -60,4 +60,13 @@ export class TotemListadoComponent implements OnInit {
     this.listarTotems();
   }
 
+  cerrar() {
+    document.getElementById("modal").hidden = true;
+  }
+
+  abrir(totem) {
+    this.seleccionado = totem;
+    document.getElementById("modal").hidden = false;
+  }
+
 }

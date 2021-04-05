@@ -5,18 +5,19 @@
     <form #frmTipoOperacion='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                        <b> {{esEdicion?'Modificar':'Registrar'}} Tipo Operación</b>
-                    <div class="btn-actions-pane-right">
-                        <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary btn-sm"><i
-                                class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
-                        <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)"
-                            class="btn btn-success ml-1 btn-sm"><i class="fa pe-7s-diskette pr-1" aria-hidden="true"></i>Guardar</button>
-                    </div>
+                <b> {{esEdicion?'Modificar':'Registrar'}} Tipo Operación</b>
+                <div class="btn-actions-pane-right">
+                    <button type="button" routerLink="/tipo-operacion" class="btn btn-secondary btn-sm"><i
+                            class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
+                    <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)"
+                        class="btn btn-success ml-1 btn-sm"><i class="fa pe-7s-diskette pr-1"
+                            aria-hidden="true"></i>Guardar</button>
+                </div>
             </div>
+            <br>
+            <div class="card-body">
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <br>
+                <div class="col-6">
                     <div class="form-group">
                         <label>Seleccione la Tienda</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
@@ -28,7 +29,8 @@
                             </option>
                         </select>
                     </div>
-                    <br>
+                </div>
+                <div class="col-6">
                     <div class="form-group">
                         <label>Seleccione la Totem</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
@@ -39,21 +41,19 @@
                             </option>
                         </select>
                     </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="codigo">Codigo</label>
-                        <input required name="codigo" class="form-control form-control-sm text-uppercase"
-                            [disabled]="esEdicion" [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
-                        <br>
-                        <label for="descripcion">Descripcón</label>
-                        <input required name="descripcion" class="form-control form-control-sm text-uppercase"
-                            [(ngModel)]="tipoOperacion.descripcion" placeholder="Descripcion">
-                        <br>
-                    </div>
                 </div>
-                <div class="col-1"></div>
+            </div>
+            <div class="form-group">
+                <label for="codigo">Codigo</label>
+                <input required name="codigo" class="form-control form-control-sm text-uppercase" [disabled]="esEdicion"
+                    [(ngModel)]="tipoOperacion.codigo" placeholder="Ingrese el codigo">
+                <br>
+                <label for="descripcion">Descripcón</label>
+                <input required name="descripcion" class="form-control form-control-sm text-uppercase"
+                    [(ngModel)]="tipoOperacion.descripcion" placeholder="Descripcion">
             </div>
         </div>
+    </div>
     </form>
 </div>
 <div *ngIf="cargando">

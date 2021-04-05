@@ -43,10 +43,10 @@ export class LoginFormularioComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['principal']).then(() => {
       window.location.reload();
+      this.cargando = false;
     });
     localStorage.setItem("codigo", this.usuario.codigo);
     localStorage.setItem("locationPathName", location.pathname);
-    this.cargando = false;
   }
 
   visualizar() {

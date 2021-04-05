@@ -35,9 +35,9 @@
                             <td class="text-center"><a class="btn btn-sm btn-success"
                                     [routerLink]="['editar', usuario.codigo]"><i class="fa fa-edit"
                                         aria-hidden="true"></i></a></td>
-                            <td class="text-center"><button type="button" class="btn btn-sm btn-danger"
-                                    data-toggle="modal" data-target="#exampleModal" (click)="seleccionado = usuario;"><i
-                                        class="fa fa-trash" aria-hidden="true"></i></button></td>
+                            <td class="text-center"><a type="button" class="btn btn-sm btn-danger" href="#modal"
+                                    (click)="abrir(usuario)"><i class="fa fa-trash" style="color: #ffffff;"
+                                        aria-hidden="true"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,22 +46,21 @@
     </div>
 </form>
 
-
-<div class="modal fade" id="exampleModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div id="modal">
+    <div class="" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">USUARIO</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" (click)="cerrar()" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Esta seguro eliminar este registro totem con usuario {{seleccionado.codigo}}.
+                <p>¿Esta seguro eliminar este registro totem con usuario {{seleccionado.codigo}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="cerrar"  data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="cerrar" (click)="cerrar()"
+                    data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" (click)="eliminar()">Confirmar</button>
             </div>
         </div>
@@ -69,6 +68,7 @@
             <app-cargando></app-cargando>
         </div>
     </div>
+    <div class="overlay"></div>
 </div>
 
 <div *ngIf="cargando">

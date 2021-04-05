@@ -22,18 +22,19 @@ export class UsuarioListadoComponent implements OnInit {
   ngOnInit(): void {
     this.listarUsuarios();
   }
+
   listarUsuarios() {
-    this.cargando=true;
+    this.cargando = true;
     this.usuarioService.listarUsuarios({}, this);
   }
 
   despuesDeListarUsuarios(data) {
     this.usuarios = data;
-    this.cargando=false;
+    this.cargando = false;
   }
 
   eliminar() {
-    this.cargando=true;
+    this.cargando = true;
     this.usuarioService.eliminarUsuario({ codigo: this.seleccionado.codigo, tabla: 'usuario' }, this);
   }
 
@@ -43,4 +44,14 @@ export class UsuarioListadoComponent implements OnInit {
     document.getElementById("cerrar").click();
     this.listarUsuarios();
   }
+
+  cerrar() {
+    document.getElementById("modal").hidden = true;
+  }
+
+  abrir(usuario) {
+    this.seleccionado = usuario;
+    document.getElementById("modal").hidden = false;
+  }
+
 }

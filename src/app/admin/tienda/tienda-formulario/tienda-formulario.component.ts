@@ -49,7 +49,7 @@ export class TiendaFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.tienda.rut = environment.empresa;
+      this.tienda.rut = localStorage.getItem('empresa');
       if (this.esEdicion) {
         this.tienda['esEdicion'] = true;
       }else {

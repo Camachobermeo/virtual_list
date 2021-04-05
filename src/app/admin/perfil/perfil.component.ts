@@ -43,7 +43,7 @@ export class PerfilComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.usuario.rut = environment.empresa;
+      this.usuario.rut = localStorage.getItem('empresa');
       this.usuario['esEdicion'] = true;
       this.usuarioService.guardarUsuario(this.usuario, this);
     } else {

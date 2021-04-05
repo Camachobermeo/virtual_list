@@ -31,7 +31,7 @@ export class ApiRequestService {
     }
 
     getRequestOptions(urlParam?: HttpParams, body?: any): any {
-        let empresa = environment.empresa;
+        let empresa = localStorage.getItem('empresa');
         let options = {
             headers: this.appendAuthHeader()
         };

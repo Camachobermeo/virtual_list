@@ -1,5 +1,4 @@
-<br>
-<div class="container">
+<div class="container pt-5">
   <div class="row ps-5 pe-5">
     <div class="col-lg-1 col-md-12 col-sm-12"></div>
     <div class="col-lg-10 col-md-12 col-sm-12">
@@ -21,50 +20,50 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label>Seleccione la tienda de su preferencia</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
+              <select class="form-control" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
                 name="tiendaSeleccionada" required (ngModelChange)="listarTiposOperacion()">
                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                   {{tienda.direccion}}
                 </option>
               </select>
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label>Seleccione el tipo de ticket</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="ticket.codigo_tipo_operacion"
+              <select class="form-control" aria-label="Default select example" [(ngModel)]="ticket.codigo_tipo_operacion"
                 name="tipoSeleccionado" required>
                 <option *ngFor="let tipo of tipos" [ngValue]="tipo.codigo">{{tipo.codigo}} --
                   {{tipo.descripcion}}
                 </option>
               </select>
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label for="rut">RUT</label>
               <input type="text" class="form-control" id="rut" [(ngModel)]="ticket.rut" name="rut" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label for="nombre">Nombre completo</label>
               <input type="text" class="form-control" id="nombre" [(ngModel)]="ticket.nombres" name="nombre" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label for="exampleInputEmail1">Correo Electronico</label>
               <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="ticket.email"
                 aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email" required>
               <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
                 más.</small>
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
               <label>Telefono</label>
               <input type="text" class="form-control" name="telefono" [(ngModel)]="ticket.telefono"
                 placeholder="Telefono">
             </div>
-            <div class="mb-3 text-center">
+            <div class="col-md-12 mb-3 text-center">
               <input type="checkbox" class="form-check-input" name="recordatorio" id="exampleCheck1"
                 [(ngModel)]="ticket.recordatorio">
               <label class="form-check-label ms-2" for="exampleCheck1"> Añadir recordatorio</label>
             </div>
-            <div class="mb-3 text-center">
+            <div class="col-md-12 mb-3 text-center">
               <button type="button" (click)="generarTicket(frmTicket)" class="btn btn-success"><i
                   class="fa fa-paper-plane" aria-hidden="true"></i> Generar
                 Ticket</button>

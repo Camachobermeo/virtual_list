@@ -47,6 +47,7 @@ export class LoginFormularioComponent implements OnInit {
     });
     localStorage.setItem("codigo", this.usuario.codigo);
     localStorage.setItem("locationPathName", location.pathname);
+    localStorage.setItem("empresa", this.usuario.rut);
   }
 
   visualizar() {

@@ -15,11 +15,16 @@
                             class="rounded mx-auto d-block" alt="Usuario">
                         <br>
                         <div class="mb-3">
-                            <label for="codigo" class="form-label"><i class="fa fa-street-view" aria-hidden="true"></i>
+                            <label for="rut" class="form-label"><i class="fa fa-id-card" aria-hidden="true"></i>
+                                RUT Empresa</label>
+                            <input type="text" name="rut" class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="usuario.rut" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="codigo" class="form-label"><i class="fa fa-user" aria-hidden="true"></i>
                                 Usuario</label>
                             <input type="text" name="codigo" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.codigo" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">Nunca compartiremos su usuario con nadie más.</div>
                         </div>
                         <div class="mb-3">
                             <label for="clave" class="form-label"><i class="fa fa-unlock-alt" aria-hidden="true"></i>

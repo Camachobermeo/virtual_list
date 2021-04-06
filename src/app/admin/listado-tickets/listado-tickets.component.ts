@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ListadoTicketsService } from './listado-tickets.service';
 
 @Component({
@@ -11,14 +12,19 @@ export class ListadoTicketsComponent implements OnInit {
   tickets: any = new Array();
   cargando: boolean = false;
   fecha_sacado: Date = new Date();
+  mostrarBoton: boolean = false;
 
   constructor(
+    private route: ActivatedRoute,
     public ticketsService: ListadoTicketsService
 
   ) { }
 
   ngOnInit(): void {
     this.listarTickets();
+    if(this.route.snapshot.url.toString() == 'Ver'){
+      this.mostrarBoton = true;
+    }
   }
 
   listarTickets() {

@@ -1,11 +1,13 @@
 <form class="container pb-5 col-lg-12 col-md-12 col-sm-12">
   <div class="card mb-5">
     <div class="card-header">
-      <div class="row">
-        <div class="col-md-12">
           <b>Tickets Generados</b>
-        </div>
+          <div *ngIf="mostrarBoton">
+        <div class="btn-actions-pane-right">
+          <button type="button" routerLink="/#" class="btn btn-secondary btn-sm"><i
+                  class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
       </div>
+    </div>
     </div>
     <div class="card-body">
       <div class="p-1 ps-3">

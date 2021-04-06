@@ -110,6 +110,14 @@ const routes: Routes = [
     },
     runGuardsAndResolvers: 'always'
   },
+  {
+    path: 'ver',
+    loadChildren: () => import('./admin/listado-tickets/listado-tickets.module').then(m => m.ListadoTicketsModule),
+    resolve: {
+      menu: MenuResolve
+    },
+    runGuardsAndResolvers: 'always'
+  },
 ];
 
 @NgModule({

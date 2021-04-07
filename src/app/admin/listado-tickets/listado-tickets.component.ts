@@ -17,24 +17,23 @@ export class ListadoTicketsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public ticketsService: ListadoTicketsService
-
   ) { }
 
   ngOnInit(): void {
     this.listarTickets();
-    if(this.route.snapshot.url.toString() == 'Ver'){
+    if (location.hash == '#/ver') {
       this.mostrarBoton = true;
     }
   }
 
   listarTickets() {
-    this.cargando=true;
-    this.ticketsService.listarTickets({fecha_sacado:this.fecha_sacado}, this);
+    this.cargando = true;
+    this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado }, this);
   }
 
   despuesDeListarTickets(data) {
     this.tickets = data;
-    this.cargando=false;
+    this.cargando = false;
   }
 
 }

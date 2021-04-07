@@ -30,7 +30,7 @@ $BODY$
 		IF nRegistrosAfectados=0 THEN
 			EXECUTE $$INSERT INTO numeracion(codigo_tipo_operacion, fecha, numero)
 				VALUES ($1, $2, $3)$$
-			USING NEW.codigo_tipo_operacion, DATE(NEW.fecha_sacado), (numeroUltimaSecuencia);
+			USING NEW.codigo_tipo_operacion, DATE(NEW.fecha_sacado), (numeroUltimaSecuencia+1);
 		END IF;
 
 		NEW.numeracion := numeroUltimaSecuencia;

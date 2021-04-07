@@ -5,6 +5,7 @@ import { TiendaService } from 'src/app/admin/tienda/tienda.service';
 import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
 import { Ticket } from 'src/app/entidades/Ticket';
 import { UtilService } from 'src/app/servicios/util.service';
+import { environment } from 'src/environments/environment';
 import { TicketService } from './ticket.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class TicketComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.setItem("empresa", environment.empresa);
     this.cargando = true;
     this.tiendaService.listarTiendas({}, this);
   }

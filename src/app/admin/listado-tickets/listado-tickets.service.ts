@@ -13,7 +13,7 @@ export class ListadoTicketsService {
   ) { }
 
   listarTickets(parametro, contexto) {
-    this.api.post("listarTickets.php", parametro)
+    this.api.postSinLogin("listarTickets.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTickets(respuesta.resultado);

@@ -1,13 +1,21 @@
+<div class="ol-xl-4 mb-4" *ngIf="mostrarBoton">
+  <div class="card mb-2 widget-content pb-1 pt-1">
+    <div class="widget-content-outer">
+      <div class="widget-content-wrapper">
+        <div class="widget-content-left">
+          <div class="widget-heading">Bienvenidos Q-Virtual</div>
+          <div class="widget-subheading">Generador de Tickets en línea.</div>
+        </div>
+      </div>
+    </div>
+    <a routerLink="/" class="mb-2 mr-2 btn badge badge-pill badge-success"><i class="fa fa-eye pr-1"
+        aria-hidden="true"></i>Ticket</a>
+  </div>
+</div>
 <form class="container pb-5 col-lg-12 col-md-12 col-sm-12">
   <div class="card mb-5">
     <div class="card-header">
-          <b>Tickets Generados</b>
-          <div *ngIf="mostrarBoton">
-        <div class="btn-actions-pane-right">
-          <button type="button" routerLink="/#" class="btn btn-secondary btn-sm"><i
-                  class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
-      </div>
-    </div>
+      <b>Tickets Generados</b>
     </div>
     <div class="card-body">
       <div class="p-1 ps-3">

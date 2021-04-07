@@ -1,17 +1,3 @@
-<div class="ol-xl-4">
-  <div class="card mb-2 widget-content pb-1 pt-1">
-      <div class="widget-content-outer">
-          <div class="widget-content-wrapper">
-              <div class="widget-content-left">
-                  <div class="widget-heading">Bienvenidos Q-Virtual</div>
-                  <div class="widget-subheading">Generador de Tickets en línea.</div>
-              </div>
-          </div>
-      </div>
-      <a routerLink="ver" class="mb-2 mr-2 btn badge badge-pill badge-success"><i
-        class="fa fa-eye pr-1" aria-hidden="true"></i>Ver</a>
-  </div>
-</div>
 <form #frmTicket='ngForm' class="container">
   <div class="row">
     <div class="col-lg-1 col-md-12 col-sm-12"></div>
@@ -22,10 +8,28 @@
         </div>
         <div class="card-body">
           <div class="row">
+            <div class="col-lg-6 col-xl-4" *ngFor="let tienda of tiendas">
+              <div class="card mb-3 widget-content">
+                <div class="widget-content-wrapper">
+                  <div class="widget-content-left">
+                    <div class="widget-heading">{{tienda.codigo}}</div>
+                    <div class="widget-subheading">{{tienda.direccion}}</div>
+                  </div>
+                  <div class="widget-content-right">
+                    <div class="widget-numbers text-success"><span>1896</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
             <div class="col-md-12 mb-3">
               <label>Seleccione la tienda de su preferencia</label>
-              <select class="form-control form-control-sm" aria-label="Default select example" [(ngModel)]="tiendaSeleccionada"
-                name="tiendaSeleccionada" required (ngModelChange)="listarTiposOperacion()">
+              <select class="form-control form-control-sm" aria-label="Default select example"
+                [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required
+                (ngModelChange)="listarTiposOperacion()">
                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                   {{tienda.direccion}}
                 </option>
@@ -33,8 +37,8 @@
             </div>
             <div class="col-md-12 mb-3">
               <label>Seleccione el tipo de ticket</label>
-              <select class="form-control form-control-sm" aria-label="Default select example" [(ngModel)]="ticket.codigo_tipo_operacion"
-                name="tipoSeleccionado" required>
+              <select class="form-control form-control-sm" aria-label="Default select example"
+                [(ngModel)]="ticket.codigo_tipo_operacion" name="tipoSeleccionado" required>
                 <option *ngFor="let tipo of tipos" [ngValue]="tipo.codigo">{{tipo.codigo}} --
                   {{tipo.descripcion}}
                 </option>
@@ -42,16 +46,19 @@
             </div>
             <div class="col-md-12 mb-3">
               <label for="rut">RUT</label>
-              <input type="text" class="form-control form-control-sm" id="rut" [(ngModel)]="ticket.rut" name="rut" required>
+              <input type="text" class="form-control form-control-sm" id="rut" [(ngModel)]="ticket.rut" name="rut"
+                required>
             </div>
             <div class="col-md-12 mb-3">
               <label for="nombre">Nombre completo</label>
-              <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="ticket.nombres" name="nombre" required>
+              <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="ticket.nombres"
+                name="nombre" required>
             </div>
             <div class="col-md-12 mb-3">
               <label for="exampleInputEmail1">Correo Electronico</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" [(ngModel)]="ticket.email"
-                aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email" required>
+              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1"
+                [(ngModel)]="ticket.email" aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com"
+                name="email" required>
               <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
                 más.</small>
             </div>

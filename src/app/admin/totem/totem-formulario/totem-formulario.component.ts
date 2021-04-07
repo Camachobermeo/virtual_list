@@ -74,7 +74,7 @@ export class TotemFormularioComponent implements OnInit {
   despuesDeGuardarTotem(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
-    this.router.navigate(['totem']);
+    this.router.navigate(['admin/totem']);
   }
 
 }

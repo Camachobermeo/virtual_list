@@ -41,7 +41,7 @@ export class LoginFormularioComponent implements OnInit {
 
   despuesDeObtenerLogin(data) {
     this.toastr.success(data.mensaje, "Aviso");
-    this.router.navigate(['principal']).then(() => {
+    this.router.navigate(['admin/principal']).then(() => {
       window.location.reload();
       this.cargando = false;
     });

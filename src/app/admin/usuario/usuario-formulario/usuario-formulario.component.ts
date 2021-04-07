@@ -63,7 +63,7 @@ export class UsuarioFormularioComponent implements OnInit {
 
   despuesDeGuardarUsuario(data) {
     this.toastr.success(data.mensaje, "Aviso");
-    this.router.navigate(['usuario']);
+    this.router.navigate(['admin/usuario']);
     this.cargando = false;
 
   }

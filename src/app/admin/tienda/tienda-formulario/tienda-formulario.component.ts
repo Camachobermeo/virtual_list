@@ -78,7 +78,7 @@ export class TiendaFormularioComponent implements OnInit {
 
   despuesDeGuardarTienda(data) {
     this.toastr.success(data.mensaje, "Aviso");
-    this.router.navigate(['tienda']);
+    this.router.navigate(['admin/tienda']);
     this.cargando = false;
   }
 

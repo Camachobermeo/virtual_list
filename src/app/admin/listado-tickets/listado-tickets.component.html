@@ -16,6 +16,10 @@
   <div class="card mb-5">
     <div class="card-header">
       <b>Tickets Generados</b>
+      <div class="btn-actions-pane-right">
+        <button type="button" class="btn btn-success ml-1 btn-sm" (click)="listarTickets()"><i
+                class="fa pe-7s-refresh pr-1" aria-hidden="true"></i>Recargar</button>
+    </div>
     </div>
     <div class="card-body">
       <div class="p-1 ps-3">
@@ -37,6 +41,7 @@
               <th>Nombre</th>
               <th>Email</th>
               <th>Telefono</th>
+              <th>Estado</th>
               <th>Fecha</th>
               <th>Numeración</th>
             </tr>
@@ -47,6 +52,7 @@
               <td>{{ticket.nombres}}</td>
               <td>{{ticket.email}}</td>
               <td>{{ticket.telefono}}</td>
+              <td>{{ticket.estado}}</td>
               <td>{{ticket.fecha_sacado}} </td>
               <td>{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}} </td>
             </tr>

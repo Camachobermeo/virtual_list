@@ -1,1 +1,31 @@
-<p>tipo-ticket works!</p>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="card mb-3 widget-content bg-grow-early">
+        <div class="widget-content-wrapper text-white">
+          <div class="widget-content-left">
+            <div class="widget-heading" routerLink="/">Seleccione el tipo de operación en la Tienda:
+              {{tiendaSeleccionada}}</div>
+          </div>
+          <div class="widget-content-right" style="font-size: 16px;">
+            <div class="widget-numbers text-white"><i routerLink="/" class="fa fa-arrow-left"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-xl-4" style="cursor: pointer;" routerLink="/tipo/{{tiendaSeleccionada}}/{{tipo.codigo}}"
+      *ngFor="let tipo of tipos">
+      <div class="card mb-3 widget-content">
+        <div class="widget-content-wrapper">
+          <div class="widget-content-left">
+            <div class="widget-heading">{{tipo.codigo}}</div>
+            <div class="widget-subheading">{{tipo.descripcion}}</div>
+          </div>
+          <div class="widget-content-right">
+            <div class="widget-numbers text-success"><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

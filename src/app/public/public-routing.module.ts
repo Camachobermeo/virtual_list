@@ -5,7 +5,7 @@ import { PublicComponent } from './public.component';
 
 const routesPublicas: Routes = [
   {
-    path:  '',
+    path: '',
     component: PublicComponent,
     canActivate: [AuthGuardService],
     runGuardsAndResolvers: 'always',
@@ -13,6 +13,16 @@ const routesPublicas: Routes = [
       {
         path: '',
         loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule),
+        runGuardsAndResolvers: 'always'
+      },
+      {
+        path: 'tienda/:tienda',
+        loadChildren: () => import('./tipo-ticket/tipo-ticket.module').then(m => m.TipoTicketModule),
+        runGuardsAndResolvers: 'always'
+      },
+      {
+        path: 'tipo/:tienda/:tipo',
+        loadChildren: () => import('./datos/datos.module').then(m => m.DatosModule),
         runGuardsAndResolvers: 'always'
       }
     ]

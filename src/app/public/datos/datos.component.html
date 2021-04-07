@@ -1,1 +1,54 @@
-<p>datos works!</p>
+<div class="card-body">
+  <form #frmTicket='ngForm' class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="card mb-3 widget-content bg-grow-early">
+        <div class="widget-content-wrapper text-white">
+          <div class="widget-content-left">
+            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Tienda:
+              {{tiendaSeleccionada}} -
+              Tipo de Operación: {{ticket.codigo_tipo_operacion}}
+            </div>
+          </div>
+          <div class="widget-content-right" style="font-size: 16px;">
+            <div class="widget-numbers text-white"><i routerLink="/tienda/{{tiendaSeleccionada}}"
+                class="fa fa-arrow-left"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label for="rut">RUT</label>
+      <input type="text" class="form-control form-control-sm" id="rut" [(ngModel)]="ticket.rut" name="rut" required>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="ticket.nombres" name="nombre"
+        required>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label for="exampleInputEmail1">Correo Electronico</label>
+      <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" [(ngModel)]="ticket.email"
+        aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email" required>
+      <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
+        más.</small>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label>Telefono</label>
+      <input type="text" class="form-control form-control-sm" name="telefono" [(ngModel)]="ticket.telefono"
+        placeholder="Telefono">
+    </div>
+    <div class="col-md-12 mb-3 text-center">
+      <input type="checkbox" class="form-check-input" name="recordatorio" id="exampleCheck1"
+        [(ngModel)]="ticket.recordatorio">
+      <label class="form-check-label ms-2" for="exampleCheck1"> Añadir recordatorio</label>
+    </div>
+    <div class="col-md-12 mb-3 text-center">
+      <button type="button" (click)="generarTicket(frmTicket)" class="btn btn-success"><i class="fa fa-paper-plane"
+          aria-hidden="true"></i> Generar
+        Ticket</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="cargando">
+  <app-cargando></app-cargando>
+</div>

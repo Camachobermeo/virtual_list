@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tipo-ticket',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TipoTicketComponent implements OnInit {
 
-  constructor() { }
+  tipos: any = new Array();
+  tiendaSeleccionada: string = "";
+  cargando: boolean = false;
+
+  constructor(
+    public tiposService: TipoOperacionService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    localStorage.setItem("empresa", environment.empresa);
+    this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
+    this.cargando = true;
+    this.listarTiposOperacion();
+  }
+
+  listarTiposOperacion() {
+    this.cargando = true;
+    this.tiposService.listarTipos({ tienda: this.tiendaSeleccionada }, this);
+  }
+
+  despuesDeListarTipos(data) {
+    this.cargando = false;
+    this.tipos = data;
   }
 
 }

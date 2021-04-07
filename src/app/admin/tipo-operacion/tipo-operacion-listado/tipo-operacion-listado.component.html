@@ -33,6 +33,7 @@
                                 <th>Código</th>
                                 <th>Código Totem</th>
                                 <th>Descripcón</th>
+                                <th>Tiempo Estimado Minutos</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Eliminar</th>
                             </tr>
@@ -42,6 +43,7 @@
                                 <td>{{tipo.codigo}}</td>
                                 <td>{{tipo.codigo_totem}}</td>
                                 <td>{{tipo.descripcion}}</td>
+                                <td>{{tipo.tiempo_estimado_minutos}} min</td>
                                 <td class="text-center"><a type="button" class="btn btn-sm btn-success"
                                         [routerLink]="['editar', tipo.codigo]"><i class="fa fa-edit"
                                             aria-hidden="true"></i></a></td>

@@ -7,6 +7,7 @@ export class Ticket {
     public nombres: string = "";
     public recordatorio: boolean = false;
     public fecha_sacado: Date = new Date();
+    public estado: string = "";
 
     constructor(data?) {
         data ? this.hydrate(data) : null;
@@ -21,6 +22,7 @@ export class Ticket {
         this.fecha_sacado = data.fecha_sacado ? data.fecha_sacado : this.fecha_sacado;
         this.rut = data.rut ? data.rut : this.rut;
         this.nombres = data.nombres ? data.nombres : this.nombres;
+        this.estado = data.estado ? data.estado : this.estado;
     }
 
 }

@@ -47,6 +47,10 @@
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
+ ALTER TABLE tipo_operacion
+ add column tiempo_estimado_minutos integer,
+ add column costo_estimado numeric;
+
 CREATE TABLE ticket(
      secuencial serial not null primary key,
      codigo_tipo_operacion text not null,
@@ -61,6 +65,9 @@ CREATE TABLE ticket(
       REFERENCES tipo_operacion (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
+
+ ALTER TABLE ticket
+ add column estado text;
 
  CREATE TABLE usuario(
      codigo text not null primary key,

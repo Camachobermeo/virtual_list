@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DatosComponent } from './datos.component';
 import { DatosRoutingModule } from './datos-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 
 
 
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    DatosRoutingModule
+    DatosRoutingModule,
+    ComponentesGeneralesModule
   ]
 })
 export class DatosModule { }

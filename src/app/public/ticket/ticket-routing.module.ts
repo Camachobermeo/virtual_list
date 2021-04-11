@@ -5,8 +5,7 @@ import { TicketComponent } from './ticket.component';
 const routesModulos: Routes = [
   {
     path: '',
-    component: TicketComponent,
-    runGuardsAndResolvers: 'always'
+    component: TicketComponent
   }
 ];
 

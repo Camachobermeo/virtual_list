@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuardService } from '../servicios/auth-guard.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,8 +13,7 @@ export class AdminComponent implements OnInit {
   ocultarMenu = false;
 
   constructor(
-    private router: Router,
-    private api: AuthGuardService
+    private router: Router
   ) {
   }
 

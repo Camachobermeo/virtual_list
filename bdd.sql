@@ -89,6 +89,21 @@ CREATE TABLE numeracion(
      CONSTRAINT numeracion_pk PRIMARY KEY (codigo_tipo_operacion, fecha)
  );
 
+CREATE TABLE ticket_programado(
+     secuencial serial not null primary key,
+     codigo_tipo_operacion text not null,
+     email text not null,
+     telefono text,
+     recordatorio boolean not null default false,
+     fecha_sacado timestamp not null,
+     fecha_cita date not null,
+     hora_cita time not null,
+     rut text not null,
+     nombres text not null,
+     CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
+      REFERENCES tipo_operacion (codigo) MATCH FULL
+      ON UPDATE CASCADE ON DELETE NO ACTION
+ );
 
 DROP TRIGGER IF EXISTS actualizar_numero_ticket ON ticket;
 

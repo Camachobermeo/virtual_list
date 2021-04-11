@@ -1,29 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from '../servicios/auth-guard.service';
 import { PublicComponent } from './public.component';
 
 const routesPublicas: Routes = [
   {
     path: '',
     component: PublicComponent,
-    canActivate: [AuthGuardService],
     runGuardsAndResolvers: 'always',
     children: [
       {
         path: '',
-        loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule),
-        runGuardsAndResolvers: 'always'
+        loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
       },
       {
         path: 'tienda/:tienda',
-        loadChildren: () => import('./tipo-ticket/tipo-ticket.module').then(m => m.TipoTicketModule),
-        runGuardsAndResolvers: 'always'
+        loadChildren: () => import('./tipo-ticket/tipo-ticket.module').then(m => m.TipoTicketModule)
       },
       {
         path: 'tipo/:tienda/:tipo',
-        loadChildren: () => import('./datos/datos.module').then(m => m.DatosModule),
-        runGuardsAndResolvers: 'always'
+        loadChildren: () => import('./datos/datos.module').then(m => m.DatosModule)
       }
     ]
   }

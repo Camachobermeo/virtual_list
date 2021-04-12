@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
 import { Ticket } from 'src/app/entidades/Ticket';
+import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 import { TicketService } from '../ticket/ticket.service';
@@ -15,21 +17,49 @@ import { TicketService } from '../ticket/ticket.service';
 export class DatosComponent implements OnInit {
 
   ticket: Ticket = new Ticket();
+  ticketAtencion: Ticket = new Ticket();
   cargando: boolean = false;
   tiendaSeleccionada: string = "";
   tipo: string = "";
+  enFila: number = 0;
+  tipoOperacion: TipoOperacion = new TipoOperacion();
 
   constructor(
     public utilService: UtilService,
     public toastr: ToastrService,
     private route: ActivatedRoute,
-    public ticketService: TicketService
+    public ticketService: TicketService,
+    private router: Router,
+    public tipoOperacionService: TipoOperacionService
   ) { }
 
   ngOnInit(): void {
     localStorage.setItem("empresa", environment.empresa);
+    this.cargando = true;
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
+    this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipo }, this);
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
+  }
+
+  despuesDeObtenerTipoOperacion(data) {
+    this.tipoOperacion = data;
+  }
+
+  despuesDeObtenerTicketEnAtencion(data) {
+    this.ticketAtencion = data || new Ticket();
+  }
+
+  despuesDeObtenerTicketSacado(data) {
+    // this.ticketAtencion = data || new Ticket();
+    let ultimoAtencion = this.ticketAtencion.numeracion;
+    if (data) {
+      let ultimoSacado = data && data.numeracion;
+      this.enFila = (ultimoSacado || 0) - (ultimoAtencion || 0);
+      this.enFila = Math.abs(this.enFila);
+    }
+    this.cargando = false;
   }
 
   generarTicket(form: NgForm) {
@@ -44,10 +74,24 @@ export class DatosComponent implements OnInit {
     }
   }
 
+  programarTicket(form: NgForm) {
+    this.cargando = true;
+    let formularioTocado = this.utilService.establecerFormularioTocado(form);
+    if (form && form.valid && formularioTocado) {
+      this.ticket.codigo_tipo_operacion = this.tipo;
+      this.router.navigate(["programar/" + this.tiendaSeleccionada + "/" + this.tipo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
+    } else {
+      this.toastr.error("Complete los campos requeridos.", "Aviso");
+      this.cargando = false;
+    }
+  }
+
   despuesDeGenerarTicket(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
     this.ticket = new Ticket();
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
   }
 
 }

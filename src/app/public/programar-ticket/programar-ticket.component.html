@@ -1,0 +1,39 @@
+<div class="card-body">
+  <form #frmTicket='ngForm' class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="card mb-3 widget-content bg-grow-early">
+        <div class="widget-content-wrapper text-white">
+          <div class="widget-content-left">
+            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Tienda:
+              {{tiendaSeleccionada}} -
+              Tipo de Operación: {{tipo}}
+            </div>
+          </div>
+          <div class="widget-content-right" style="font-size: 16px;">
+            <div class="widget-numbers text-white"><i routerLink="/tienda/{{tiendaSeleccionada}}"
+                class="fa fa-arrow-left"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="main-card mb-3 card">
+        <div class="no-gutters row">
+          <div class="col-md-12">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      
+    </div>
+    <div class="col-md-12 mb-3 text-center">
+      <button type="button" class="btn btn-primary"><i class="fa fa-paper-plane"
+          aria-hidden="true"></i> Programar Ticket</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="cargando">
+  <app-cargando></app-cargando>
+</div>

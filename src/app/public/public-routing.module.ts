@@ -19,6 +19,10 @@ const routesPublicas: Routes = [
       {
         path: 'tipo/:tienda/:tipo',
         loadChildren: () => import('./datos/datos.module').then(m => m.DatosModule)
+      },
+      {
+        path: 'programar/:tienda/:tipo',
+        loadChildren: () => import('./programar-ticket/programar-ticket.module').then(m => m.ProgramarTicketModule)
       }
     ]
   }

@@ -25,4 +25,29 @@ export class TicketService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
+  obtenerTicketEnAtencion(parametro, contexto) {
+    this.api.postSinLogin("obtenerTicketActual.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.estado) {
+          contexto.despuesDeObtenerTicketEnAtencion(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
+  obtenerTicketSacado(parametro, contexto) {
+    this.api.postSinLogin("obtenerTicketActual.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.estado) {
+          contexto.despuesDeObtenerTicketSacado(respuesta.resultado);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+  
 }

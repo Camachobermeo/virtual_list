@@ -1,5 +1,6 @@
 export class Ticket {
     public secuencial: number = 0;
+    public numeracion: number = 0;
     public codigo_tipo_operacion: string = "";
     public email: string = "";
     public telefono: string = "";

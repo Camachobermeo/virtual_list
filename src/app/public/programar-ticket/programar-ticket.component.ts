@@ -60,7 +60,7 @@ export class ProgramarTicketComponent implements OnInit {
     this.horas = new Array();
     let horaInicio: any = this.horaEnSegundos(8);
     let horaFin = this.horaEnSegundos(13);
-    let progresion = this.minutosEnSegundos(15);
+    let progresion = this.minutosEnSegundos(this.tipoOperacion.tiempo_estimado_minutos);
     while (horaInicio < horaFin) {
       horaInicio = horaInicio + progresion;
       hora = parseInt((horaInicio / 3600) + "") % 24;

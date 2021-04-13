@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
 import { Ticket } from 'src/app/entidades/Ticket';
+import { Tienda } from 'src/app/entidades/Tienda';
 import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
@@ -19,7 +20,9 @@ export class DatosComponent implements OnInit {
   ticket: Ticket = new Ticket();
   ticketAtencion: Ticket = new Ticket();
   cargando: boolean = false;
+  generado: boolean = false;
   tiendaSeleccionada: string = "";
+  tienda: Tienda = new Tienda();
   tipo: string = "";
   enFila: number = 0;
   tipoOperacion: TipoOperacion = new TipoOperacion();
@@ -38,6 +41,7 @@ export class DatosComponent implements OnInit {
     this.cargando = true;
     this.tipo = this.route.snapshot.paramMap.get('tipo');
     this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
+    this.tienda = new Tienda(JSON.parse(localStorage.getItem("tienda")));
     this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipo }, this);
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
     this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
@@ -88,8 +92,16 @@ export class DatosComponent implements OnInit {
 
   despuesDeGenerarTicket(data) {
     this.cargando = false;
+    this.generado = true;
     this.toastr.success(data.mensaje, "Aviso");
-    this.ticket = new Ticket();
+    this.ticket.numeracion = data.resultado && data.resultado.numeracion;
+    // this.ticket = new Ticket();
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
+  }
+
+  refrescar() {
+    this.cargando = true;
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
     this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
   }

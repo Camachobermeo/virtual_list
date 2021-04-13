@@ -27,4 +27,8 @@ export class TicketComponent implements OnInit {
     this.cargando = false;
   }
 
+  seleccionarTienda(tienda) {
+    localStorage.setItem("tienda", JSON.stringify(tienda));
+  }
+
 }

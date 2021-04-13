@@ -26,6 +26,18 @@ export class TicketService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  generarTicketProgramado(parametro, contexto) {
+    this.api.postSinLogin("ticketProgramado.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeGenerarTicketProgramado(respuesta);
+        } else {
+          contexto.cargando = false;
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
   obtenerTicketEnAtencion(parametro, contexto) {
     this.api.postSinLogin("obtenerTicketActual.php", parametro)
       .then(respuesta => {

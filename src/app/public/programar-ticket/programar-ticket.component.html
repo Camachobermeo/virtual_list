@@ -4,9 +4,8 @@
       <div class="card mb-3 widget-content bg-grow-early">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Tienda:
-              {{tiendaSeleccionada}} -
-              Tipo de Operación: {{tipo}}
+            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Sucursal:
+              {{tiendaSeleccionada}} - Fila: {{tipo}}
             </div>
           </div>
           <div class="widget-content-right" style="font-size: 16px;">
@@ -16,21 +15,63 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="!horaSeleccionada">
       <div class="main-card mb-3 card">
         <div class="no-gutters row">
           <div class="col-md-12">
-            
+            <div class="col-md-12 mb-3">
+              <label for="rut">Fecha de Cita</label>
+              <input type="date" class="form-control form-control-sm" [(ngModel)]="ticket.fecha_cita" name="fecha_cita"
+                required>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      
+
+
+    <!-- En la fila:
+    Atencion Clientes
+    Sucursal:
+    Parque del Recuerdo Santa Rosa del Peral -->
+
+    <div class="col-md-3" *ngIf="horaSeleccionada"></div>
+    <div class="col-md-6" *ngIf="horaSeleccionada">
+      <div class="main-card mb-3 card">
+        <div class="no-gutters row">
+          <div class="col-md-12">
+            <div class="pt-0 pb-0 card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="mt-3 mb-3 text-center card card-body bg-premium-dark" style="color: white;">
+                    <b style="color: white;">Día y hora de la reserva: </b>
+                    <h5 class="card-title" style="color: white;">{{ticket.fecha_cita}} a las {{horaSeleccionada}}</h5>
+                    <br>
+                    <b style="color: white;">En la Fila: </b>
+                    <h5 class="card-title" style="color: white;">{{tipoOperacion.descripcion}}</h5>
+                    <br>
+                    <b style="color: white;">Sucursal: </b>
+                    <h5 class="card-title" style="color: white;">{{tienda.direccion}}</h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-12 mb-3 text-center">
-      <button type="button" class="btn btn-primary"><i class="fa fa-paper-plane"
-          aria-hidden="true"></i> Programar Ticket</button>
+    <div class="col-md-3" *ngIf="horaSeleccionada"></div>
+
+    <div class="col-md-6" *ngIf="ticket.fecha_cita && !horaSeleccionada">
+      <button class="btn btn-primary m-1" (click)="sacarCita(frmTicket, item)"
+        *ngFor="let item of horas; index as i;">{{item}}</button>
+    </div>
+
+    <div class="col-md-12 mb-3 mt-3 text-center" *ngIf="horaSeleccionada">
+      <button type="button" class="btn btn-primary mr-1" (click)="programarTicket()"><i class="fa fa-paper-plane"
+          aria-hidden="true"></i> Confirmar</button>
+      <button type="button" class="btn btn-secondary" (click)="horaSeleccionada = ''"><i class="fa fa-undo"
+          aria-hidden="true"></i> Regresar</button>
     </div>
   </form>
 </div>

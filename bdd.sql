@@ -105,6 +105,9 @@ CREATE TABLE ticket_programado(
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
+ ALTER TABLE ticket_programado
+ add column estado text;
+
 DROP TRIGGER IF EXISTS actualizar_numero_ticket ON ticket;
 
 CREATE TRIGGER actualizar_numero_ticket

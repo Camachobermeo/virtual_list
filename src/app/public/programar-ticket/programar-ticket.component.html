@@ -30,12 +30,26 @@
     </div>
 
     <div class="col-md-3" *ngIf="horaSeleccionada"></div>
-    <div class="col-md-6" *ngIf="horaSeleccionada">
+    <div class="col-md-6" *ngIf="horaSeleccionada" id="print">
       <div class="main-card mb-3 card">
         <div class="no-gutters row">
           <div class="col-md-12">
             <div class="pt-0 pb-0 card-body">
               <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngIf="generado">
+                  <div class="widget-content p-0">
+                    <div class="widget-content-outer">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left">
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="widget-numbers text-success" (click)="printer()" style="cursor: pointer;"><i
+                              class="fa fa-print  icon-gradient bg-premium-dark"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
                 <li class="list-group-item">
                   <div class="mt-3 mb-3 text-center card card-body bg-premium-dark" style="color: white;">
                     <b style="color: white;">Día y hora de la reserva: </b>
@@ -61,11 +75,16 @@
         *ngFor="let item of horas; index as i;">{{item}}</button>
     </div>
 
-    <div class="col-md-12 mb-3 mt-3 text-center" *ngIf="horaSeleccionada">
+    <div class="col-md-12 mb-3 mt-3 text-center" *ngIf="horaSeleccionada && !generado">
       <button type="button" class="btn btn-primary mr-1" (click)="programarTicket()"><i class="fa fa-paper-plane"
           aria-hidden="true"></i> Confirmar</button>
       <button type="button" class="btn btn-secondary" (click)="horaSeleccionada = ''"><i class="fa fa-undo"
           aria-hidden="true"></i> Regresar</button>
+    </div>
+
+    <div class="col-md-12 mb-3 mt-3 text-center" *ngIf="generado">
+      <button type="button" class="btn btn-secondary" routerLink="/"><i class="fa fa-undo" aria-hidden="true"></i>
+        Regresar</button>
     </div>
   </form>
 </div>

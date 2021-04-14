@@ -22,6 +22,7 @@ export class ProgramarTicketComponent implements OnInit {
   tipo: string = "";
   horaSeleccionada: string = "";
   cargando: boolean = false;
+  generado: boolean = false;
   horas: Array<string> = new Array();
   tipoOperacion: TipoOperacion = new TipoOperacion();
 
@@ -93,8 +94,19 @@ export class ProgramarTicketComponent implements OnInit {
   }
 
   despuesDeGenerarTicketProgramado(){
-    this.cargando = true;
-    this.router.navigate(["/"]);
+    this.cargando = false;
+    this.generado = true;
+  }
+
+  printer() {
+    let printContent = "<html><head><title></title><link rel='stylesheet' href='assets/main.css' type='text/css' /></head><body >";
+    printContent = printContent + document.getElementById("print").innerHTML;
+    printContent = printContent + "</body></html>";
+    const WindowPrt = window.open('', '', 'left=0,top=50,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+    WindowPrt.document.write(printContent);
+    WindowPrt.document.close();
+    WindowPrt.focus();
+    setTimeout(function () { WindowPrt.print(); WindowPrt.close();}, 10000);
   }
 
 }

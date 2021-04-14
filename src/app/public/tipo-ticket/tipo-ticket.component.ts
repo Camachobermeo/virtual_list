@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
+import { Tienda } from 'src/app/entidades/Tienda';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,6 +14,7 @@ export class TipoTicketComponent implements OnInit {
   tipos: any = new Array();
   tiendaSeleccionada: string = "";
   cargando: boolean = false;
+  tienda: Tienda = new Tienda();
 
   constructor(
     public tiposService: TipoOperacionService,
@@ -22,6 +24,7 @@ export class TipoTicketComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem("empresa", environment.empresa);
     this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
+    this.tienda = new Tienda(JSON.parse(localStorage.getItem("tienda")));
     this.cargando = true;
     this.listarTiposOperacion();
   }

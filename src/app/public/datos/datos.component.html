@@ -4,9 +4,10 @@
       <div class="card mb-3 widget-content bg-grow-early">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Sucursal:
-              {{tiendaSeleccionada}} - Fila: {{tipo}}
+            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información. Sucursal:
+              {{tiendaSeleccionada}} - {{tienda.direccion}}
             </div>
+            <div class="widget-heading">Fila: {{tipo}} - {{tipoOperacion.descripcion}}</div>
           </div>
           <div class="widget-content-right" style="font-size: 16px;">
             <div class="widget-numbers text-white"><i routerLink="/tienda/{{tiendaSeleccionada}}"
@@ -104,46 +105,57 @@
     </div>
 
     <!-- Imprimir Ticket -->
-    <div class="col-md-6" *ngIf="generado">
-      <div class="main-card mb-3 card">
-        <div class="no-gutters row">
-          <div class="col-md-12">
-            <div class="pt-0 pb-0 card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <div class="widget-content p-0">
-                    <div class="widget-content-outer">
-                      <div class="widget-content-wrapper">
-                        <div class="widget-content-left">
-                        </div>
-                        <div class="widget-content-right">
-                          <div class="widget-numbers text-success"><i
-                              class="fa fa-print  icon-gradient bg-premium-dark"></i></div>
+    <div class="col-md-6" *ngIf="generado" id="print">
+      <html>
+
+      <head>
+        <link rel="stylesheet" href="/assets/main.css" type="text/css">
+      </head>
+
+      <body>
+        <div class="main-card mb-3 card">
+          <div class="no-gutters row">
+            <div class="col-md-12">
+              <div class="pt-0 pb-0 card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                          <div class="widget-content-left">
+                          </div>
+                          <div class="widget-content-right">
+                            <div class="widget-numbers text-success" (click)="printer()" style="cursor: pointer;"><i
+                                class="fa fa-print  icon-gradient bg-premium-dark"></i></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="text-center card card-body bg-midnight-bloom" style="color: white;">
-                    <b style="color: white;">Día y hora de la reserva: </b>
-                    <h5 class="card-title" style="color: white;">{{ticket.fecha_sacado}}</h5>
-                    <br>
-                    <b style="color: white;">En la Fila: </b>
-                    <h5 class="card-title" style="color: white;">{{tipoOperacion.descripcion}}</h5>
-                    <br>
-                    <b style="color: white;">Sucursal: </b>
-                    <h5 class="card-title" style="color: white;">{{tienda.direccion}}</h5>
-                    <br>
-                    <b style="color: white;">Numero de Ticket: </b>
-                    <h5 class="card-title" style="color: white;">{{tipoOperacion.codigo}} - {{ticket.numeracion}}</h5>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="text-center card card-body bg-midnight-bloom" style="color: white;">
+                      <b style="color: white;">Día y hora de la reserva: </b>
+                      <h5 class="card-title" style="color: white;">{{ticket.fecha_sacado | date:'dd/MM/yyyy, h:mm a'}}
+                      </h5>
+                      <br>
+                      <b style="color: white;">En la Fila: </b>
+                      <h5 class="card-title" style="color: white;">{{tipoOperacion.descripcion}}</h5>
+                      <br>
+                      <b style="color: white;">Sucursal: </b>
+                      <h5 class="card-title" style="color: white;">{{tienda.direccion}}</h5>
+                      <br>
+                      <b style="color: white;">Numero de Ticket: </b>
+                      <h5 class="card-title" style="color: white;">{{tipoOperacion.codigo}} - {{ticket.numeracion}}</h5>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </body>
+
+      </html>
     </div>
 
     <div class="col-md-12 mb-3 text-center" *ngIf="!generado">

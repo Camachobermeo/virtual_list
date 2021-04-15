@@ -71,6 +71,8 @@ export class DatosComponent implements OnInit {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
       this.ticket.codigo_tipo_operacion = this.tipo;
+      this.ticket['sucursal'] = this.tienda.direccion;
+      this.ticket['fila'] = this.tipoOperacion.descripcion;
       this.ticketService.generarTicket(this.ticket, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -107,18 +109,6 @@ export class DatosComponent implements OnInit {
   }
 
   printer() {
-    // es6printJS("print", "html");
-    // var mywindow = window.open('', 'new div', 'height=400,width=600');
-    // mywindow.document.write('<html><head><title></title>');
-    // mywindow.document.write('<link rel="stylesheet" href="assets/main.css" type="text/css" />');
-    // mywindow.document.write('</head><body >');
-    // mywindow.document.write(document.getElementById("print").innerHTML);
-    // mywindow.document.write('</body></html>');
-    // mywindow.document.close();
-    // mywindow.focus();
-    // setTimeout(function () { mywindow.print(); }, 10000);
-    // // mywindow.close();
-    // return true;
     let printContent = "<html><head><title></title><link rel='stylesheet' href='assets/main.css' type='text/css' /></head><body >";
     printContent = printContent + document.getElementById("print").innerHTML;
     printContent = printContent + "</body></html>";

@@ -96,6 +96,8 @@ export class ProgramarTicketComponent implements OnInit {
 
   programarTicket() {
     this.cargando = true;
+    this.ticket['sucursal'] = this.tienda.direccion;
+    this.ticket['fila'] = this.tipoOperacion.descripcion;
     this.ticketService.generarTicketProgramado(this.ticket, this);
   }
 

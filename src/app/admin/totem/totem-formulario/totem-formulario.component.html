@@ -20,10 +20,10 @@
                                 required>
                     </div>
                     <div class="col-6">
-                        <label>Seleccione la Tienda</label>
+                        <label>Seleccione la Sucursal</label>
                             <select class="form-control form-control-sm " aria-label="Default select example"
                                 [(ngModel)]="totem.codigo_tienda" name="tiendaSeleccionada" required>
-                                <option value="" disabled selected>Seleccione la Tienda</option>
+                                <option value="" disabled selected>Seleccione la Sucursal</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                     {{tienda.direccion}}
                                 </option>

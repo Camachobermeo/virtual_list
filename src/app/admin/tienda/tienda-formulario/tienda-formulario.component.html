@@ -2,7 +2,7 @@
     <form #frmTienda='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                <b> {{esEdicion?'Modificar':'Registrar'}} Tienda</b>
+                <b> {{esEdicion?'Modificar':'Registrar'}} Sucursal</b>
                 <div class="btn-actions-pane-right">
                     <button type="button" routerLink="/admin/tienda" class="btn btn-secondary btn-sm"><i
                             class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
@@ -15,7 +15,7 @@
                     <div class="col-md-6">
                         <label for="codigo">Código</label>
                         <input required name="codigo" class="form-control form-control-sm text-uppercase"
-                            [(ngModel)]="tienda.codigo" [disabled]="esEdicion" placeholder="Ingrese el código de tienda"
+                            [(ngModel)]="tienda.codigo" [disabled]="esEdicion" placeholder="Ingrese el código de sucursal"
                             required>
                         <br>
                     </div>

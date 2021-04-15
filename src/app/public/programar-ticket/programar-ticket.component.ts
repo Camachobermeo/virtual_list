@@ -62,6 +62,12 @@ export class ProgramarTicketComponent implements OnInit {
     let horaInicio: any = this.horaEnSegundos(8);
     let horaFin = this.horaEnSegundos(13);
     let progresion = this.minutosEnSegundos(this.tipoOperacion.tiempo_estimado_minutos);
+
+    hora = parseInt((horaInicio / 3600) + "") % 24;
+    var minutos = parseInt((horaInicio / 60) + "") % 60;
+    var resultado = (hora < 10 ? "0" + hora : hora) + ":" + (minutos < 10 ? "0" + minutos : minutos);
+    this.horas.push(resultado);
+
     while (horaInicio < horaFin) {
       horaInicio = horaInicio + progresion;
       hora = parseInt((horaInicio / 3600) + "") % 24;
@@ -93,8 +99,9 @@ export class ProgramarTicketComponent implements OnInit {
     this.ticketService.generarTicketProgramado(this.ticket, this);
   }
 
-  despuesDeGenerarTicketProgramado(){
+  despuesDeGenerarTicketProgramado(data) {
     this.cargando = false;
+    this.toastr.success(data.mensaje, "Aviso");
     this.generado = true;
   }
 
@@ -106,7 +113,7 @@ export class ProgramarTicketComponent implements OnInit {
     WindowPrt.document.write(printContent);
     WindowPrt.document.close();
     WindowPrt.focus();
-    setTimeout(function () { WindowPrt.print(); WindowPrt.close();}, 10000);
+    setTimeout(function () { WindowPrt.print(); WindowPrt.close(); }, 1000);
   }
 
 }

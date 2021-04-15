@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Ticket } from 'src/app/entidades/Ticket';
+import { Tienda } from 'src/app/entidades/Tienda';
+import { UtilService } from 'src/app/servicios/util.service';
+import { TiendaService } from '../tienda/tienda.service';
 import { ListadoTicketsService } from './listado-tickets.service';
 
 @Component({
@@ -10,25 +15,54 @@ import { ListadoTicketsService } from './listado-tickets.service';
 export class ListadoTicketsComponent implements OnInit {
 
   tickets: any = new Array();
+  ticketSeleccionado: Ticket = new Ticket();
   cargando: boolean = false;
-  fecha_sacado: Date = new Date();
+  fecha_sacado: Date = null;
   mostrarBoton: boolean = false;
+  tiendas: Array<Tienda> = new Array();
+  tiendaSeleccionada: any = null;
 
   constructor(
-    private route: ActivatedRoute,
-    public ticketsService: ListadoTicketsService
+    public ticketsService: ListadoTicketsService,
+    public tiendaService: TiendaService,
+    public utilService: UtilService,
+    public toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    this.listarTickets();
+    this.cargando = true;
+    this.tiendaService.listarTiendas({}, this);
     if (location.hash == '#/ver') {
       this.mostrarBoton = true;
     }
   }
 
-  listarTickets() {
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
+    this.cargando = false;
+  }
+
+  listarTickets(form: NgForm) {
     this.cargando = true;
-    this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado }, this);
+    let formularioTocado = this.utilService.establecerFormularioTocado(form);
+    if (form && form.valid && formularioTocado) {
+      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.tiendaSeleccionada }, this);
+    } else {
+      this.toastr.error("Complete los campos requeridos.", "Aviso");
+      this.cargando = false;
+    }
+  }
+
+  atender(ticket, texto) {
+    this.ticketSeleccionado = ticket;
+    this.cargando = true;
+    this.ticketsService.cambiarEstadoTicket({ secuencial: this.ticketSeleccionado.secuencial, estado: texto }, texto, this);
+  }
+
+  despuesDeCambiarEstadoTicket(data, estado) {
+    this.toastr.success(data.mensaje, "Aviso");
+    this.cargando = false;
+    this.ticketSeleccionado.estado = estado;
   }
 
   despuesDeListarTickets(data) {

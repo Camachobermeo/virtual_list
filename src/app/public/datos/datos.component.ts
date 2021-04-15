@@ -9,8 +9,6 @@ import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 import { TicketService } from '../ticket/ticket.service';
-import * as es6printJS from "print-js";
-// import printJS = require("print-js");
 
 @Component({
   selector: 'app-datos',
@@ -98,7 +96,6 @@ export class DatosComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.ticket.numeracion = data.resultado && data.resultado.numeracion;
     this.ticket.fecha_sacado = data.resultado && data.resultado.fecha_sacado;
-    // this.ticket = new Ticket();
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
     this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
   }
@@ -111,7 +108,6 @@ export class DatosComponent implements OnInit {
 
   printer() {
     // es6printJS("print", "html");
-
     // var mywindow = window.open('', 'new div', 'height=400,width=600');
     // mywindow.document.write('<html><head><title></title>');
     // mywindow.document.write('<link rel="stylesheet" href="assets/main.css" type="text/css" />');
@@ -123,19 +119,14 @@ export class DatosComponent implements OnInit {
     // setTimeout(function () { mywindow.print(); }, 10000);
     // // mywindow.close();
     // return true;
-
     let printContent = "<html><head><title></title><link rel='stylesheet' href='assets/main.css' type='text/css' /></head><body >";
     printContent = printContent + document.getElementById("print").innerHTML;
     printContent = printContent + "</body></html>";
-
     const WindowPrt = window.open('', '', 'left=0,top=50,width=900,height=900,toolbar=0,scrollbars=0,status=0');
     WindowPrt.document.write(printContent);
     WindowPrt.document.close();
     WindowPrt.focus();
-    // WindowPrt.print();
-    setTimeout(function () { WindowPrt.print(); WindowPrt.close();}, 10000);
-    
-
+    setTimeout(function () { WindowPrt.print(); WindowPrt.close();}, 1000);
   }
 
 }

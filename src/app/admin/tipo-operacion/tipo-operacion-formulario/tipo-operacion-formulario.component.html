@@ -4,11 +4,11 @@
     <form #frmTipoOperacion='ngForm'>
         <div class="text card m-2">
             <div class="card-header">
-                <b> {{esEdicion?'Modificar':'Registrar'}} Tipo Operación</b>
+                <b> {{esEdicion?'Modificar':'Registrar'}} Fila</b>
                 <div class="btn-actions-pane-right">
                     <button type="button" routerLink="/admin/tipo-operacion" class="btn btn-secondary btn-sm"><i
                             class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
-                    <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)" routerLink="/admin/tipo-operacion"
+                    <button type="submit" (click)="guardarTipoOperacion(frmTipoOperacion)"
                         class="btn btn-success ml-1 btn-sm"><i class="fa pe-7s-diskette pr-1"
                             aria-hidden="true"></i>Guardar</button>
                 </div>
@@ -17,11 +17,11 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label>Seleccione la Tienda</label>
+                            <label>Seleccione la Sucursal</label>
                             <select class="form-control form-control-sm" aria-label="Default select example"
                                 [(ngModel)]="tiendaSeleccionada" (ngModelChange)="listarTotems()"
                                 name="tiendaSeleccionada" required>
-                                <option value="" disabled selected>Seleccione la Tienda</option>
+                                <option value="" disabled selected>Seleccione la Sucursal</option>
                                 <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                     {{tienda.direccion}}
                                 </option>
@@ -54,15 +54,17 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Tiempo estimado</label>
-                            <input required name="tiempo" type="number" class="form-control form-control-sm text-uppercase"
-                            [(ngModel)]="tipoOperacion.tiempo_estimado_minutos" placeholder="TIEMPO ESTIMADO">
+                            <input required name="tiempo" type="number"
+                                class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="tipoOperacion.tiempo_estimado_minutos" placeholder="TIEMPO ESTIMADO">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Costo estimado</label>
-                            <input required name="costo" type="number" step="any" class="form-control form-control-sm text-uppercase"
-                            [(ngModel)]="tipoOperacion.costo_estimado" placeholder="COSTO ESTIMADO">
+                            <input required name="costo" type="number" step="any"
+                                class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="tipoOperacion.costo_estimado" placeholder="COSTO ESTIMADO">
                         </div>
                     </div>
                 </div>

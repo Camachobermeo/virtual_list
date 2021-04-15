@@ -22,5 +22,16 @@ export class ListadoTicketsService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
+  cambiarEstadoTicket(parametro, estado, contexto) {
+    this.api.post("cambiarEstadoTicket.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeCambiarEstadoTicket(respuesta, estado);
+        } else {
+          contexto.cargando=false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
   
 }

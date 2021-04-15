@@ -11,12 +11,12 @@
         <div class="card-body">
             <div class="col-md-12">
                 <div class="p-1 ps-3">
-                    <h6> Seleccione la Tienda</h6>
+                    <h6> Seleccione la Sucursal</h6>
                 </div>
                 <div class="input-group mb-3 p-2 pt-0">
                     <select class="form-control form-control-sm " aria-label="Default select example"
                         [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
-                        <option value="" disabled selected>Seleccione la Tienda</option>
+                        <option value="" disabled selected>Seleccione la Sucursal</option>
                         <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                             {{tienda.direccion}}
                         </option>
@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th>Código</th>
-                                <th>Tienda</th>
+                                <th>Sucursal</th>
                                 <th>Ubicación</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Eliminar</th>

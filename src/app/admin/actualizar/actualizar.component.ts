@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Tienda } from 'src/app/entidades/Tienda';
+import { UtilService } from 'src/app/servicios/util.service';
 import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
+import { TiendaService } from '../tienda/tienda.service';
 
 @Component({
   selector: 'app-actualizar',
@@ -10,26 +15,43 @@ export class ActualizarComponent implements OnInit {
 
   tickets: any = new Array();
   cargando: boolean = false;
-  fecha_sacado: Date = new Date();
-  ticketSeleccionado : any ;
-  
+  fecha_sacado: Date = null;
+  ticketSeleccionado: any;
+  tiendas: Array<Tienda> = new Array();
+  tiendaSeleccionada: any = null;
+
   constructor(
-    public ticketsService: ListadoTicketsService
+    public ticketsService: ListadoTicketsService,
+    public tiendaService: TiendaService,
+    public utilService: UtilService,
+    public toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    this.listarTickets();
+    this.cargando = true;
+    this.tiendaService.listarTiendas({}, this);
   }
-  
-  listarTickets() {
-    this.cargando=true;
-    this.ticketsService.listarTickets({fecha_sacado:this.fecha_sacado}, this);
+
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
+    this.cargando = false;
+  }
+
+  listarTickets(form: NgForm) {
+    this.cargando = true;
+    let formularioTocado = this.utilService.establecerFormularioTocado(form);
+    if (form && form.valid && formularioTocado) {
+      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.tiendaSeleccionada }, this);
+    } else {
+      this.toastr.error("Complete los campos requeridos.", "Aviso");
+      this.cargando = false;
+    }
   }
 
   despuesDeListarTickets(data) {
-    this.tickets = data; 
-    this.ticketSeleccionado = this.tickets [0].codigo_tipo_operacion + "-" + this.tickets [0].numeracion;
-    this.cargando=false;
+    this.tickets = data;
+    this.ticketSeleccionado = this.tickets[0].codigo_tipo_operacion + "-" + this.tickets[0].numeracion;
+    this.cargando = false;
   }
 
 }

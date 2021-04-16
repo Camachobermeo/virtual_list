@@ -15,7 +15,7 @@ export class EmpresaService {
   ) { }
 
   obtenerEmpresa(parametro, contexto) {
-    this.api.post("obtenerEmpresa.php", parametro)
+    this.api.postSinLogin("obtenerEmpresa.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeObtenerEmpresa(respuesta.resultado);

@@ -82,6 +82,7 @@ CREATE TABLE ticket(
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
+
 CREATE TABLE numeracion(
      codigo_tipo_operacion text not null,
      fecha date not null,
@@ -115,3 +116,10 @@ CREATE TRIGGER actualizar_numero_ticket
   ON ticket
   FOR EACH ROW
   EXECUTE PROCEDURE actualizar_numero_ticket();
+
+ ALTER TABLE usuario
+ add column codigo_tienda text,
+ add column ventanilla text,
+ add CONSTRAINT usuario_tienda_fk FOREIGN KEY (codigo_tienda)
+     REFERENCES tienda (codigo) MATCH FULL
+     ON UPDATE CASCADE ON DELETE NO ACTION;

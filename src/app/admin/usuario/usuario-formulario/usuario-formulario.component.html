@@ -51,7 +51,28 @@
                             <label for="telefono">Teléfono/Celular: </label>
                             <input required name="telefono" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.telefono" placeholder="Ingrese su numero de Teléfono o Celular">
-                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Seleccione la Sucursal</label>
+                            <select class="form-control form-control-sm" aria-label="Default select example"
+                                [(ngModel)]="usuario.codigo_tienda"
+                                name="tiendaSeleccionada">
+                                <option [ngValue]="null" selected>NINGUNA</option>
+                                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
+                                    {{tienda.direccion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="clave" class="form-label">Ventanilla</label>
+                        <div class="input-group mb-3">
+                            <input type="text" name="ventanilla" class="form-control form-control-sm" id="ventanilla"
+                            [(ngModel)]="usuario.ventanilla" >
                         </div>
                     </div>
                 </div>

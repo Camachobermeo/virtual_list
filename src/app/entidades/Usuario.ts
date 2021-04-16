@@ -6,6 +6,8 @@ export class Usuario {
     public telefono: string = "";
     public clave: string = "";
     public estado: boolean = true;
+    public codigo_tienda: string = "";
+    public ventanilla: string = "";
 
     constructor(data?) {
         data ? this.hydrate(data) : null;
@@ -19,6 +21,8 @@ export class Usuario {
         this.telefono = data.telefono ? data.telefono : this.telefono;
         this.clave = data.clave ? data.clave : this.clave;
         this.estado = data.estado ? data.estado : this.estado;
+        this.codigo_tienda = data.codigo_tienda ? data.codigo_tienda : this.codigo_tienda;
+        this.ventanilla = data.ventanilla ? data.ventanilla : this.ventanilla;
     }
 
 }

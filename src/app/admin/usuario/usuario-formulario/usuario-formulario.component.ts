@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
+import { TiendaService } from '../../tienda/tienda.service';
 import { UsuarioService } from '../usuario.service';
 
 @Component({
@@ -14,13 +15,16 @@ import { UsuarioService } from '../usuario.service';
 })
 export class UsuarioFormularioComponent implements OnInit {
 
+  tiendas: any = new Array();
   usuario: Usuario = new Usuario();
+  tiendaSeleccionada: string = "";
   cargando: boolean = false;
   esEdicion: boolean = false;
 
   constructor(
     private router: Router,
     public usuarioService: UsuarioService,
+    public tiendaService: TiendaService,
     public utilService: UtilService,
     public toastr: ToastrService,
     private route: ActivatedRoute
@@ -28,6 +32,7 @@ export class UsuarioFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario.codigo = this.route.snapshot.paramMap.get("codigo");
+    this.tiendaService.listarTiendas({}, this);
     if (this.usuario.codigo) {
       this.esEdicion = true;
       this.obtenerUsuario();
@@ -39,10 +44,17 @@ export class UsuarioFormularioComponent implements OnInit {
     this.usuarioService.obtenerUsuario({ codigo: this.usuario.codigo }, this);
   }
 
+  despuesDeListarTiendas(data) {
+    this.tiendas = data;
+    this.usuario.codigo_tienda = this.tiendaSeleccionada || (this.tiendas[0] && this.tiendas[0].codigo);
+  }
+
   despuesDeObtenerUsuario(data) {
     this.usuario = data;
     this.cargando = false;
   }
+
+
 
   guardarUsuario(form: NgForm) {
     this.cargando = true;

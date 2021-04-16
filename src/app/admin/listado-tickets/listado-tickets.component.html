@@ -55,10 +55,10 @@
               <th>Nombre</th>
               <th>Email</th>
               <th>Telefono</th>
-              <th>Estado</th>
+              <!-- <th>Estado</th> -->
               <th>Fecha</th>
               <th>Numeración</th>
-              <th>Opcion</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody style="background-color: #ffffff;">
@@ -67,13 +67,16 @@
               <td>{{ticket.nombres}}</td>
               <td>{{ticket.email}}</td>
               <td>{{ticket.telefono}}</td>
-              <td>{{ticket.estado}}</td>
+              <!-- <td>{{ticket.estado}}</td> -->
               <td>{{ticket.fecha_sacado}} </td>
               <td>{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}} </td>
               <td>
-                <button *ngIf="!ticket.estado" (click)="atender(ticket, 'EN ATENCION')"
+                <button *ngIf="!ticket.estado" (dblclick)="noHacerNada()" (click)="atender(ticket, 'EN ATENCION')"
                   class="mb-2 mr-2 btn badge badge-pill badge-success">Atender</button>
-                <button *ngIf="ticket.estado == 'EN ATENCION'" (click)="atender(ticket, 'ATENDIDO')"
+                <button *ngIf="ticket.estado == 'EN ATENCION'" (dblclick)="noHacerNada()"
+                  (click)="atender(ticket, 'ATENDIDO')" class="mb-2 mr-2 btn badge badge-pill badge-primary">En
+                  Atención</button>
+                <button *ngIf="ticket.estado == 'ATENDIDO'"
                   class="mb-2 mr-2 btn badge badge-pill badge-primary">Atendido</button>
               </td>
             </tr>

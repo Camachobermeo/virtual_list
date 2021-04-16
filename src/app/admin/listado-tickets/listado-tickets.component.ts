@@ -70,4 +70,6 @@ export class ListadoTicketsComponent implements OnInit {
     this.cargando = false;
   }
 
+  noHacerNada() { }
+
 }

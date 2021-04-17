@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 /**
  * This is a singleton class
@@ -6,9 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppConfig {
 
-    public baseApiPath: string = "http://localhost/virtual-list-backend/";
-    // public baseApiPath: string = "https://warm-mesa-04446.herokuapp.com/";
-    // public baseApiPath: string = "https://virtual-list.000webhostapp.com/";
+    public baseApiPath: string = environment.url;
     
     constructor() {
 

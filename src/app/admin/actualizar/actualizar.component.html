@@ -12,7 +12,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Seleccione la Sucursal</label>
-                        <select class="form-control form-control-sm" aria-label="Default select example"
+                        <select class="form-control form-control-sm" disabled aria-label="Default select example"
                             [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
                             <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
                                 {{tienda.direccion}}

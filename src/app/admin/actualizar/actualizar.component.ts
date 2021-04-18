@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Tienda } from 'src/app/entidades/Tienda';
+import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
 import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
 import { TiendaService } from '../tienda/tienda.service';
@@ -14,6 +15,7 @@ import { TiendaService } from '../tienda/tienda.service';
 export class ActualizarComponent implements OnInit {
 
   tickets: any = new Array();
+  usuario: Usuario = new Usuario();
   cargando: boolean = false;
   fecha_sacado: Date = null;
   ticketSeleccionado: any;
@@ -29,6 +31,8 @@ export class ActualizarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargando = true;
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.tiendaSeleccionada = this.usuario.codigo_tienda;
     this.tiendaService.listarTiendas({}, this);
   }
 

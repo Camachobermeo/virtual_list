@@ -73,6 +73,7 @@ export class DatosComponent implements OnInit {
       this.ticket.codigo_tipo_operacion = this.tipo;
       this.ticket['sucursal'] = this.tienda.direccion;
       this.ticket['fila'] = this.tipoOperacion.descripcion;
+      this.ticket['url'] = location.href;
       this.ticketService.generarTicket(this.ticket, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");

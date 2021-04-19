@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
 import { TicketProgramado } from 'src/app/entidades/TicketProgramado';
@@ -31,8 +31,7 @@ export class ProgramarTicketComponent implements OnInit {
     public tipoOperacionService: TipoOperacionService,
     public toastr: ToastrService,
     public ticketService: TicketService,
-    public utilService: UtilService,
-    private router: Router
+    public utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -98,6 +97,7 @@ export class ProgramarTicketComponent implements OnInit {
     this.cargando = true;
     this.ticket['sucursal'] = this.tienda.direccion;
     this.ticket['fila'] = this.tipoOperacion.descripcion;
+    this.ticket['url'] = location.href;
     this.ticketService.generarTicketProgramado(this.ticket, this);
   }
 

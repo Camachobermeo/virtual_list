@@ -3,15 +3,16 @@
         <div class="card-header">
             <b>Atención</b>
             <div class="btn-actions-pane-right">
-                <button type="button" class="btn btn-success ml-1 btn-sm" (click)="listarTickets(frmTickets)"><i
-                        class="fa pe-7s-refresh pr-1" aria-hidden="true"></i>Recargar</button>
+                <button type="button" id="recargar" class="btn btn-success ml-1 btn-sm"
+                    (click)="listarTickets(frmTickets)"><i class="fa pe-7s-refresh pr-1"
+                        aria-hidden="true"></i>Buscar</button>
             </div>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <div class="form-group">
-                        <label>Seleccione la Sucursal</label>
+                        <label>Sucursal</label>
                         <select class="form-control form-control-sm" disabled aria-label="Default select example"
                             [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
                             <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
@@ -20,16 +21,22 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Seleccione la Fila</label>
+                        <select class="form-control form-control-sm" aria-label="Default select example"
+                            [(ngModel)]="tipoSeleccionado" name="tipoSeleccionado">
+                            <option *ngFor="let tipo of tipos" [ngValue]="tipo.codigo">{{tipo.codigo}} --
+                                {{tipo.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
                     <div class="form-group">
                         <label>FECHA</label>
-                        <div class="input-group-append">
-                            <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
-                                [(ngModel)]="fecha_sacado" required>
-                            <button class="btn btn-outline-primary btn-sm" type="button"
-                                (click)="listarTickets(frmTickets)"><i class="fa fa-search"
-                                    aria-hidden="true"></i></button>
-                        </div>
+                        <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
+                            [(ngModel)]="fecha_sacado" required>
                     </div>
                 </div>
             </div>
@@ -44,19 +51,24 @@
         </div>
         <div class="row-container" style="background-color: #ffffff;">
             <div class="col-12 text-center">
+                <button class="mb-2 mr-2 btn badge badge-pill badge-success">{{ticketSeleccionado?.estado}}</button>
                 <h1><input class="form-control-center" style="text-align: center;" type="text" name="ticketSeleccionado"
-                        [(ngModel)]="ticketSeleccionado" disabled></h1>
+                        [(ngModel)]="nombreTicket" disabled></h1>
+                <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado" (click)="atender('EN ATENCION')"
+                    class="mb-2 mr-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-5 text-center">
-                <button type="button" class="btn btn-success"><i class="fa fa-fast-backward" aria-hidden="true"></i>
+                <button type="button" class="btn btn-success" (click)="retroceder()"><i class="fa fa-fast-backward"
+                        aria-hidden="true"></i>
                     Retroceder Turno</button>
             </div>
             <div class="col-2"></div>
             <div class="col-5 text-center">
-                <button type="button" class="btn btn-primary"><i class="fa fa-fast-forward" aria-hidden="true"></i>
+                <button type="button" class="btn btn-primary" (click)="atender('ATENDIDO')"><i
+                        class="fa fa-fast-forward" aria-hidden="true"></i>
                     Siguiente Turno</button>
             </div>
         </div>

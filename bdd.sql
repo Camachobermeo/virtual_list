@@ -123,3 +123,12 @@ CREATE TRIGGER actualizar_numero_ticket
  add CONSTRAINT usuario_tienda_fk FOREIGN KEY (codigo_tienda)
      REFERENCES tienda (codigo) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;
+
+ ALTER TABLE usuario
+ add column tipo_usuario text;
+
+ ALTER TABLE ticket
+ ADD COLUMN usuario text,
+  add CONSTRAINT usuario_ticket_fk FOREIGN KEY (usuario)
+     REFERENCES usuario (codigo) MATCH FULL
+     ON UPDATE CASCADE ON DELETE NO ACTION;

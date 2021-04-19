@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../entidades/Usuario';
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +12,7 @@ export class AdminComponent implements OnInit {
   nombreUsuario = "";
   test = "";
   ocultarMenu = false;
+  usuario: Usuario = new Usuario();
 
   constructor(
     private router: Router
@@ -19,6 +21,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem("codigo");
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
   }
 
   salir() {

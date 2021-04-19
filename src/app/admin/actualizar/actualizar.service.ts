@@ -12,13 +12,13 @@ export class ActualizarService {
     private utilService: UtilService
   ) { }
 
-  listarTickets(parametro, contexto) {
-    this.api.post("listarTickets.php", parametro)
+  obtenerTicketLibreOEnAtencion(parametro, contexto) {
+    this.api.post("obtenerTicketLibreOEnAtencion.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
-          contexto.despuesDeListarTickets(respuesta.resultado);
+          contexto.despuesDeObtenerTicketLibreOEnAtencion(respuesta.resultado);
         } else {
-          contexto.cargando=false;
+          contexto.cargando = false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }

@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
-import { environment } from 'src/environments/environment';
 import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
@@ -31,7 +30,7 @@ export class PerfilComponent implements OnInit {
 
   obtenerUsuario() {
     this.cargando = true;
-    this.usuarioService.obtenerUsuario({ codigo: this.nombreUsuario }, this);
+    this.usuarioService.obtenerUsuario({ username: this.nombreUsuario }, this);
   }
 
   despuesDeObtenerUsuario(data) {
@@ -43,7 +42,7 @@ export class PerfilComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.usuario.rut = localStorage.getItem('empresa');
+      this.usuario.rut_empresa = localStorage.getItem('empresa');
       this.usuario['esEdicion'] = true;
       this.usuarioService.guardarUsuario(this.usuario, this);
     } else {

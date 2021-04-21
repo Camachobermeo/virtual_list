@@ -38,19 +38,6 @@
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
- CREATE TABLE totem_fila(
-    secuencial serial not null primary key,
-    codigo_totem text not null,
-    codigo_fila text not null,
-    estado boolean not null default false,
-    CONSTRAINT totem_fila_fila_fk FOREIGN KEY (codigo_fila)
-      REFERENCES fila (codigo) MATCH FULL
-      ON UPDATE CASCADE ON DELETE NO ACTION,
-    CONSTRAINT totem_fila_totem_fk FOREIGN KEY (codigo_totem)
-      REFERENCES totem (codigo) MATCH FULL
-      ON UPDATE CASCADE ON DELETE NO ACTION
- );
-
  CREATE TABLE fila(
      codigo text not null primary key,
      codigo_sucursal text not null,
@@ -63,6 +50,19 @@
  ALTER TABLE fila
  add column tiempo_estimado_minutos integer,
  add column costo_estimado numeric;
+
+  CREATE TABLE totem_fila(
+    secuencial serial not null primary key,
+    codigo_totem text not null,
+    codigo_fila text not null,
+    estado boolean not null default false,
+    CONSTRAINT totem_fila_fila_fk FOREIGN KEY (codigo_fila)
+      REFERENCES fila (codigo) MATCH FULL
+      ON UPDATE CASCADE ON DELETE NO ACTION,
+    CONSTRAINT totem_fila_totem_fk FOREIGN KEY (codigo_totem)
+      REFERENCES totem (codigo) MATCH FULL
+      ON UPDATE CASCADE ON DELETE NO ACTION
+ );
 
 CREATE TABLE ticket(
      secuencial serial not null primary key,
@@ -83,14 +83,14 @@ CREATE TABLE ticket(
  add column estado text;
 
  CREATE TABLE usuario(
-     codigo text not null primary key,
-     rut text not null,
+     username text not null primary key,
+     rut_empresa text not null,
      nombre text not null,
      apellidos text not null,
      telefono text not null,
      clave text not null,
      estado boolean not null default true,
-     CONSTRAINT usuario_fk FOREIGN KEY (rut)
+     CONSTRAINT usuario_fk FOREIGN KEY (rut_empresa)
       REFERENCES empresa (rut) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
@@ -143,5 +143,5 @@ CREATE TRIGGER actualizar_numero_ticket
  ALTER TABLE ticket
  ADD COLUMN usuario text,
   add CONSTRAINT usuario_ticket_fk FOREIGN KEY (usuario)
-     REFERENCES usuario (codigo) MATCH FULL
+     REFERENCES usuario (username) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;

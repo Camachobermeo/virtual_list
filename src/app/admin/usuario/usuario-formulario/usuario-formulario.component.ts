@@ -31,9 +31,9 @@ export class UsuarioFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usuario.codigo = this.route.snapshot.paramMap.get("codigo");
+    this.usuario.username = this.route.snapshot.paramMap.get("codigo");
     this.sucursalService.listarSucursales({}, this);
-    if (this.usuario.codigo) {
+    if (this.usuario.username) {
       this.esEdicion = true;
       this.obtenerUsuario();
     }
@@ -41,7 +41,7 @@ export class UsuarioFormularioComponent implements OnInit {
 
   obtenerUsuario() {
     this.cargando = true;
-    this.usuarioService.obtenerUsuario({ codigo: this.usuario.codigo }, this);
+    this.usuarioService.obtenerUsuario({ username: this.usuario.username }, this);
   }
 
   despuesDeListarSucursales(data) {
@@ -60,7 +60,7 @@ export class UsuarioFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.usuario.rut = environment.empresa;
+      this.usuario.rut_empresa = environment.empresa;
       if (this.esEdicion) {
         this.usuario['esEdicion'] = true;
       }else {

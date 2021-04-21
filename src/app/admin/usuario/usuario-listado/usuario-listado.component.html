@@ -25,14 +25,14 @@
                     </thead>
                     <tbody style="background-color: #ffffff;">
                         <tr *ngFor="let usuario of usuarios">
-                            <td>{{usuario.rut}}</td>
+                            <td>{{usuario.rut_empresa}}</td>
                             <td>{{usuario.nombre}}</td>
                             <td>{{usuario.apellidos}}</td>
-                            <td>{{usuario.codigo}}</td>
+                            <td>{{usuario.username}}</td>
                             <td>{{usuario.telefono}} </td>
                             <td>{{usuario.estado ? 'ACTIVO' : 'INACTIVO'}} </td>
                             <td class="text-center"><a class="btn btn-sm btn-success"
-                                    [routerLink]="['editar', usuario.codigo]"><i class="fa fa-edit"
+                                    [routerLink]="['editar', usuario.username]"><i class="fa fa-edit"
                                         aria-hidden="true"></i></a></td>
                             <td class="text-center"><a type="button" class="btn btn-sm btn-danger" href="#modal"
                                     (click)="abrir(usuario)"><i class="fa fa-trash" style="color: #ffffff;"
@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Está seguro que desea eliminar el usuario: {{seleccionado.codigo}}?</p>
+                <p>¿Está seguro que desea eliminar el usuario: {{seleccionado.username}}?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="cerrar" (click)="cerrar()"

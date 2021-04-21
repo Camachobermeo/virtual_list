@@ -31,7 +31,7 @@ export class LoginFormularioComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.usuario.codigo = this.usuario.codigo.toUpperCase();
+      this.usuario.username = this.usuario.username;
       this.loginService.obtenerLogin(this.usuario, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -45,10 +45,10 @@ export class LoginFormularioComponent implements OnInit {
       window.location.reload();
       this.cargando = false;
     });
-    localStorage.setItem("codigo", this.usuario.codigo);
+    localStorage.setItem("codigo", this.usuario.username);
     localStorage.setItem("usuario", JSON.stringify(data.resultado));
     localStorage.setItem("locationPathName", location.pathname);
-    localStorage.setItem("empresa", this.usuario.rut);
+    localStorage.setItem("empresa", this.usuario.rut_empresa);
   }
 
   visualizar() {

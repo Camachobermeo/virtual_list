@@ -83,7 +83,7 @@ export class ListadoTicketsComponent implements OnInit {
     this.ticketSeleccionado = ticket;
     this.cargando = true;
     this.ticketsService.cambiarEstadoTicket(
-      { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.codigo },
+      { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.username },
       texto, this);
   }
 
@@ -91,7 +91,7 @@ export class ListadoTicketsComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.cargando = false;
     this.ticketSeleccionado.estado = estado;
-    this.ticketSeleccionado.usuario = this.usuario.codigo;
+    this.ticketSeleccionado.usuario = this.usuario.username;
   }
 
   despuesDeListarTickets(data) {

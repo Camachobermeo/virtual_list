@@ -1,8 +1,8 @@
 export class Usuario {
-    public rut: string = "";
+    public rut_empresa: string = "";
     public nombre: string = "";
     public apellidos: string = "";
-    public codigo: string = "";
+    public username: string = "";
     public telefono: string = "";
     public clave: string = "";
     public estado: boolean = true;
@@ -15,10 +15,10 @@ export class Usuario {
     }
 
     hydrate(data) {
-        this.rut = data.rut ? data.rut : this.rut;
+        this.rut_empresa = data.rut_empresa ? data.rut_empresa : this.rut_empresa;
         this.nombre = data.nombre ? data.nombre : this.nombre;
         this.apellidos = data.apellidos ? data.apellidos : this.apellidos;
-        this.codigo = data.codigo ? data.codigo : this.codigo;
+        this.username = data.username ? data.username : this.username;
         this.telefono = data.telefono ? data.telefono : this.telefono;
         this.clave = data.clave ? data.clave : this.clave;
         this.estado = data.estado ? data.estado : this.estado;

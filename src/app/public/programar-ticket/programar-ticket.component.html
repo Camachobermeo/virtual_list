@@ -32,7 +32,7 @@
 
     <div class="col-md-3" *ngIf="horaSeleccionada"></div>
     <div class="col-md-6" *ngIf="horaSeleccionada" id="print">
-      <div class="main-card mb-3 card">
+      <div class="main-card mb-1 card">
         <div class="no-gutters row">
           <div class="col-md-12">
             <div class="pt-0 pb-0 card-body">
@@ -70,6 +70,10 @@
       </div>
     </div>
     <div class="col-md-3" *ngIf="horaSeleccionada"></div>
+
+    <div class="col-md-12 text-center" *ngIf="generado">
+      <button class="mb-2 mr-2 btn badge badge-pill badge-danger">Anular Reserva</button>
+    </div>
 
     <div class="col-md-6" *ngIf="ticket.fecha_cita && !horaSeleccionada">
       <button class="btn btn-primary m-1" (click)="sacarCita(frmTicket, item)"

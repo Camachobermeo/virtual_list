@@ -35,7 +35,7 @@ export class UsuarioListadoComponent implements OnInit {
 
   eliminar() {
     this.cargando = true;
-    this.usuarioService.eliminarUsuario({ codigo: this.seleccionado.codigo, tabla: 'usuario' }, this);
+    this.usuarioService.eliminarUsuario({ username: this.seleccionado.username, tabla: 'usuario' }, this);
   }
 
   despuesDeEliminarUsuario(data) {

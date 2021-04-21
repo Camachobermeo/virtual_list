@@ -73,7 +73,7 @@ export class ActualizarComponent implements OnInit {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
       this.actualizarService.obtenerTicketLibreOEnAtencion(
-        { fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.codigo },
+        { fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.username },
         this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -95,7 +95,7 @@ export class ActualizarComponent implements OnInit {
         this.ultimoTicket = this.ticketSeleccionado;
         this.cargando = true;
         this.ticketsService.cambiarEstadoTicket(
-          { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.codigo },
+          { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.username },
           texto, this);
       }
     } else {
@@ -107,7 +107,7 @@ export class ActualizarComponent implements OnInit {
     if (this.ultimoTicket) {
       this.cargando = true;
       this.ticketsService.cambiarEstadoTicket(
-        { secuencial: this.ultimoTicket.secuencial, estado: null, usuario: this.usuario.codigo },
+        { secuencial: this.ultimoTicket.secuencial, estado: null, usuario: this.usuario.username },
         '', this);
     } else {
       this.toastr.warning("No existe un ticket por atender.", "Aviso");
@@ -119,7 +119,7 @@ export class ActualizarComponent implements OnInit {
       this.toastr.success(data.mensaje, "Aviso");
       this.cargando = false;
       this.ticketSeleccionado.estado = estado;
-      this.ticketSeleccionado.usuario = this.usuario.codigo;
+      this.ticketSeleccionado.usuario = this.usuario.username;
       if (estado == 'ATENDIDO') {
         document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
       }

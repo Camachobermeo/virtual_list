@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TiendaService } from 'src/app/admin/tienda/tienda.service';
+import { SucursalService } from 'src/app/admin/sucursal/sucursal.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,26 +9,26 @@ import { environment } from 'src/environments/environment';
 })
 export class TicketComponent implements OnInit {
 
-  tiendas: any = new Array();
+  sucursales: any = new Array();
   cargando: boolean = false;
 
   constructor(
-    public tiendaService: TiendaService
+    public sucursalService: SucursalService
   ) { }
 
   ngOnInit(): void {
     localStorage.setItem("empresa", environment.empresa);
     this.cargando = true;
-    this.tiendaService.listarTiendas({}, this);
+    this.sucursalService.listarSucursales({}, this);
   }
 
-  despuesDeListarTiendas(data) {
-    this.tiendas = data;
+  despuesDeListarSucursales(data) {
+    this.sucursales = data;
     this.cargando = false;
   }
 
-  seleccionarTienda(tienda) {
-    localStorage.setItem("tienda", JSON.stringify(tienda));
+  seleccionarSucursal(sucursal) {
+    localStorage.setItem("sucursal", JSON.stringify(sucursal));
   }
 
 }

@@ -4,13 +4,13 @@
       <div class="card mb-3 widget-content bg-grow-early">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información. Sucursal:
-              {{tiendaSeleccionada}} - {{tienda.direccion}}
+            <div class="widget-heading" routerLink="/sucursal/{{sucursalSeleccionada}}">Complete información. Sucursal:
+              {{sucursalSeleccionada}} - {{sucursal.direccion}}
             </div>
-            <div class="widget-heading">Fila: {{tipo}} - {{tipoOperacion.descripcion}}</div>
+            <div class="widget-heading">Fila: {{filaCodigo}} - {{fila.descripcion}}</div>
           </div>
           <div class="widget-content-right" style="font-size: 16px;">
-            <div class="widget-numbers text-white"><i routerLink="/tienda/{{tiendaSeleccionada}}"
+            <div class="widget-numbers text-white"><i routerLink="/sucursal/{{sucursalSeleccionada}}"
                 class="fa fa-arrow-left"></i></div>
           </div>
         </div>
@@ -46,7 +46,7 @@
                           <div class="widget-heading">Espera aproximada en atención</div>
                         </div>
                         <div class="widget-content-right">
-                          <div class="widget-numbers text-primary">{{tipoOperacion.tiempo_estimado_minutos}} min.</div>
+                          <div class="widget-numbers text-primary">{{fila.tiempo_estimado_minutos}} min.</div>
                         </div>
                       </div>
                     </div>
@@ -56,7 +56,7 @@
                   <div class="mt-3 mb-3 text-center card card-body bg-premium-dark" style="color: white;"
                     *ngIf="ticketAtencion.numeracion">
                     <h5 class="card-title" style="color: white;">Ticket de atención actualmente</h5>
-                    <h1>{{tipo}}-{{ticketAtencion.numeracion}}</h1>
+                    <h1>{{filaCodigo}}-{{ticketAtencion.numeracion}}</h1>
                   </div>
                   <div class="mt-3 mb-3 text-center card card-body bg-premium-dark" style="color: white;"
                     *ngIf="!ticketAtencion.numeracion">
@@ -132,13 +132,13 @@
                     </h5>
                     <br>
                     <b>En la Fila: </b>
-                    <h5 class="card-title" style="color: black;">{{tipoOperacion.descripcion}}</h5>
+                    <h5 class="card-title" style="color: black;">{{fila.descripcion}}</h5>
                     <br>
                     <b>Sucursal: </b>
-                    <h5 class="card-title" style="color: black;">{{tienda.direccion}}</h5>
+                    <h5 class="card-title" style="color: black;">{{sucursal.direccion}}</h5>
                     <br>
                     <b>Numero de Ticket: </b>
-                    <h5 class="card-title" style="color: black;">{{tipoOperacion.codigo}} - {{ticket.numeracion}}</h5>
+                    <h5 class="card-title" style="color: black;">{{fila.codigo}} - {{ticket.numeracion}}</h5>
                   </div>
                 </li>
               </ul>

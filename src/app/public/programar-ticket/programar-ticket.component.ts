@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
+import { FilaService } from 'src/app/admin/fila/fila.service';
 import { TicketProgramado } from 'src/app/entidades/TicketProgramado';
-import { Tienda } from 'src/app/entidades/Tienda';
-import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
+import { Sucursal } from 'src/app/entidades/Sucursal';
+import { Fila } from 'src/app/entidades/Fila';
 import { UtilService } from 'src/app/servicios/util.service';
 import { TicketService } from '../ticket/ticket.service';
 
@@ -17,18 +17,18 @@ import { TicketService } from '../ticket/ticket.service';
 export class ProgramarTicketComponent implements OnInit {
 
   ticket: TicketProgramado = new TicketProgramado();
-  tiendaSeleccionada: string = "";
-  tienda: Tienda = new Tienda();
-  tipo: string = "";
+  sucursalSeleccionada: string = "";
+  sucursal: Sucursal = new Sucursal();
+  filaCodigo: string = "";
   horaSeleccionada: string = "";
   cargando: boolean = false;
   generado: boolean = false;
   horas: Array<string> = new Array();
-  tipoOperacion: TipoOperacion = new TipoOperacion();
+  fila: Fila = new Fila();
 
   constructor(
     private route: ActivatedRoute,
-    public tipoOperacionService: TipoOperacionService,
+    public filaService: FilaService,
     public toastr: ToastrService,
     public ticketService: TicketService,
     public utilService: UtilService
@@ -36,15 +36,15 @@ export class ProgramarTicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargando = true;
-    this.tipo = this.route.snapshot.paramMap.get('tipo');
-    this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
-    this.tienda = new Tienda(JSON.parse(localStorage.getItem("tienda")));
+    this.filaCodigo = this.route.snapshot.paramMap.get('fila');
+    this.sucursalSeleccionada = this.route.snapshot.paramMap.get('sucursal');
+    this.sucursal = new Sucursal(JSON.parse(localStorage.getItem("sucursal")));
     this.route
       .queryParams
       .subscribe(params => {
         this.ticket = new TicketProgramado(JSON.parse(params['ticket']));
       });
-    this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipo }, this);
+    this.filaService.obtenerFila({ codigo: this.filaCodigo }, this);
   }
 
   horaEnSegundos(q) {
@@ -60,7 +60,7 @@ export class ProgramarTicketComponent implements OnInit {
     this.horas = new Array();
     let horaInicio: any = this.horaEnSegundos(8);
     let horaFin = this.horaEnSegundos(13);
-    let progresion = this.minutosEnSegundos(this.tipoOperacion.tiempo_estimado_minutos);
+    let progresion = this.minutosEnSegundos(this.fila.tiempo_estimado_minutos);
 
     hora = parseInt((horaInicio / 3600) + "") % 24;
     var minutos = parseInt((horaInicio / 60) + "") % 60;
@@ -76,8 +76,8 @@ export class ProgramarTicketComponent implements OnInit {
     }
   }
 
-  despuesDeObtenerTipoOperacion(data) {
-    this.tipoOperacion = data;
+  despuesDeObtenerFila(data) {
+    this.fila = data;
     this.cargando = false;
     this.establecerHoras();
   }
@@ -85,7 +85,7 @@ export class ProgramarTicketComponent implements OnInit {
   sacarCita(form: NgForm, hora) {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticket.codigo_tipo_operacion = this.tipo;
+      this.ticket.codigo_fila = this.filaCodigo;
       this.ticket.hora_cita = hora;
       this.horaSeleccionada = hora;
     } else {
@@ -95,8 +95,8 @@ export class ProgramarTicketComponent implements OnInit {
 
   programarTicket() {
     this.cargando = true;
-    this.ticket['sucursal'] = this.tienda.direccion;
-    this.ticket['fila'] = this.tipoOperacion.descripcion;
+    this.ticket['sucursal'] = this.sucursal.direccion;
+    this.ticket['fila'] = this.fila.descripcion;
     this.ticket['url'] = location.href;
     this.ticketService.generarTicketProgramado(this.ticket, this);
   }

@@ -1,0 +1,66 @@
+<div class="container pb-5 col-lg-12 col-md-12 col-sm-12">
+    <div class="text-center">
+    </div>
+    <form #frmFila='ngForm'>
+        <div class="text card m-2">
+            <div class="card-header">
+                <b> {{esEdicion?'Modificar':'Registrar'}} Fila</b>
+                <div class="btn-actions-pane-right">
+                    <button type="button" routerLink="/admin/fila" class="btn btn-secondary btn-sm"><i
+                            class="fa pe-7s-angle-left-circle pr-1" aria-hidden="true"></i>Regresar</button>
+                    <button type="submit" (click)="guardarFila(frmFila)" class="btn btn-success ml-1 btn-sm"><i
+                            class="fa pe-7s-diskette pr-1" aria-hidden="true"></i>Guardar</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Seleccione la Sucursal</label>
+                            <select class="form-control form-control-sm" aria-label="Default select example"
+                                [(ngModel)]="fila.codigo_sucursal" name="sucursalSeleccionado" required>
+                                <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">
+                                    {{sucursal.codigo}} --
+                                    {{sucursal.direccion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input required name="codigo" class="form-control form-control-sm text-uppercase"
+                                [disabled]="esEdicion" [(ngModel)]="fila.codigo" placeholder="Ingrese el código">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcón</label>
+                    <input required name="descripcion" class="form-control form-control-sm text-uppercase"
+                        [(ngModel)]="fila.descripcion" placeholder="Descripción">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Tiempo estimado</label>
+                            <input required name="tiempo" type="number"
+                                class="form-control form-control-sm text-uppercase"
+                                [(ngModel)]="fila.tiempo_estimado_minutos" placeholder="TIEMPO ESTIMADO">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Costo estimado</label>
+                            <input required name="costo" type="number" step="any"
+                                class="form-control form-control-sm text-uppercase" [(ngModel)]="fila.costo_estimado"
+                                placeholder="COSTO ESTIMADO">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>

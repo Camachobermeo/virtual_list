@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Ticket } from 'src/app/entidades/Ticket';
-import { Tienda } from 'src/app/entidades/Tienda';
-import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
+import { Sucursal } from 'src/app/entidades/Sucursal';
+import { Fila } from 'src/app/entidades/Fila';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
 import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
-import { TiendaService } from '../tienda/tienda.service';
-import { TipoOperacionService } from '../tipo-operacion/tipo-operacion.service';
+import { SucursalService } from '../sucursal/sucursal.service';
+import { FilaService } from '../fila/fila.service';
 import { ActualizarService } from './actualizar.service';
 
 @Component({
@@ -22,20 +22,20 @@ export class ActualizarComponent implements OnInit {
   ultimoTicket: Ticket = new Ticket();
   nombreTicket: any = null;
 
-  tipos: Array<TipoOperacion> = new Array();
-  tipoSeleccionado: any = null;
+  filas: Array<Fila> = new Array();
+  fila: any = null;
   usuario: Usuario = new Usuario();
   cargando: boolean = false;
   fecha_sacado: any = null;
-  tiendas: Array<Tienda> = new Array();
-  tiendaSeleccionada: any = null;
+  sucursales: Array<Sucursal> = new Array();
+  sucursalSeleccionada: any = null;
 
   constructor(
     public actualizarService: ActualizarService,
-    public tiendaService: TiendaService,
+    public sucursalService: SucursalService,
     public utilService: UtilService,
     public toastr: ToastrService,
-    public tipoService: TipoOperacionService,
+    public filaService: FilaService,
     public ticketsService: ListadoTicketsService
   ) { }
 
@@ -43,27 +43,27 @@ export class ActualizarComponent implements OnInit {
     this.cargando = true;
     this.fecha_sacado = new Date().getFullYear() + "-" + (new Date().getMonth() >= 10 ? "" : "0") + (new Date().getMonth() + 1) + "-" + new Date().getDate();
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    this.tiendaSeleccionada = this.usuario.codigo_tienda;
-    this.tiendaService.listarTiendas({}, this);
+    this.sucursalSeleccionada = this.usuario.codigo_sucursal;
+    this.sucursalService.listarSucursales({}, this);
   }
 
-  despuesDeListarTiendas(data) {
-    this.tiendas = data;
-    if (this.tiendaSeleccionada) {
-      this.listarTipos();
+  despuesDeListarSucursales(data) {
+    this.sucursales = data;
+    if (this.sucursalSeleccionada) {
+      this.listarFilas();
     } else {
       this.cargando = false;
       document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
     }
   }
 
-  listarTipos() {
+  listarFilas() {
     this.cargando = true;
-    this.tipoService.listarTipos({ tienda: this.tiendaSeleccionada }, this);
+    this.filaService.listarFilas({ sucursal: this.sucursalSeleccionada }, this);
   }
 
-  despuesDeListarTipos(data) {
-    this.tipos = data;
+  despuesDeListarFilas(data) {
+    this.filas = data;
     this.cargando = false;
     document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
   }
@@ -73,7 +73,7 @@ export class ActualizarComponent implements OnInit {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
       this.actualizarService.obtenerTicketLibreOEnAtencion(
-        { fecha_sacado: this.fecha_sacado, sucursal: this.tiendaSeleccionada, tipo: this.tipoSeleccionado, usuario: this.usuario.codigo },
+        { fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.codigo },
         this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -83,7 +83,7 @@ export class ActualizarComponent implements OnInit {
 
   despuesDeObtenerTicketLibreOEnAtencion(data) {
     this.ticketSeleccionado = data[0];
-    this.nombreTicket = this.ticketSeleccionado ? this.ticketSeleccionado.codigo_tipo_operacion + "-" + this.ticketSeleccionado.numeracion : null;
+    this.nombreTicket = this.ticketSeleccionado ? this.ticketSeleccionado.codigo_fila + "-" + this.ticketSeleccionado.numeracion : null;
     this.cargando = false;
   }
 

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TipoOperacionService } from 'src/app/admin/tipo-operacion/tipo-operacion.service';
+import { FilaService } from 'src/app/admin/fila/fila.service';
 import { Ticket } from 'src/app/entidades/Ticket';
-import { Tienda } from 'src/app/entidades/Tienda';
-import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
+import { Sucursal } from 'src/app/entidades/Sucursal';
+import { Fila } from 'src/app/entidades/Fila';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 import { TicketService } from '../ticket/ticket.service';
@@ -21,11 +21,11 @@ export class DatosComponent implements OnInit {
   ticketAtencion: Ticket = new Ticket();
   cargando: boolean = false;
   generado: boolean = false;
-  tiendaSeleccionada: string = "";
-  tienda: Tienda = new Tienda();
-  tipo: string = "";
+  sucursalSeleccionada: string = "";
+  sucursal: Sucursal = new Sucursal();
+  filaCodigo: string = "";
   enFila: number = 0;
-  tipoOperacion: TipoOperacion = new TipoOperacion();
+  fila: Fila = new Fila();
 
   constructor(
     public utilService: UtilService,
@@ -33,22 +33,22 @@ export class DatosComponent implements OnInit {
     private route: ActivatedRoute,
     public ticketService: TicketService,
     private router: Router,
-    public tipoOperacionService: TipoOperacionService
+    public filaService: FilaService
   ) { }
 
   ngOnInit(): void {
     localStorage.setItem("empresa", environment.empresa);
     this.cargando = true;
-    this.tipo = this.route.snapshot.paramMap.get('tipo');
-    this.tiendaSeleccionada = this.route.snapshot.paramMap.get('tienda');
-    this.tienda = new Tienda(JSON.parse(localStorage.getItem("tienda")));
-    this.tipoOperacionService.obtenerTipoOperacion({ codigo: this.tipo }, this);
-    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
+    this.filaCodigo = this.route.snapshot.paramMap.get('fila');
+    this.sucursalSeleccionada = this.route.snapshot.paramMap.get('sucursal');
+    this.sucursal = new Sucursal(JSON.parse(localStorage.getItem("sucursal")));
+    this.filaService.obtenerFila({ codigo: this.filaCodigo }, this);
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
-  despuesDeObtenerTipoOperacion(data) {
-    this.tipoOperacion = data;
+  despuesDeObtenerFila(data) {
+    this.fila = data;
   }
 
   despuesDeObtenerTicketEnAtencion(data) {
@@ -70,9 +70,9 @@ export class DatosComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticket.codigo_tipo_operacion = this.tipo;
-      this.ticket['sucursal'] = this.tienda.direccion;
-      this.ticket['fila'] = this.tipoOperacion.descripcion;
+      this.ticket.codigo_fila = this.filaCodigo;
+      this.ticket['sucursal'] = this.sucursal.direccion;
+      this.ticket['fila'] = this.fila.descripcion;
       this.ticket['url'] = location.href;
       this.ticketService.generarTicket(this.ticket, this);
     } else {
@@ -85,8 +85,8 @@ export class DatosComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticket.codigo_tipo_operacion = this.tipo;
-      this.router.navigate(["programar/" + this.tiendaSeleccionada + "/" + this.tipo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
+      this.ticket.codigo_fila = this.filaCodigo;
+      this.router.navigate(["programar/" + this.sucursalSeleccionada + "/" + this.filaCodigo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
       this.cargando = false;
@@ -99,14 +99,14 @@ export class DatosComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.ticket.numeracion = data.resultado && data.resultado.numeracion;
     this.ticket.fecha_sacado = data.resultado && data.resultado.fecha_sacado;
-    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   refrescar() {
     this.cargando = true;
-    this.ticketService.obtenerTicketEnAtencion({ codigo: this.tipo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.tipo, estado: null }, this);//atendido
+    this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
+    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   printer() {

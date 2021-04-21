@@ -69,10 +69,10 @@
                         <div class="form-group">
                             <label>Seleccione la Sucursal</label>
                             <select class="form-control form-control-sm" aria-label="Default select example"
-                                [(ngModel)]="usuario.codigo_tienda" name="tiendaSeleccionada">
+                                [(ngModel)]="usuario.codigo_sucursal" name="sucursalSeleccionada">
                                 <option [ngValue]="null" selected>NINGUNA</option>
-                                <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
-                                    {{tienda.direccion}}
+                                <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
+                                    {{sucursal.direccion}}
                                 </option>
                             </select>
                         </div>

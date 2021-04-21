@@ -6,7 +6,7 @@ export class Usuario {
     public telefono: string = "";
     public clave: string = "";
     public estado: boolean = true;
-    public codigo_tienda: string = "";
+    public codigo_sucursal: string = "";
     public ventanilla: string = "";
     public tipo_usuario: string = "";
 
@@ -22,7 +22,7 @@ export class Usuario {
         this.telefono = data.telefono ? data.telefono : this.telefono;
         this.clave = data.clave ? data.clave : this.clave;
         this.estado = data.estado ? data.estado : this.estado;
-        this.codigo_tienda = data.codigo_tienda ? data.codigo_tienda : this.codigo_tienda;
+        this.codigo_sucursal = data.codigo_sucursal ? data.codigo_sucursal : this.codigo_sucursal;
         this.ventanilla = data.ventanilla ? data.ventanilla : this.ventanilla;
         this.tipo_usuario = data.tipo_usuario ? data.tipo_usuario : this.tipo_usuario;
     }

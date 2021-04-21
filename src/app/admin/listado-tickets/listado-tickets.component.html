@@ -27,9 +27,9 @@
           <div class="form-group">
             <label>Seleccione la Sucursal</label>
             <select class="form-control form-control-sm" aria-label="Default select example"
-              [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
-              <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
-                {{tienda.direccion}}
+              [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" required>
+              <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
+                {{sucursal.direccion}}
               </option>
             </select>
           </div>
@@ -38,9 +38,9 @@
           <div class="form-group">
             <label>Seleccione la Fila</label>
             <select class="form-control form-control-sm" aria-label="Default select example"
-              [(ngModel)]="tipoSeleccionado" name="tipoSeleccionado">
-              <option *ngFor="let tipo of tipos" [ngValue]="tipo.codigo">{{tipo.codigo}} --
-                {{tipo.descripcion}}
+              [(ngModel)]="filaSeleccionada" name="filaSeleccionada">
+              <option *ngFor="let fila of filas" [ngValue]="fila.codigo">{{fila.codigo}} --
+                {{fila.descripcion}}
               </option>
             </select>
           </div>
@@ -76,7 +76,7 @@
               <td>{{ticket.telefono}}</td>
               <td>{{ticket.usuario}}</td>
               <td>{{ticket.fecha_sacado}} </td>
-              <td>{{ticket.codigo_tipo_operacion}}-{{ticket.numeracion}} </td>
+              <td>{{ticket.codigo_fila}}-{{ticket.numeracion}} </td>
               <td>
                 <button *ngIf="!ticket.estado" class="mb-2 mr-2 btn badge badge-pill badge-success">Sin Atender</button>
                 <button *ngIf="ticket.estado == 'EN ATENCION'" class="mb-2 mr-2 btn badge badge-pill badge-primary">En

@@ -1,6 +1,6 @@
 export class Totem {
     public codigo: string = "";
-    public codigo_tienda: string = "";
+    public codigo_sucursal: string = "";
     public ubicacion: string = "";
 
     constructor(data?) {
@@ -9,7 +9,7 @@ export class Totem {
 
     hydrate(data) {
         this.codigo = data.codigo ? data.codigo : this.codigo;
-        this.codigo_tienda = data.codigo_tienda ? data.codigo_tienda : this.codigo_tienda;
+        this.codigo_sucursal = data.codigo_sucursal ? data.codigo_sucursal : this.codigo_sucursal;
         this.ubicacion = data.ubicacion ? data.ubicacion : this.ubicacion;
     }
 

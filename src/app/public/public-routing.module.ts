@@ -13,15 +13,15 @@ const routesPublicas: Routes = [
         loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
       },
       {
-        path: 'tienda/:tienda',
-        loadChildren: () => import('./tipo-ticket/tipo-ticket.module').then(m => m.TipoTicketModule)
+        path: 'sucursal/:sucursal',
+        loadChildren: () => import('./fila-ticket/fila.module').then(m => m.FilaTicketModule)
       },
       {
-        path: 'tipo/:tienda/:tipo',
+        path: 'fila/:sucursal/:fila',
         loadChildren: () => import('./datos/datos.module').then(m => m.DatosModule)
       },
       {
-        path: 'programar/:tienda/:tipo',
+        path: 'programar/:sucursal/:fila',
         loadChildren: () => import('./programar-ticket/programar-ticket.module').then(m => m.ProgramarTicketModule)
       }
     ]

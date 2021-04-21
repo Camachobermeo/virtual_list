@@ -1,7 +1,7 @@
 <form class="container pb-5 col-lg-12 col-md-12 col-sm-12">
     <div class="card">
         <div class="card-header">
-            <b>Listado de totem</b>
+            <b>Listado de Filas</b>
             <div class="btn-actions-pane-right">
                 <a class="btn btn-primary btn-sm" routerLink="nuevo"><i class="fa fa-plus-circle"
                         aria-hidden="true"></i>
@@ -11,19 +11,19 @@
         <div class="card-body">
             <div class="col-md-12">
                 <div class="p-1 ps-3">
-                    <h6> Seleccione la Sucursal</h6>
+                    <h6> Seleccione Sucursal</h6>
                 </div>
                 <div class="input-group mb-3 p-2 pt-0">
                     <select class="form-control form-control-sm " aria-label="Default select example"
-                        [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" (ngModelChange)="listarTotems()"
+                        [(ngModel)]="sucursalSeleccionada" (ngModelChange)="listarFilas()" name="sucursalSeleccionada"
                         required>
-                        <option value="" disabled selected>Seleccione la Sucursal</option>
+                        <option value="" disabled selected>Seleccione el Totem</option>
                         <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
                             {{sucursal.direccion}}
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="listarTotems()"> <i
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="listarFilas()"><i
                                 class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </div>
@@ -32,24 +32,25 @@
                         <thead>
                             <tr>
                                 <th>Código</th>
-                                <th>Sucursal</th>
-                                <th>Ubicación</th>
+                                <th>Código Totem</th>
+                                <th>Descripcón</th>
+                                <th>Tiempo Estimado Minutos</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody style="background-color: #ffffff;">
-                            <tr *ngFor="let totem of totems">
-                                <td>{{totem.codigo}}</td>
-                                <td>{{totem.codigo_sucursal}}</td>
-                                <td>{{totem.ubicacion}}</td>
-                                <td class="text-center"><a class="btn btn-sm btn-success"
-                                        [routerLink]="['editar', totem.codigo]"><i class="fa fa-edit"
+                            <tr *ngFor="let fila of filas">
+                                <td>{{fila.codigo}}</td>
+                                <td>{{fila.codigo_sucursal}}</td>
+                                <td>{{fila.descripcion}}</td>
+                                <td>{{fila.tiempo_estimado_minutos}} min</td>
+                                <td class="text-center"><a type="button" class="btn btn-sm btn-success"
+                                        [routerLink]="['editar', fila.codigo]"><i class="fa fa-edit"
                                             aria-hidden="true"></i></a></td>
-
                                 <td class="text-center"><a type="button" class="btn btn-sm btn-danger" href="#modal"
-                                        (click)="abrir(totem)"><i class="fa fa-trash" style="color: #ffffff;"
-                                            aria-hidden="true"></i></a></td>
+                                        (click)="abrir(fila)">
+                                        <i class="fa fa-trash" style="color: #ffffff;" aria-hidden="true"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,19 +58,18 @@
             </div>
         </div>
     </div>
-
 </form>
 
-<div class="modal" id="modal" style="margin-top:80px; display: inline;">
+<div id="modal" class="modal" style="margin-top:80px; display: inline;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">TOTEM</h5>
+                <h5 class="modal-title" id="exampleModalLabel">TIPO OPERACION</h5>
                 <button type="button" class="btn-close" (click)="cerrar()" data-bs-dismiss="modal"
                     aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                Esta seguro eliminar este registro totem con codigo {{seleccionado.codigo}}.
+                <p>¿Esta seguro eliminar esta Fila con codigo {{seleccionado.codigo}}?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="cerrar" (click)="cerrar()"
@@ -83,8 +83,6 @@
     </div>
     <div class="overlay"></div>
 </div>
-
-
 <div *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>

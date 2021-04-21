@@ -4,13 +4,13 @@
       <div class="card mb-3 widget-content bg-grow-early">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading" routerLink="/tienda/{{tiendaSeleccionada}}">Complete información Sucursal:
-              {{tiendaSeleccionada}} - {{tienda.direccion}}
+            <div class="widget-heading" routerLink="/sucursal/{{sucursalSeleccionada}}">Complete información Sucursal:
+              {{sucursalSeleccionada}} - {{sucursal.direccion}}
             </div>
-            <div class="widget-heading">Fila: {{tipo}} - {{tipoOperacion.descripcion}}</div>
+            <div class="widget-heading">Fila: {{filaCodigo}} - {{fila.descripcion}}</div>
           </div>
           <div class="widget-content-right" style="font-size: 16px;">
-            <div class="widget-numbers text-white"><i routerLink="/tienda/{{tiendaSeleccionada}}"
+            <div class="widget-numbers text-white"><i routerLink="/sucursal/{{sucursalSeleccionada}}"
                 class="fa fa-arrow-left"></i></div>
           </div>
         </div>
@@ -57,10 +57,10 @@
                     <h5 class="card-title" style="color: black;">{{ticket.fecha_cita}} a las {{horaSeleccionada}}</h5>
                     <br>
                     <b>En la Fila: </b>
-                    <h5 class="card-title" style="color: black;">{{tipoOperacion.descripcion}}</h5>
+                    <h5 class="card-title" style="color: black;">{{fila.descripcion}}</h5>
                     <br>
                     <b>Sucursal: </b>
-                    <h5 class="card-title" style="color: black;">{{tienda.direccion}}</h5>
+                    <h5 class="card-title" style="color: black;">{{sucursal.direccion}}</h5>
                   </div>
                 </li>
               </ul>

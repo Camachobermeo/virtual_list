@@ -14,9 +14,9 @@
                     <div class="form-group">
                         <label>Sucursal</label>
                         <select class="form-control form-control-sm" disabled aria-label="Default select example"
-                            [(ngModel)]="tiendaSeleccionada" name="tiendaSeleccionada" required>
-                            <option *ngFor="let tienda of tiendas" [ngValue]="tienda.codigo">{{tienda.codigo}} --
-                                {{tienda.direccion}}
+                            [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" required>
+                            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
+                                {{sucursal.direccion}}
                             </option>
                         </select>
                     </div>
@@ -25,9 +25,9 @@
                     <div class="form-group">
                         <label>Seleccione la Fila</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
-                            [(ngModel)]="tipoSeleccionado" name="tipoSeleccionado">
-                            <option *ngFor="let tipo of tipos" [ngValue]="tipo.codigo">{{tipo.codigo}} --
-                                {{tipo.descripcion}}
+                            [(ngModel)]="fila" name="fila">
+                            <option *ngFor="let fila of filas" [ngValue]="fila.codigo">{{fila.codigo}} --
+                                {{fila.descripcion}}
                             </option>
                         </select>
                     </div>

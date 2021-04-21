@@ -5,7 +5,7 @@
      razon_social text not null
  );
 
-  CREATE TABLE tienda(
+  CREATE TABLE sucursal(
      codigo text not null primary key,
      rut text not null,
      direccion text not null,
@@ -24,36 +24,49 @@
      s_fin_atencion time,
      d_inicio_atencion time,
      d_fin_atencion time,
-     CONSTRAINT tienda_fk FOREIGN KEY (rut)
+     CONSTRAINT sucursal_fk FOREIGN KEY (rut)
       REFERENCES empresa (rut) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
   CREATE TABLE totem(
      codigo text not null primary key,
-     codigo_tienda text not null,
+     codigo_sucursal text not null,
      ubicacion text not null,
-     CONSTRAINT totem_fk FOREIGN KEY (codigo_tienda)
-      REFERENCES tienda (codigo) MATCH FULL
+     CONSTRAINT totem_fk FOREIGN KEY (codigo_sucursal)
+      REFERENCES sucursal (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
- CREATE TABLE tipo_operacion(
-     codigo text not null primary key,
-     codigo_totem text not null,
-     descripcion text not null,
-     CONSTRAINT tipo_operacion_fk FOREIGN KEY (codigo_totem)
+ CREATE TABLE totem_fila(
+    secuencial serial not null primary key,
+    codigo_totem text not null,
+    codigo_fila text not null,
+    estado boolean not null default false,
+    CONSTRAINT totem_fila_fila_fk FOREIGN KEY (codigo_fila)
+      REFERENCES fila (codigo) MATCH FULL
+      ON UPDATE CASCADE ON DELETE NO ACTION,
+    CONSTRAINT totem_fila_totem_fk FOREIGN KEY (codigo_totem)
       REFERENCES totem (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
- ALTER TABLE tipo_operacion
+ CREATE TABLE fila(
+     codigo text not null primary key,
+     codigo_sucursal text not null,
+     descripcion text not null,
+     CONSTRAINT fila_fk FOREIGN KEY (codigo_sucursal)
+      REFERENCES sucursal (codigo) MATCH FULL
+      ON UPDATE CASCADE ON DELETE NO ACTION
+ );
+
+ ALTER TABLE fila
  add column tiempo_estimado_minutos integer,
  add column costo_estimado numeric;
 
 CREATE TABLE ticket(
      secuencial serial not null primary key,
-     codigo_tipo_operacion text not null,
+     codigo_fila text not null,
      email text not null,
      telefono text,
      recordatorio boolean not null default false,
@@ -61,8 +74,8 @@ CREATE TABLE ticket(
      rut text not null,
      nombres text not null,
      numeracion integer not null,
-     CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
-      REFERENCES tipo_operacion (codigo) MATCH FULL
+     CONSTRAINT ticket_fk FOREIGN KEY (codigo_fila)
+      REFERENCES fila (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
@@ -84,15 +97,15 @@ CREATE TABLE ticket(
 
 
 CREATE TABLE numeracion(
-     codigo_tipo_operacion text not null,
+     codigo_fila text not null,
      fecha date not null,
      numero integer not null,
-     CONSTRAINT numeracion_pk PRIMARY KEY (codigo_tipo_operacion, fecha)
+     CONSTRAINT numeracion_pk PRIMARY KEY (codigo_fila, fecha)
  );
 
 CREATE TABLE ticket_programado(
      secuencial serial not null primary key,
-     codigo_tipo_operacion text not null,
+     codigo_fila text not null,
      email text not null,
      telefono text,
      recordatorio boolean not null default false,
@@ -101,8 +114,8 @@ CREATE TABLE ticket_programado(
      hora_cita time not null,
      rut text not null,
      nombres text not null,
-     CONSTRAINT ticket_fk FOREIGN KEY (codigo_tipo_operacion)
-      REFERENCES tipo_operacion (codigo) MATCH FULL
+     CONSTRAINT ticket_fk FOREIGN KEY (codigo_fila)
+      REFERENCES fila (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
@@ -118,10 +131,10 @@ CREATE TRIGGER actualizar_numero_ticket
   EXECUTE PROCEDURE actualizar_numero_ticket();
 
  ALTER TABLE usuario
- add column codigo_tienda text,
+ add column codigo_sucursal text,
  add column ventanilla text,
- add CONSTRAINT usuario_tienda_fk FOREIGN KEY (codigo_tienda)
-     REFERENCES tienda (codigo) MATCH FULL
+ add CONSTRAINT usuario_sucursal_fk FOREIGN KEY (codigo_sucursal)
+     REFERENCES sucursal (codigo) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;
 
  ALTER TABLE usuario

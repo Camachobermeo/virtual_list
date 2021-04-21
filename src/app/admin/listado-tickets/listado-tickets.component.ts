@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Ticket } from 'src/app/entidades/Ticket';
-import { Tienda } from 'src/app/entidades/Tienda';
-import { TipoOperacion } from 'src/app/entidades/TipoOperacion';
+import { Sucursal } from 'src/app/entidades/Sucursal';
+import { Fila } from 'src/app/entidades/Fila';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
-import { TiendaService } from '../tienda/tienda.service';
-import { TipoOperacionService } from '../tipo-operacion/tipo-operacion.service';
+import { SucursalService } from '../sucursal/sucursal.service';
+import { FilaService } from '../fila/fila.service';
 import { ListadoTicketsService } from './listado-tickets.service';
 
 @Component({
@@ -22,48 +22,48 @@ export class ListadoTicketsComponent implements OnInit {
   cargando: boolean = false;
   fecha_sacado: any = null;
   mostrarBoton: boolean = false;
-  tiendas: Array<Tienda> = new Array();
-  tiendaSeleccionada: any = null;
+  sucursales: Array<Sucursal> = new Array();
+  sucursalSeleccionada: any = null;
   usuario: Usuario = new Usuario();
-  tipos: Array<TipoOperacion> = new Array();
-  tipoSeleccionado: any = null;
+  filas: Array<Fila> = new Array();
+  filaSeleccionada: any = null;
 
   constructor(
     public ticketsService: ListadoTicketsService,
-    public tiendaService: TiendaService,
+    public sucursalService: SucursalService,
     public utilService: UtilService,
     public toastr: ToastrService,
-    public tipoService: TipoOperacionService
+    public filaService: FilaService
   ) { }
 
   ngOnInit(): void {
     this.cargando = true;
     this.fecha_sacado = new Date().getFullYear() + "-" + (new Date().getMonth() >= 10 ? "" : "0") + (new Date().getMonth() + 1) + "-" + new Date().getDate();
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    this.tiendaSeleccionada = this.usuario.codigo_tienda;
-    this.tiendaService.listarTiendas({}, this);
+    this.sucursalSeleccionada = this.usuario.codigo_sucursal;
+    this.sucursalService.listarSucursales({}, this);
     if (location.hash == '#/ver') {
       this.mostrarBoton = true;
     }
   }
 
-  despuesDeListarTiendas(data) {
-    this.tiendas = data;
-    if (this.tiendaSeleccionada) {
-      this.listarTipos();
+  despuesDeListarSucursales(data) {
+    this.sucursales = data;
+    if (this.sucursalSeleccionada) {
+      this.listarFilas();
     } else {
       this.cargando = false;
       document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
     }
   }
 
-  listarTipos() {
+  listarFilas() {
     this.cargando = true;
-    this.tipoService.listarTipos({ tienda: this.tiendaSeleccionada }, this);
+    this.filaService.listarFilas({ sucursal: this.sucursalSeleccionada }, this);
   }
 
-  despuesDeListarTipos(data) {
-    this.tipos = data;
+  despuesDeListarFilas(data) {
+    this.filas = data;
     this.cargando = false;
     document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
   }
@@ -72,7 +72,7 @@ export class ListadoTicketsComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.tiendaSeleccionada }, this);
+      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada }, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
       this.cargando = false;

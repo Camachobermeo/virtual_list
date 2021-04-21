@@ -23,9 +23,9 @@ const routes: Routes = [
         runGuardsAndResolvers: 'always'
       },
       {
-        path: 'tienda',
+        path: 'sucursal',
         canActivate: [AuthGuardService],
-        loadChildren: () => import('./tienda/tienda.module').then(m => m.TiendaModule),
+        loadChildren: () => import('./sucursal/sucursal.module').then(m => m.Sucursal),
         runGuardsAndResolvers: 'always'
       },
       {
@@ -35,9 +35,9 @@ const routes: Routes = [
         runGuardsAndResolvers: 'always'
       },
       {
-        path: 'tipo-operacion',
+        path: 'fila',
         canActivate: [AuthGuardService],
-        loadChildren: () => import('./tipo-operacion/tipo-operacion.module').then(m => m.TipoOperacionModule),
+        loadChildren: () => import('./fila/fila.module').then(m => m.FilaModule),
         runGuardsAndResolvers: 'always'
       },
       {

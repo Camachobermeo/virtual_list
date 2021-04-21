@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Sucursal } from 'src/app/entidades/Sucursal';
-import { Totem } from 'src/app/entidades/Totem';
+import { Fila } from 'src/app/entidades/Fila';
 import { SucursalService } from '../../sucursal/sucursal.service';
-import { TotemService } from '../totem.service';
+import { FilaService } from '../fila.service';
 
 @Component({
-  selector: 'app-totem-listado',
-  templateUrl: './totem-listado.component.html',
-  styleUrls: ['./totem-listado.component.css']
+  selector: 'app-fila-listado',
+  templateUrl: './fila-listado.component.html'
 })
-export class TotemListadoComponent implements OnInit {
+export class FilaListadoComponent implements OnInit {
 
-  totems: any = new Array();
-  sucursales: Array<Sucursal> = new Array();
+  filas: any = new Array();
+  sucursales: any = new Array();
   sucursalSeleccionada: string = "";
   cargando: boolean = false;
-  seleccionado: Totem = new Totem();
+  seleccionado: Fila = new Fila();
+
 
   constructor(
-    public totemService: TotemService,
+    public filaService: FilaService,
     public toastr: ToastrService,
     public sucursalService: SucursalService
   ) { }
@@ -29,13 +28,13 @@ export class TotemListadoComponent implements OnInit {
     this.sucursalService.listarSucursales({}, this);
   }
 
-  listarTotems() {
+  listarFilas() {
     this.cargando = true;
-    this.totemService.listarTotems({ sucursal: this.sucursalSeleccionada }, this);
+    this.filaService.listarFilas({ sucursal: this.sucursalSeleccionada }, this);
   }
 
-  despuesDeListarTotems(data) {
-    this.totems = data;
+  despuesDeListarFilas(data) {
+    this.filas = data;
     this.cargando = false;
   }
 
@@ -43,29 +42,30 @@ export class TotemListadoComponent implements OnInit {
     this.sucursales = data;
     this.sucursalSeleccionada = this.sucursales[0] && this.sucursales[0].codigo;
     if (this.sucursalSeleccionada) {
-      this.listarTotems();
+      this.listarFilas();
     } else
       this.cargando = false;
   }
 
   eliminar() {
     this.cargando = true;
-    this.totemService.eliminarTotem({ codigo: this.seleccionado.codigo, tabla: 'totem' }, this);
+    this.filaService.eliminarFila({ codigo: this.seleccionado.codigo, tabla: 'fila' }, this);
   }
 
-  despuesDeEliminarTotem(data) {
-    this.cargando = false;
+  despuesDeEliminarFila(data) {
     this.toastr.success(data.mensaje, "Aviso");
     document.getElementById("cerrar").click();
-    this.listarTotems();
+    this.listarFilas();
+    this.cargando = false;
+
   }
 
   cerrar() {
     document.getElementById("modal").hidden = true;
   }
 
-  abrir(totem) {
-    this.seleccionado = totem;
+  abrir(fila) {
+    this.seleccionado = fila;
     document.getElementById("modal").hidden = false;
   }
 

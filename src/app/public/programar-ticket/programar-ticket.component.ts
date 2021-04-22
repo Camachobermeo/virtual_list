@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FilaService } from 'src/app/admin/fila/fila.service';
 import { TicketProgramado } from 'src/app/entidades/TicketProgramado';
@@ -21,12 +21,15 @@ export class ProgramarTicketComponent implements OnInit {
   sucursal: Sucursal = new Sucursal();
   filaCodigo: string = "";
   horaSeleccionada: string = "";
+  secuencial: number = 0;
   cargando: boolean = false;
   generado: boolean = false;
   horas: Array<string> = new Array();
   fila: Fila = new Fila();
+  fechaActual = new Date();
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     public filaService: FilaService,
     public toastr: ToastrService,
@@ -103,8 +106,20 @@ export class ProgramarTicketComponent implements OnInit {
 
   despuesDeGenerarTicketProgramado(data) {
     this.cargando = false;
+    this.secuencial = data.resultado && data.resultado.secuencial;
     this.toastr.success(data.mensaje, "Aviso");
     this.generado = true;
+  }
+
+  anularProgramado() {
+    this.cargando = true;
+    this.ticketService.anularProgramado({ secuencial: this.secuencial }, this);
+  }
+
+  despuesDeAnularProgramado(data){
+    this.cargando = false;
+    this.toastr.success(data.mensaje, "Aviso");
+    this.router.navigate(['/']);
   }
 
   printer() {

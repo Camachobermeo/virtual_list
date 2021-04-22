@@ -8,7 +8,7 @@ export class TicketProgramado {
     public recordatorio: boolean = false;
     public rut: string = "";
     public nombres: string = "";
-    public hora_cita: number = 0;
+    public hora_cita: number = null;
     public fecha_sacado: Date = new Date();
     public fecha_cita: Date = null;
 

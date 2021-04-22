@@ -25,6 +25,7 @@ export class DatosComponent implements OnInit {
   sucursal: Sucursal = new Sucursal();
   filaCodigo: string = "";
   enFila: number = 0;
+  tiempoEnFila: number = 0;
   fila: Fila = new Fila();
 
   constructor(
@@ -44,7 +45,6 @@ export class DatosComponent implements OnInit {
     this.sucursal = new Sucursal(JSON.parse(localStorage.getItem("sucursal")));
     this.filaService.obtenerFila({ codigo: this.filaCodigo }, this);
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   despuesDeObtenerFila(data) {
@@ -53,15 +53,16 @@ export class DatosComponent implements OnInit {
 
   despuesDeObtenerTicketEnAtencion(data) {
     this.ticketAtencion = data || new Ticket();
+    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   despuesDeObtenerTicketSacado(data) {
-    // this.ticketAtencion = data || new Ticket();
     let ultimoAtencion = this.ticketAtencion.numeracion;
     if (data) {
       let ultimoSacado = data && data.numeracion;
       this.enFila = (ultimoSacado || 0) - (ultimoAtencion || 0);
       this.enFila = Math.abs(this.enFila);
+      this.tiempoEnFila = this.enFila * this.fila.tiempo_estimado_minutos;
     }
     this.cargando = false;
   }
@@ -100,13 +101,11 @@ export class DatosComponent implements OnInit {
     this.ticket.numeracion = data.resultado && data.resultado.numeracion;
     this.ticket.fecha_sacado = data.resultado && data.resultado.fecha_sacado;
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   refrescar() {
     this.cargando = true;
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
-    this.ticketService.obtenerTicketSacado({ codigo: this.filaCodigo, estado: null }, this);//atendido
   }
 
   printer() {
@@ -117,7 +116,7 @@ export class DatosComponent implements OnInit {
     WindowPrt.document.write(printContent);
     WindowPrt.document.close();
     WindowPrt.focus();
-    setTimeout(function () { WindowPrt.print(); WindowPrt.close();}, 1000);
+    setTimeout(function () { WindowPrt.print(); WindowPrt.close(); }, 1000);
   }
 
 }

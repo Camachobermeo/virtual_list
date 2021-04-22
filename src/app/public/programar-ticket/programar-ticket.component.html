@@ -23,7 +23,7 @@
             <div class="col-md-12 mb-3">
               <label for="rut">Fecha de Cita</label>
               <input type="date" class="form-control form-control-sm" [(ngModel)]="ticket.fecha_cita" name="fecha_cita"
-                required>
+                required min="{{fechaActual | date:'yyyy-MM-dd'}}">
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
                 </li>
                 <li class="list-group-item">
                   <div class="mt-3 mb-3 text-center card card-body" style="color: black; background-color: #dfdfdf;">
-                    <b>Día y hora de la reserva: </b>
+                    <b>Te esperamos el día: </b>
                     <h5 class="card-title" style="color: black;">{{ticket.fecha_cita}} a las {{horaSeleccionada}}</h5>
                     <br>
                     <b>En la Fila: </b>
@@ -72,12 +72,21 @@
     <div class="col-md-3" *ngIf="horaSeleccionada"></div>
 
     <div class="col-md-12 text-center" *ngIf="generado">
-      <button class="mb-2 mr-2 btn badge badge-pill badge-danger">Anular Reserva</button>
+      <button class="mb-2 mr-2 btn badge badge-pill badge-danger" (click)="anularProgramado()">Anular Reserva</button>
     </div>
 
     <div class="col-md-6" *ngIf="ticket.fecha_cita && !horaSeleccionada">
-      <button class="btn btn-primary m-1" (click)="sacarCita(frmTicket, item)"
-        *ngFor="let item of horas; index as i;">{{item}}</button>
+      <div class="main-card mb-3 card pl-2 pr-2 pb-3">
+        <label for="rut">Hora de Cita</label>
+        <input type="time" class="form-control form-control-sm" [(ngModel)]="ticket.hora_cita" name="hora_cita"
+          required>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary m-1" (click)="sacarCita(frmTicket, ticket.hora_cita)"><i class="fa fa-check"></i>
+          Confirmar</button>
+      </div>
+      <!-- <button class="btn btn-primary m-1" (click)="sacarCita(frmTicket, item)"
+        *ngFor="let item of horas; index as i;">{{item}}</button> -->
     </div>
 
     <div class="col-md-12 mb-3 mt-3 text-center" *ngIf="horaSeleccionada && !generado">

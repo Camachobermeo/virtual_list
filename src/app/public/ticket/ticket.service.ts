@@ -61,5 +61,17 @@ export class TicketService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
-  
+
+  anularProgramado(parametro, contexto) {
+    this.api.post("anularProgramado.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeAnularProgramado(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

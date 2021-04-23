@@ -4,6 +4,7 @@ export class Empresa {
     public obligar_persona: boolean = false;
     public obligar_correo: boolean = false;
     public obligar_celular: boolean = false;
+    public logo: any = null;
 
     constructor(data?) {
         data ? this.hydrate(data) : null;
@@ -15,6 +16,7 @@ export class Empresa {
         this.obligar_persona = data.obligar_persona ? data.obligar_persona : this.obligar_persona;
         this.obligar_correo = data.obligar_correo ? data.obligar_correo : this.obligar_correo;
         this.obligar_celular = data.obligar_celular ? data.obligar_celular : this.obligar_celular;
+        this.logo = data.logo ? data.logo : this.logo;
     }
 
 }

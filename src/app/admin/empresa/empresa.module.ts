@@ -5,8 +5,7 @@ import { EmpresaRoutingModule } from './empresa-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
 import { ConfigurarComponent } from './configurar/configurar.component';
-
-
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [EmpresaFormularioComponent, ConfigurarComponent],
@@ -14,7 +13,8 @@ import { ConfigurarComponent } from './configurar/configurar.component';
     CommonModule,
     FormsModule,
     EmpresaRoutingModule,
-    ComponentesGeneralesModule
+    ComponentesGeneralesModule,
+    FileUploadModule
   ]
 })
 export class EmpresaModule { }

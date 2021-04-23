@@ -43,3 +43,7 @@
   width: 100%;
   z-index: 10
 }
+
+.p-fileupload-content {
+  padding: 0!important;
+}

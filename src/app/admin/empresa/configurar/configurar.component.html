@@ -1,0 +1,58 @@
+<div class="container pb-5 col-lg-12 col-md-12 col-sm-12">
+  <div class="text-center">
+  </div>
+  <form #frmEmpresa='ngForm'>
+    <div class="text card m-2">
+      <div class="card-header">
+        <b>Configuración de Empresa</b>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="rut">RUT</label>
+              <input required name="rut" class="form-control form-control-sm text-uppercase" [disabled]="true"
+                [(ngModel)]="empresa.rut" placeholder="Ingrese el RUT">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="razon_social">Razón Social</label>
+              <input required name="celular" class="form-control form-control-sm text-uppercase" [disabled]="true"
+                [(ngModel)]="empresa.razon_social" placeholder="Ingrese su razon social.">
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div class="form-group">
+              <input type="checkbox" class=" form-check-input" name="obligar_persona"
+                [(ngModel)]="empresa.obligar_persona">
+              <label for="razon_social">Obligar Persona</label>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div class="form-group">
+              <input type="checkbox" class=" form-check-input" name="obligar_correo"
+                [(ngModel)]="empresa.obligar_correo">
+              <label for="razon_social">Obligar Email</label>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div class="form-group">
+              <input type="checkbox" class=" form-check-input" name="obligar_celular"
+                [(ngModel)]="empresa.obligar_celular">
+              <label for="razon_social">Obligar Teléfono</label>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" (click)="guardarEmpresa(frmEmpresa)" class="btn btn-success"><i class="fa fa-save"
+              aria-hidden="true"></i> Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="cargando">
+  <app-cargando></app-cargando>
+</div>

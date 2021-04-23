@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Ticket } from 'src/app/entidades/Ticket';
-import { Sucursal } from 'src/app/entidades/Sucursal';
 import { Fila } from 'src/app/entidades/Fila';
+import { Sucursal } from 'src/app/entidades/Sucursal';
+import { TicketProgramado } from 'src/app/entidades/TicketProgramado';
 import { Usuario } from 'src/app/entidades/Usuario';
 import { UtilService } from 'src/app/servicios/util.service';
-import { SucursalService } from '../sucursal/sucursal.service';
 import { FilaService } from '../fila/fila.service';
-import { ListadoTicketsService } from './listado-tickets.service';
+import { ListadoTicketsService } from '../listado-tickets/listado-tickets.service';
+import { SucursalService } from '../sucursal/sucursal.service';
 
 @Component({
-  selector: 'app-listado-tickets',
-  templateUrl: './listado-tickets.component.html',
-  styleUrls: ['./listado-tickets.component.css']
+  selector: 'app-listado-tickets-programados',
+  templateUrl: './listado-tickets-programados.component.html',
+  styleUrls: ['./listado-tickets-programados.component.css']
 })
-export class ListadoTicketsComponent implements OnInit {
+export class ListadoTicketsProgramadosComponent implements OnInit {
 
   tickets: any = new Array();
-  ticketSeleccionado: Ticket = new Ticket();
+  ticketSeleccionado: TicketProgramado = new TicketProgramado();
   cargando: boolean = false;
   fecha_sacado: any = null;
   mostrarBoton: boolean = false;
@@ -72,7 +72,7 @@ export class ListadoTicketsComponent implements OnInit {
     this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, tabla: 'ticket' }, this);
+      this.ticketsService.listarTickets({ fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, tabla: 'ticket_programado' }, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
       this.cargando = false;
@@ -90,15 +90,11 @@ export class ListadoTicketsComponent implements OnInit {
   despuesDeCambiarEstadoTicket(data, estado) {
     this.toastr.success(data.mensaje, "Aviso");
     this.cargando = false;
-    this.ticketSeleccionado.estado = estado;
-    this.ticketSeleccionado.usuario = this.usuario.username;
   }
 
   despuesDeListarTickets(data) {
     this.tickets = data;
     this.cargando = false;
   }
-
-  noHacerNada() { }
 
 }

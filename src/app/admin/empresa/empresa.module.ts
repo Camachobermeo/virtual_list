@@ -4,11 +4,12 @@ import { EmpresaFormularioComponent } from './empresa-formulario/empresa-formula
 import { EmpresaRoutingModule } from './empresa-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentesGeneralesModule } from 'src/app/componentes-generales/componentes-generales.module';
+import { ConfigurarComponent } from './configurar/configurar.component';
 
 
 
 @NgModule({
-  declarations: [EmpresaFormularioComponent],
+  declarations: [EmpresaFormularioComponent, ConfigurarComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,0 +1,18 @@
+<div class="row m-2">
+  <div class="col-md-6 col-lg-6" *ngFor="let ticket of atenciones">
+    <div class="mb-3 card">
+      <div class="card-header-tab card-header-tab-animation card-header">
+        <div class="card-header-title text-center">
+          <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+          TURNO EN ATENCION
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="tab-content p-5 text-center" style="font-size: 60px;">
+          <p>{{ticket.codigo_fila}}-{{ticket.numeracion || ticket.hora_cita}}</p>
+          <button class="btn badge badge-pill badge-primary p-3">Ventanilla 12</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

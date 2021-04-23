@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     runGuardsAndResolvers: 'always'
   },
+  {
+    path: 'atenciones',
+    loadChildren: () => import('./public/vista-totem/vista-totem.module').then(m => m.VistaTotemModule),
+    runGuardsAndResolvers: 'always'
+  }
 ];
 
 @NgModule({

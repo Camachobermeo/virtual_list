@@ -145,3 +145,10 @@ CREATE TRIGGER actualizar_numero_ticket
   add CONSTRAINT usuario_ticket_fk FOREIGN KEY (usuario)
      REFERENCES usuario (username) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;
+
+ ALTER TABLE empresa
+ ADD COLUMN logo bytea,
+ ADD COLUMN tema text,
+ ADD COLUMN obligar_persona boolean not null default false,
+ ADD COLUMN obligar_correo boolean not null default false,
+ ADD COLUMN obligar_celular boolean not null default false;

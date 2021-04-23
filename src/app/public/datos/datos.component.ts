@@ -9,6 +9,8 @@ import { Fila } from 'src/app/entidades/Fila';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 import { TicketService } from '../ticket/ticket.service';
+import { Empresa } from 'src/app/entidades/Empresa';
+import { EmpresaService } from 'src/app/admin/empresa/empresa.service';
 
 @Component({
   selector: 'app-datos',
@@ -18,6 +20,7 @@ import { TicketService } from '../ticket/ticket.service';
 export class DatosComponent implements OnInit {
 
   ticket: Ticket = new Ticket();
+  empresa: Empresa = new Empresa();
   ticketAtencion: Ticket = new Ticket();
   cargando: boolean = false;
   generado: boolean = false;
@@ -30,6 +33,7 @@ export class DatosComponent implements OnInit {
 
   constructor(
     public utilService: UtilService,
+    public empresaService: EmpresaService,
     public toastr: ToastrService,
     private route: ActivatedRoute,
     public ticketService: TicketService,
@@ -39,12 +43,23 @@ export class DatosComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem("empresa", environment.empresa);
+    this.empresa.obligar_correo = true;
+    this.obtenerEmpresa();
     this.cargando = true;
     this.filaCodigo = this.route.snapshot.paramMap.get('fila');
     this.sucursalSeleccionada = this.route.snapshot.paramMap.get('sucursal');
     this.sucursal = new Sucursal(JSON.parse(localStorage.getItem("sucursal")));
     this.filaService.obtenerFila({ codigo: this.filaCodigo }, this);
     this.ticketService.obtenerTicketEnAtencion({ codigo: this.filaCodigo, estado: 'EN ATENCION' }, this);//en atencion
+  }
+
+  obtenerEmpresa() {
+    this.empresaService.obtenerEmpresa({}, this);
+  }
+
+  despuesDeObtenerEmpresa(data) {
+    this.empresa = data;
+    this.empresa.obligar_correo = true;
   }
 
   despuesDeObtenerFila(data) {

@@ -5,7 +5,7 @@ import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   {
-    path:  '',
+    path: '',
     component: AdminComponent,
     canActivate: [AuthGuardService],
     runGuardsAndResolvers: 'always',
@@ -68,6 +68,12 @@ const routes: Routes = [
         path: 'correo',
         canActivate: [AuthGuardService],
         loadChildren: () => import('./correo/correo.module').then(m => m.CorreoModule),
+        runGuardsAndResolvers: 'always'
+      },
+      {
+        path: 'programados',
+        canActivate: [AuthGuardService],
+        loadChildren: () => import('./listado-tickets-programados/listado-tickets-programados.module').then(m => m.ListadoTicketsProgramadosModule),
         runGuardsAndResolvers: 'always'
       }
     ]

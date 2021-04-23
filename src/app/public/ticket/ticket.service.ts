@@ -74,4 +74,16 @@ export class TicketService {
       }).catch(err => this.utilService.handleError(err, contexto));
   }
 
+  atenciones(parametro, contexto) {
+    this.api.post("atenciones.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeListarAtenciones(respuesta);
+        } else {
+          this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

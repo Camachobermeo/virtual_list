@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Empresa } from '../entidades/Empresa';
 import { Usuario } from '../entidades/Usuario';
+import { EmpresaService } from './empresa/empresa.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,15 +15,27 @@ export class AdminComponent implements OnInit {
   test = "";
   ocultarMenu = false;
   usuario: Usuario = new Usuario();
+  empresa: Empresa = new Empresa();
+  cargando: boolean = false;
+  public archivoPerfilByte: any = null;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public empresaService: EmpresaService
   ) {
   }
 
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem("codigo");
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.cargando = true;
+    this.empresaService.obtenerEmpresa({}, this);
+  }
+
+  despuesDeObtenerEmpresa(data) {
+    this.empresa = data;
+    this.archivoPerfilByte = data.logo || "assets/images/logo-inverse.png";
+    this.cargando = false;
   }
 
   salir() {

@@ -10,18 +10,19 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Sucursal</label>
                         <select class="form-control form-control-sm" disabled aria-label="Default select example"
                             [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" required>
-                            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
+                            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}}
+                                --
                                 {{sucursal.direccion}}
                             </option>
                         </select>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Seleccione la Fila</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
@@ -32,7 +33,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>FECHA</label>
                         <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
@@ -45,28 +46,28 @@
     <br>
     <div class="card p-5" style="background-color: #383c38;">
         <div class="row-container" style="background-color: #ffffff;">
-            <div class="col-12 text-center fs-1">
+            <div class="col-md-12 text-center fs-1">
                 <label>TURNO:</label>
             </div>
         </div>
         <div class="row-container" style="background-color: #ffffff;">
-            <div class="col-12 text-center">
+            <div class="col-md-12 text-center pb-2">
                 <button class="mb-2 mr-2 btn badge badge-pill badge-success">{{ticketSeleccionado?.estado}}</button>
-                <h1><input class="form-control-center" style="text-align: center;" type="text" name="ticketSeleccionado"
-                        [(ngModel)]="nombreTicket" disabled></h1>
+                <input class="form-control pt-5 pb-5" style="text-align: center; font-size: 50px;" type="text" name="ticketSeleccionado"
+                    [(ngModel)]="nombreTicket" disabled>
                 <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado" (click)="atender('EN ATENCION')"
                     class="mb-2 mr-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-5 text-center">
+            <div class="col-md-5 text-center p-2">
                 <button type="button" class="btn btn-success" (click)="retroceder()"><i class="fa fa-fast-backward"
                         aria-hidden="true"></i>
                     Retroceder Turno</button>
             </div>
-            <div class="col-2"></div>
-            <div class="col-5 text-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-5 text-center p-2">
                 <button type="button" class="btn btn-primary" (click)="atender('ATENDIDO')"><i
                         class="fa fa-fast-forward" aria-hidden="true"></i>
                     Siguiente Turno</button>

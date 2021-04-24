@@ -13,12 +13,12 @@
         <div class="card-body">
             <form #frmTotem='ngForm'>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="codigo">Código</label>
                         <input required name="codigo" class="form-control form-control-sm text-uppercase"
                             [disabled]="esEdicion" [(ngModel)]="totem.codigo" placeholder="Código del Totem" required>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label>Seleccione la Sucursal</label>
                         <select class="form-control form-control-sm " aria-label="Default select example"
                             [(ngModel)]="totem.codigo_sucursal" name="sucursalSeleccionada" required>

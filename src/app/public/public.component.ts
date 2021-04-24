@@ -12,6 +12,7 @@ export class PublicComponent implements OnInit {
 
   empresa: Empresa = new Empresa();
   cargando: boolean = false;
+  public archivoPerfilByte: any = null;
   
   constructor(
     public empresaService: EmpresaService
@@ -25,6 +26,7 @@ export class PublicComponent implements OnInit {
 
   despuesDeObtenerEmpresa(data) {
     this.empresa = data;
+    this.archivoPerfilByte = data.logo || "assets/images/logo-inverse.png";
     this.cargando = false;
   }
 

@@ -76,17 +76,17 @@
     </div>
     <div class="col-md-6" *ngIf="!generado">
       <br>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_persona">
         <label for="rut">RUT</label>
         <input type="text" class="form-control form-control-sm" id="rut" [(ngModel)]="ticket.rut" name="rut"
           [required]="empresa.obligar_persona">
       </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_persona">
         <label for="nombre">Nombre completo</label>
         <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="ticket.nombres" name="nombre"
           [required]="empresa.obligar_persona">
       </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_correo">
         <label for="exampleInputEmail1">Correo Electronico</label>
         <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" [(ngModel)]="ticket.email"
           aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email"
@@ -94,7 +94,7 @@
         <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
           más.</small>
       </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_celular">
         <label>Telefono</label>
         <input type="text" class="form-control form-control-sm" name="telefono" [(ngModel)]="ticket.telefono"
           placeholder="Telefono" [requerid]="empresa.obligar_celular">

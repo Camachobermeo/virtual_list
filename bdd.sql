@@ -152,3 +152,6 @@ CREATE TRIGGER actualizar_numero_ticket
  ADD COLUMN obligar_persona boolean not null default false,
  ADD COLUMN obligar_correo boolean not null default false,
  ADD COLUMN obligar_celular boolean not null default false;
+
+ ALTER TABLE fila
+ ADD COLUMN cantidad_ventanillas integer not null default 0;

@@ -1,7 +1,7 @@
 <div id="cuerpo" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
   <div class="app-header header-shadow">
     <div class="app-header__logo">
-      <div class="logo-src"></div>
+      <div class=""><img src="{{archivoPerfilByte}}" class="img-fluid rounded" style="height: 40px;" alt=""></div>
       <div class="header__pane ml-auto">
         <div>
           <button (click)="cerraNav()" type="button" id="menu" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -49,14 +49,14 @@
                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                   </a>
                   <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                    <button type="button" tabindex="0" routerLink="/perfil" class="dropdown-item"><i
+                    <button type="button" tabindex="0" routerLink="perfil" class="dropdown-item"><i
                         class="fa fa-user-circle pr-2" aria-hidden="true"></i>Perfil</button>
                     <button type="button" tabindex="0" (click)="salir()" class="dropdown-item"><i
                         class="fa fa-power-off pr-2" aria-hidden="true"> </i> Salir</button>
                   </div>
                 </div>
               </div>
-              <div class="widget-content-left  ml-3 header-user-info">
+              <div class="widget-content-left header-user-info">
                 <div class="widget-heading">
                   {{nombreUsuario}}
                 </div>

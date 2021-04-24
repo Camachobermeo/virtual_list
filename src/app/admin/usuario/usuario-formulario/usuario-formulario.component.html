@@ -14,12 +14,12 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="nombre">Nombre: </label>
                         <input required name="nombre" class="form-control form-control-sm text-uppercase"
                             [(ngModel)]="usuario.nombre" placeholder="Ingrese el nombre">
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="apellidos">Apellido: </label>
                         <input required name="apellidos" class="form-control form-control-sm text-uppercase"
                             [(ngModel)]="usuario.apellidos" placeholder="Ingrese el apellido">
@@ -27,13 +27,13 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-6">
-                        <label >Nombre de usuario: </label>
+                    <div class="col-md-6">
+                        <label>Nombre de usuario: </label>
                         <input required name="codigo" [disabled]="esEdicion"
                             class="form-control form-control-sm text-uppercase" [(ngModel)]="usuario.username"
                             placeholder="Ejm; example123">
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="clave" class="form-label">Contraseña</label>
                         <div class="input-group mb-3">
                             <input type="password" name="clave" class="form-control form-control-sm" id="clave"
@@ -46,14 +46,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="telefono">Teléfono/Celular: </label>
                             <input required name="telefono" class="form-control form-control-sm text-uppercase"
                                 [(ngModel)]="usuario.telefono" placeholder="Ingrese su numero de Teléfono o Celular">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Tipo de Usuario </label>
                             <select class="form-control form-control-sm" aria-label="Default select example"
@@ -65,19 +65,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Seleccione la Sucursal</label>
                             <select class="form-control form-control-sm" aria-label="Default select example"
                                 [(ngModel)]="usuario.codigo_sucursal" name="sucursalSeleccionada">
                                 <option [ngValue]="null" selected>NINGUNA</option>
-                                <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
+                                <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">
+                                    {{sucursal.codigo}} --
                                     {{sucursal.direccion}}
                                 </option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label for="clave" class="form-label">Ventanilla</label>
                         <div class="input-group mb-3">
                             <input type="text" name="ventanilla" class="form-control form-control-sm" id="ventanilla"

@@ -14,6 +14,8 @@ export class FilaTicketComponent implements OnInit {
   sucursalSeleccionada: string = "";
   cargando: boolean = false;
   sucursal: Sucursal = new Sucursal();
+  elementType = 'url';
+  value = location.href;
 
   constructor(
     public filasService: FilaService,

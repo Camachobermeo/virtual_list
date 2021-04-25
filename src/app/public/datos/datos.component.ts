@@ -30,6 +30,7 @@ export class DatosComponent implements OnInit {
   enFila: number = 0;
   tiempoEnFila: number = 0;
   fila: Fila = new Fila();
+  color: any = 'text-light';
 
   constructor(
     public utilService: UtilService,
@@ -60,6 +61,12 @@ export class DatosComponent implements OnInit {
   despuesDeObtenerEmpresa(data) {
     this.empresa = data;
     this.empresa.obligar_correo = true;
+    let clases = this.empresa.cabecera.split(" ");
+    if (clases) {
+      if (clases[1] == 'header-text-dark') {
+        this.color = 'text-dark';
+      }
+    }
   }
 
   despuesDeObtenerFila(data) {

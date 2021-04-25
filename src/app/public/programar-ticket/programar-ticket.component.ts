@@ -8,6 +8,7 @@ import { Sucursal } from 'src/app/entidades/Sucursal';
 import { Fila } from 'src/app/entidades/Fila';
 import { UtilService } from 'src/app/servicios/util.service';
 import { TicketService } from '../ticket/ticket.service';
+import { Empresa } from 'src/app/entidades/Empresa';
 
 @Component({
   selector: 'app-programar-ticket',
@@ -27,6 +28,8 @@ export class ProgramarTicketComponent implements OnInit {
   horas: Array<string> = new Array();
   fila: Fila = new Fila();
   fechaActual = new Date();
+  empresa: Empresa = new Empresa();
+  color: any = 'text-light';
 
   constructor(
     private router: Router,
@@ -82,6 +85,13 @@ export class ProgramarTicketComponent implements OnInit {
   despuesDeObtenerFila(data) {
     this.fila = data;
     this.cargando = false;
+    this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
+    let clases = this.empresa.cabecera.split(" ");
+    if (clases) {
+      if (clases[1] == 'header-text-dark') {
+        this.color = 'text-dark';
+      }
+    }
     this.establecerHoras();
   }
 
@@ -116,7 +126,7 @@ export class ProgramarTicketComponent implements OnInit {
     this.ticketService.anularProgramado({ secuencial: this.secuencial }, this);
   }
 
-  despuesDeAnularProgramado(data){
+  despuesDeAnularProgramado(data) {
     this.cargando = false;
     this.toastr.success(data.mensaje, "Aviso");
     this.router.navigate(['/']);

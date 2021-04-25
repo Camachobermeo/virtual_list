@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SucursalService } from 'src/app/admin/sucursal/sucursal.service';
 import { Empresa } from 'src/app/entidades/Empresa';
+import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,7 +17,8 @@ export class TicketComponent implements OnInit {
   color: any = 'text-light';
 
   constructor(
-    public sucursalService: SucursalService
+    public sucursalService: SucursalService,
+    public utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -28,13 +30,10 @@ export class TicketComponent implements OnInit {
   despuesDeListarSucursales(data) {
     this.sucursales = data;
     this.cargando = false;
-    this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
-    let clases = this.empresa.cabecera.split(" ");
-    if (clases) {
-      if (clases[1] == 'header-text-dark') {
-        this.color = 'text-dark';
-      }
-    }
+    setTimeout(() => {
+      this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
+      this.color = this.utilService.establecerColor(this.empresa.cabecera);
+    }, 50);
   }
 
   seleccionarSucursal(sucursal) {

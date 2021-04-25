@@ -61,12 +61,7 @@ export class DatosComponent implements OnInit {
   despuesDeObtenerEmpresa(data) {
     this.empresa = data;
     this.empresa.obligar_correo = true;
-    let clases = this.empresa.cabecera.split(" ");
-    if (clases) {
-      if (clases[1] == 'header-text-dark') {
-        this.color = 'text-dark';
-      }
-    }
+    this.color = this.utilService.establecerColor(this.empresa.cabecera);
   }
 
   despuesDeObtenerFila(data) {

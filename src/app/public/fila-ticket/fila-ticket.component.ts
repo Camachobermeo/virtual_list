@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FilaService } from 'src/app/admin/fila/fila.service';
 import { Empresa } from 'src/app/entidades/Empresa';
 import { Sucursal } from 'src/app/entidades/Sucursal';
+import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -22,7 +23,8 @@ export class FilaTicketComponent implements OnInit {
 
   constructor(
     public filasService: FilaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -41,13 +43,10 @@ export class FilaTicketComponent implements OnInit {
   despuesDeListarFilas(data) {
     this.cargando = false;
     this.filas = data;
-    this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
-    let clases = this.empresa.cabecera.split(" ");
-    if (clases) {
-      if (clases[1] == 'header-text-dark') {
-        this.color = 'text-dark';
-      }
-    }
+    setTimeout(() => {
+      this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
+      this.color = this.utilService.establecerColor(this.empresa.cabecera);
+    }, 50);
   }
 
 }

@@ -85,13 +85,10 @@ export class ProgramarTicketComponent implements OnInit {
   despuesDeObtenerFila(data) {
     this.fila = data;
     this.cargando = false;
-    this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
-    let clases = this.empresa.cabecera.split(" ");
-    if (clases) {
-      if (clases[1] == 'header-text-dark') {
-        this.color = 'text-dark';
-      }
-    }
+    setTimeout(() => {
+      this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
+      this.color = this.utilService.establecerColor(this.empresa.cabecera);
+    }, 50);
     this.establecerHoras();
   }
 

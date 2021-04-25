@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EmpresaService } from '../admin/empresa/empresa.service';
 import { Empresa } from '../entidades/Empresa';
+import { UtilService } from '../servicios/util.service';
 
 @Component({
   selector: 'app-public',
@@ -16,7 +17,8 @@ export class PublicComponent implements OnInit {
   color: any = 'text-light';
 
   constructor(
-    public empresaService: EmpresaService
+    public empresaService: EmpresaService,
+    public utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -27,12 +29,7 @@ export class PublicComponent implements OnInit {
 
   despuesDeObtenerEmpresa(data) {
     this.empresa = data;
-    let clases = this.empresa.cabecera.split(" ");
-    if (clases) {
-      if (clases[1] == 'header-text-dark') {
-        this.color = 'text-dark';
-      }
-    }
+    this.color = this.utilService.establecerColor(this.empresa.cabecera);
     this.archivoPerfilByte = data.logo || "assets/images/logo-inverse.png";
     localStorage.setItem("entidadEmpresa", JSON.stringify(this.empresa));
     this.cargando = false;

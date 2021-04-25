@@ -52,5 +52,19 @@ export class UtilService {
     return touched;
   }
 
+  establecerColor(cabecera): string {
+    if (cabecera) {
+      let clases = cabecera.split(" ");
+      if (clases) {
+        if (clases[1] == 'header-text-dark') {
+          return 'text-dark';
+        }
+      }
+      return 'text-light';
+    } else {
+      return 'text-dark';
+    }
+  }
+
 
 }

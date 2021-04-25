@@ -20,6 +20,8 @@ export class ConfigurarComponent implements OnInit {
   visualizarImagen: boolean = false;
   coloresDuros: Array<string> = new Array();
   coloresCombinados: Array<string> = new Array();
+  coloresDurosMenu: Array<string> = new Array();
+  coloresCombinadosMenu: Array<string> = new Array();
 
   constructor(
     private router: Router,
@@ -32,10 +34,85 @@ export class ConfigurarComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerEmpresa();
     this.coloresDuros = [
-      "",
-      "",
-      "",
-    ]
+      "bg-primary header-text-light",
+      "bg-secondary header-text-light",
+      "bg-success header-text-dark",
+      "bg-info header-text-dark",
+      "bg-warning header-text-dark",
+      "bg-danger header-text-light",
+      "bg-light header-text-dark",
+      "bg-dark header-text-light",
+      "bg-focus header-text-light",
+      "bg-alternate header-text-light"
+    ];
+    this.coloresCombinados = [
+      "bg-vicious-stance header-text-light",
+      "bg-midnight-bloom header-text-light",
+      "bg-night-sky header-text-light",
+      "bg-slick-carbon header-text-light",
+      "bg-asteroid header-text-light",
+      "bg-royal header-text-light",
+      "bg-warm-flame header-text-dark",
+      "bg-night-fade header-text-dark",
+      "bg-sunny-morning header-text-dark",
+      "bg-tempting-azure header-text-dark",
+      "bg-amy-crisp header-text-dark",
+      "bg-heavy-rain header-text-dark",
+      "bg-mean-fruit header-text-dark",
+      "bg-malibu-beach header-text-light",
+      "bg-deep-blue header-text-dark",
+      "bg-ripe-malin header-text-light",
+      "bg-arielle-smile header-text-light",
+      "bg-plum-plate header-text-light",
+      "bg-happy-fisher header-text-dark",
+      "bg-happy-itmeo header-text-light",
+      "bg-mixed-hopes header-text-light",
+      "bg-strong-bliss header-text-light",
+      "bg-grow-early header-text-light",
+      "bg-love-kiss header-text-light",
+      "bg-premium-dark header-text-light",
+      "bg-happy-green header-text-light"
+    ];
+    this.coloresDurosMenu = [
+      "bg-primary sidebar-text-light",
+      "bg-secondary sidebar-text-light",
+      "bg-success sidebar-text-dark",
+      "bg-info sidebar-text-dark",
+      "bg-warning sidebar-text-dark",
+      "bg-danger sidebar-text-light",
+      "bg-light sidebar-text-dark",
+      "bg-dark sidebar-text-light",
+      "bg-focus sidebar-text-light",
+      "bg-alternate sidebar-text-light"
+    ];
+    this.coloresCombinadosMenu = [
+      "bg-vicious-stance sidebar-text-light",
+      "bg-midnight-bloom sidebar-text-light",
+      "bg-night-sky sidebar-text-light",
+      "bg-slick-carbon sidebar-text-light",
+      "bg-asteroid sidebar-text-light",
+      "bg-royal sidebar-text-light",
+      "bg-warm-flame sidebar-text-dark",
+      "bg-night-fade sidebar-text-dark",
+      "bg-sunny-morning sidebar-text-dark",
+      "bg-tempting-azure sidebar-text-dark",
+      "bg-amy-crisp sidebar-text-dark",
+      "bg-heavy-rain sidebar-text-dark",
+      "bg-mean-fruit sidebar-text-dark",
+      "bg-malibu-beach sidebar-text-light",
+      "bg-deep-blue sidebar-text-dark",
+      "bg-ripe-malin sidebar-text-light",
+      "bg-arielle-smile sidebar-text-light",
+      "bg-plum-plate sidebar-text-light",
+      "bg-happy-fisher sidebar-text-dark",
+      "bg-happy-itmeo sidebar-text-light",
+      "bg-mixed-hopes sidebar-text-light",
+      "bg-strong-bliss sidebar-text-light",
+      "bg-grow-early sidebar-text-light",
+      "bg-love-kiss sidebar-text-light",
+      "bg-premium-dark sidebar-text-light",
+      "bg-happy-green sidebar-text-light"
+    ];
   }
 
   obtenerEmpresa() {
@@ -91,12 +168,15 @@ export class ConfigurarComponent implements OnInit {
     this.archivoPerfilByte = null;
   }
 
-  elegirColor($event, clase1, clase2) {
+  elegirColor($event, estilos) {
     this.quitarColor();
     $event.target.classList.add('active');
-    this.empresa.cabecera = clase1 + " " + clase2;
-    document.getElementById("cabecera").classList.add(clase1);
-    document.getElementById("cabecera").classList.add(clase2);
+    let clases = estilos.split(" ");
+    if (clases) {
+      this.empresa.cabecera = estilos;
+      document.getElementById("cabecera").classList.add(clases[0]);
+      document.getElementById("cabecera").classList.add(clases[1]);
+    }
   }
 
   quitarColor() {
@@ -112,25 +192,28 @@ export class ConfigurarComponent implements OnInit {
     this.empresa.cabecera = null;
   }
 
-  elegirColorMenu($event, clase1, clase2) {
-    this.quitarColor();
+  elegirColorMenu($event, estilos) {
+    this.quitarColorMenu();
     $event.target.classList.add('active');
-    this.empresa.cabecera = clase1 + " " + clase2;
-    document.getElementById("cabecera").classList.add(clase1);
-    document.getElementById("cabecera").classList.add(clase2);
+    let clases = estilos.split(" ");
+    if (clases) {
+      this.empresa.menu = estilos;
+      document.getElementById("lista-menu").classList.add(clases[0]);
+      document.getElementById("lista-menu").classList.add(clases[1]);
+    }
   }
 
   quitarColorMenu() {
-    let cabecera = this.empresa.cabecera;
-    if (cabecera) {
-      let clases = cabecera.split(" ");
+    let menu = this.empresa.menu;
+    if (menu) {
+      let clases = menu.split(" ");
       if (clases) {
-        document.getElementById(clases[0] + "-" + clases[1]).classList.remove("active");
-        document.getElementById("cabecera").classList.remove(clases[0]);
-        document.getElementById("cabecera").classList.remove(clases[1]);
+        document.getElementById(clases[0] + "-" + clases[1] + "-menu").classList.remove("active");
+        document.getElementById("lista-menu").classList.remove(clases[0]);
+        document.getElementById("lista-menu").classList.remove(clases[1]);
       }
     }
-    this.empresa.cabecera = null;
+    this.empresa.menu = null;
   }
 
 }

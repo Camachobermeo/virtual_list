@@ -155,3 +155,7 @@ CREATE TRIGGER actualizar_numero_ticket
 
  ALTER TABLE fila
  ADD COLUMN cantidad_ventanillas integer not null default 0;
+
+  ALTER TABLE empresa
+ ADD COLUMN cabecera text,
+ ADD COLUMN menu text;

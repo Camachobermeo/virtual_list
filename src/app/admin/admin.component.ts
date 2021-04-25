@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit {
   nombreUsuario = "";
   test = "";
   ocultarMenu = false;
+  ocultarColores = true;
   usuario: Usuario = new Usuario();
   empresa: Empresa = new Empresa();
   cargando: boolean = false;

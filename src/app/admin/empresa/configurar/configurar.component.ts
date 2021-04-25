@@ -18,6 +18,8 @@ export class ConfigurarComponent implements OnInit {
   cargando: boolean = false;
   public archivoPerfilByte: any = null;
   visualizarImagen: boolean = false;
+  coloresDuros: Array<string> = new Array();
+  coloresCombinados: Array<string> = new Array();
 
   constructor(
     private router: Router,
@@ -29,6 +31,11 @@ export class ConfigurarComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerEmpresa();
+    this.coloresDuros = [
+      "",
+      "",
+      "",
+    ]
   }
 
   obtenerEmpresa() {
@@ -82,6 +89,48 @@ export class ConfigurarComponent implements OnInit {
 
   eliminarItem() {
     this.archivoPerfilByte = null;
+  }
+
+  elegirColor($event, clase1, clase2) {
+    this.quitarColor();
+    $event.target.classList.add('active');
+    this.empresa.cabecera = clase1 + " " + clase2;
+    document.getElementById("cabecera").classList.add(clase1);
+    document.getElementById("cabecera").classList.add(clase2);
+  }
+
+  quitarColor() {
+    let cabecera = this.empresa.cabecera;
+    if (cabecera) {
+      let clases = cabecera.split(" ");
+      if (clases) {
+        document.getElementById(clases[0] + "-" + clases[1]).classList.remove("active");
+        document.getElementById("cabecera").classList.remove(clases[0]);
+        document.getElementById("cabecera").classList.remove(clases[1]);
+      }
+    }
+    this.empresa.cabecera = null;
+  }
+
+  elegirColorMenu($event, clase1, clase2) {
+    this.quitarColor();
+    $event.target.classList.add('active');
+    this.empresa.cabecera = clase1 + " " + clase2;
+    document.getElementById("cabecera").classList.add(clase1);
+    document.getElementById("cabecera").classList.add(clase2);
+  }
+
+  quitarColorMenu() {
+    let cabecera = this.empresa.cabecera;
+    if (cabecera) {
+      let clases = cabecera.split(" ");
+      if (clases) {
+        document.getElementById(clases[0] + "-" + clases[1]).classList.remove("active");
+        document.getElementById("cabecera").classList.remove(clases[0]);
+        document.getElementById("cabecera").classList.remove(clases[1]);
+      }
+    }
+    this.empresa.cabecera = null;
   }
 
 }

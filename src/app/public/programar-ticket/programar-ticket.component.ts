@@ -23,6 +23,7 @@ export class ProgramarTicketComponent implements OnInit {
   filaCodigo: string = "";
   horaSeleccionada: string = "";
   secuencial: number = 0;
+  numeracion: number = 0;
   cargando: boolean = false;
   generado: boolean = false;
   horas: Array<string> = new Array();
@@ -114,6 +115,7 @@ export class ProgramarTicketComponent implements OnInit {
   despuesDeGenerarTicketProgramado(data) {
     this.cargando = false;
     this.secuencial = data.resultado && data.resultado.secuencial;
+    this.numeracion = data.resultado && data.resultado.numeracion;
     this.toastr.success(data.mensaje, "Aviso");
     this.generado = true;
   }

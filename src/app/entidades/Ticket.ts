@@ -8,6 +8,8 @@ export class Ticket {
     public nombres: string = "";
     public recordatorio: boolean = false;
     public fecha_sacado: Date = new Date();
+    public inicio_atencion: Date = null;
+    public fin_atencion: Date = null;
     public estado: string = "";
     public usuario: string = "";
 
@@ -26,6 +28,9 @@ export class Ticket {
         this.nombres = data.nombres ? data.nombres : this.nombres;
         this.estado = data.estado ? data.estado : this.estado;
         this.usuario = data.usuario ? data.usuario : this.usuario;
+        this.inicio_atencion = data.inicio_atencion ? data.inicio_atencion : this.inicio_atencion;
+        this.fin_atencion = data.fin_atencion ? data.fin_atencion : this.fin_atencion;
+        this.numeracion = data.numeracion ? data.numeracion : this.numeracion;
     }
 
 }

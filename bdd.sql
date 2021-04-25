@@ -95,7 +95,6 @@ CREATE TABLE ticket(
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
-
 CREATE TABLE numeracion(
      codigo_fila text not null,
      fecha date not null,
@@ -146,6 +145,7 @@ CREATE TRIGGER actualizar_numero_ticket
      REFERENCES usuario (username) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;
 
+ --CAMPOS OBLIGADOS
  ALTER TABLE empresa
  ADD COLUMN logo bytea,
  ADD COLUMN tema text,
@@ -153,9 +153,37 @@ CREATE TRIGGER actualizar_numero_ticket
  ADD COLUMN obligar_correo boolean not null default false,
  ADD COLUMN obligar_celular boolean not null default false;
 
+ --VENTANILLA EN FILA
  ALTER TABLE fila
  ADD COLUMN cantidad_ventanillas integer not null default 0;
 
-  ALTER TABLE empresa
+ --COLORES DEL TEMA
+ ALTER TABLE empresa
  ADD COLUMN cabecera text,
  ADD COLUMN menu text;
+
+ --INICIO Y FIN DE ATENCION
+ ALTER TABLE ticket
+ ADD COLUMN inicio_atencion timestamp,
+ ADD COLUMN fin_atencion timestamp;
+
+ ALTER TABLE ticket_programado
+ ADD COLUMN inicio_atencion timestamp,
+ ADD COLUMN fin_atencion timestamp,
+ ADD COLUMN numercacion integer;
+
+ --NUMERACION PROGRAMADA
+ CREATE TABLE numeracion_programado(
+     codigo_fila text not null,
+     fecha date not null,
+     numero integer not null,
+     CONSTRAINT numeracion_programada_pk PRIMARY KEY (codigo_fila, fecha)
+ );
+
+ DROP TRIGGER IF EXISTS actualizar_numero_ticket_programado ON ticket_programado;
+
+CREATE TRIGGER actualizar_numero_ticket_programado
+  BEFORE INSERT
+  ON ticket_programado
+  FOR EACH ROW
+  EXECUTE PROCEDURE actualizar_numero_ticket_programado();

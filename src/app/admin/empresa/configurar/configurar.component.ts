@@ -123,6 +123,18 @@ export class ConfigurarComponent implements OnInit {
   despuesDeObtenerEmpresa(data) {
     this.empresa = data;
     this.archivoPerfilByte = data.logo || "assets/images/logo-inverse.png";
+    if (this.empresa.cabecera) {
+      let clases = this.empresa.cabecera.split(" ");
+      if (clases) {
+        document.getElementById(clases[0] + "-" + clases[1]).classList.add("active");
+      }
+    }
+    if (this.empresa.menu) {
+      let clases = this.empresa.menu.split(" ");
+      if (clases) {
+        document.getElementById(clases[0] + "-" + clases[1] + "-menu").classList.add("active");
+      }
+    }
     this.cargando = false;
   }
 

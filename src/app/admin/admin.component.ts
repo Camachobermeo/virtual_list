@@ -40,7 +40,9 @@ export class AdminComponent implements OnInit {
   }
 
   salir() {
+    let usuario = JSON.parse(localStorage.getItem("usuarioRecordar")) || new Usuario();
     localStorage.clear();
+    localStorage.setItem("usuarioRecordar", JSON.stringify(usuario));
     this.router.navigate(['login']);
   }
 

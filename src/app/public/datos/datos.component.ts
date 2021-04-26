@@ -79,7 +79,11 @@ export class DatosComponent implements OnInit {
       let ultimoSacado = data && data.numeracion;
       this.enFila = (ultimoSacado || 0) - (ultimoAtencion || 0);
       this.enFila = Math.abs(this.enFila);
-      this.tiempoEnFila = this.enFila * this.fila.tiempo_estimado_minutos;
+      if (this.fila.cantidad_ventanillas && this.fila.cantidad_ventanillas <= this.enFila) {
+        this.tiempoEnFila = this.enFila * this.fila.tiempo_estimado_minutos / this.fila.cantidad_ventanillas;
+      } else {
+        this.tiempoEnFila = 0;
+      }
     }
     this.cargando = false;
   }

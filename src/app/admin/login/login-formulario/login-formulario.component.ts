@@ -16,6 +16,7 @@ export class LoginFormularioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   cargando: boolean = false;
   estado: boolean = false;
+  recordarClave: boolean = true;
 
   constructor(
     private router: Router,
@@ -25,6 +26,7 @@ export class LoginFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.usuario = JSON.parse(localStorage.getItem("usuarioRecordar")) || new Usuario();
   }
 
   iniciar(form: NgForm) {
@@ -32,11 +34,20 @@ export class LoginFormularioComponent implements OnInit {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
       this.usuario.username = this.usuario.username;
+      if (this.recordarClave) {
+        this.guardarEnLocal();
+      } else {
+        localStorage.clear();
+      }
       this.loginService.obtenerLogin(this.usuario, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
       this.cargando = false;
     }
+  }
+
+  guardarEnLocal() {
+    localStorage.setItem("usuarioRecordar", JSON.stringify(this.usuario));
   }
 
   despuesDeObtenerLogin(data) {

@@ -63,7 +63,10 @@
                     <h5 class="card-title" style="color: black;">{{sucursal.direccion}}</h5>
                     <br>
                     <b>Numero de Ticket: </b>
-                    <h5 class="card-title" style="color: black;">R - {{fila.codigo}} - {{numeracion}}</h5>
+                    <h5 class="card-title" style="color: black;" *ngIf="!generado">R - {{fila.codigo}} -
+                      {{horaSeleccionada}}</h5>
+                    <h5 class="card-title" style="color: black;" *ngIf="generado">R - {{fila.codigo}} - {{numeracion}}
+                    </h5>
                   </div>
                 </li>
               </ul>

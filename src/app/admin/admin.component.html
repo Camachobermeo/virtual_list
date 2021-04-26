@@ -25,14 +25,15 @@
     </div>
     <div class="app-header__menu">
       <span>
-        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
+          (click)="activarMovil()">
           <span class="btn-icon-wrapper">
             <i class="fa fa-ellipsis-v fa-w-6"></i>
           </span>
         </button>
       </span>
     </div>
-    <div class="app-header__content">
+    <div class="app-header__content" id="header-content">
       <div class="app-header-left">
         <ul class="header-menu nav">
           <!-- encabezado -->
@@ -56,12 +57,11 @@
                   </div>
                 </div>
               </div>
-              <div class="widget-content-left header-user-info">
+              <div class="widget-content-left">
                 <div class="widget-heading">
                   {{nombreUsuario}}
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -93,7 +93,8 @@
       </div>
       <div class="app-header__menu">
         <span>
-          <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+          <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
+            (click)="activarMovil()">
             <span class="btn-icon-wrapper">
               <i class="fa fa-ellipsis-v fa-w-6"></i>
             </span>

@@ -154,6 +154,7 @@ export class ConfigurarComponent implements OnInit {
     this.toastr.success(data.mensaje, "Aviso");
     this.cargando = false;
     this.router.navigate(['admin/empresa']);
+    location.reload();
   }
 
   seleccionarImagenes(event) {

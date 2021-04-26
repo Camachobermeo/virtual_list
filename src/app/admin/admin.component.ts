@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   nombreUsuario = "";
   test = "";
   ocultarMenu = false;
-  ocultarColores = true;
+  ocultarDatosUser = true;
   usuario: Usuario = new Usuario();
   empresa: Empresa = new Empresa();
   cargando: boolean = false;
@@ -58,6 +58,15 @@ export class AdminComponent implements OnInit {
       document.getElementById("cuerpo").classList.remove('sidebar-mobile-open');
       document.getElementById("menu").classList.remove('is-active');
       document.getElementById("menuMovil").classList.remove('is-active');
+    }
+  }
+
+  activarMovil() {
+    this.ocultarDatosUser = !this.ocultarDatosUser;
+    if (this.ocultarDatosUser) {
+      document.getElementById("header-content").classList.remove('header-mobile-open');
+    } else {
+      document.getElementById("header-content").classList.add('header-mobile-open');
     }
   }
 

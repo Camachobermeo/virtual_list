@@ -69,6 +69,9 @@ export class TotemFormularioComponent implements OnInit {
 
   despuesDeListarFilas(data) {
     this.filas = data;
+    if(this.filas){
+      
+    }
     this.cargando = false;
   }
 

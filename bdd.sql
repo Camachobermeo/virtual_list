@@ -170,7 +170,7 @@ CREATE TRIGGER actualizar_numero_ticket
  ALTER TABLE ticket_programado
  ADD COLUMN inicio_atencion timestamp,
  ADD COLUMN fin_atencion timestamp,
- ADD COLUMN numercacion integer;
+ ADD COLUMN numeracion integer;
 
  --NUMERACION PROGRAMADA
  CREATE TABLE numeracion_programado(

@@ -69,8 +69,14 @@ export class TotemFormularioComponent implements OnInit {
 
   despuesDeListarFilas(data) {
     this.filas = data;
-    if(this.filas){
-      
+    if (this.filas) {
+      if (!this.esEdicion) {
+        this.filas.forEach(element => {
+          element['seleccionado'] = true;
+        });
+      } else {
+
+      }
     }
     this.cargando = false;
   }
@@ -84,6 +90,19 @@ export class TotemFormularioComponent implements OnInit {
       } else {
         this.totem['esEdicion'] = false;
       }
+      let totemFila: Array<TotemFila> = new Array();
+      if (this.filas) {
+        this.filas.forEach(element => {
+          if (element['seleccionado']) {
+            let tf = new TotemFila();
+            tf.codigo_totem = this.totem.codigo;
+            tf.codigo_fila = element.codigo;
+            tf.estado = true;
+            totemFila.push(tf);
+          }
+        });
+      }
+      this.totem['filas'] = totemFila;
       this.totemService.guardarTotem(this.totem, this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");

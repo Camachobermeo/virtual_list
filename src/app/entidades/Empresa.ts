@@ -4,6 +4,8 @@ export class Empresa {
     public obligar_persona: boolean = false;
     public obligar_correo: boolean = false;
     public obligar_celular: boolean = false;
+    public obligar_rut: boolean = false;
+    public obligar_nombre: boolean = false;
     public logo: any = null;
     public cabecera: any = null;
     public menu: any = null;
@@ -18,6 +20,8 @@ export class Empresa {
         this.obligar_persona = data.obligar_persona ? data.obligar_persona : this.obligar_persona;
         this.obligar_correo = data.obligar_correo ? data.obligar_correo : this.obligar_correo;
         this.obligar_celular = data.obligar_celular ? data.obligar_celular : this.obligar_celular;
+        this.obligar_rut = data.obligar_rut ? data.obligar_rut : this.obligar_rut;
+        this.obligar_nombre = data.obligar_nombre ? data.obligar_nombre : this.obligar_nombre;
         this.logo = data.logo ? data.logo : this.logo;
         this.cabecera = data.cabecera ? data.cabecera : this.cabecera;
         this.menu = data.menu ? data.menu : this.menu;

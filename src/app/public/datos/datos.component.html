@@ -76,15 +76,15 @@
     </div>
     <div class="col-md-6" *ngIf="!generado">
       <br>
-      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_persona">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_rut">
         <label for="rut">RUT</label>
         <input type="text" class="form-control form-control-sm" id="rut" [(ngModel)]="ticket.rut" name="rut"
-          [required]="empresa.obligar_persona">
+          [required]="empresa.obligar_rut">
       </div>
-      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_persona">
+      <div class="col-md-12 mb-3" *ngIf="empresa.obligar_nombre">
         <label for="nombre">Nombre completo</label>
         <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="ticket.nombres" name="nombre"
-          [required]="empresa.obligar_persona">
+          [required]="empresa.obligar_nombre">
       </div>
       <div class="col-md-12 mb-3" *ngIf="empresa.obligar_correo">
         <label for="exampleInputEmail1">Correo Electronico</label>

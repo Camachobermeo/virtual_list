@@ -21,30 +21,36 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="razon_social">Razón Social</label>
+              <label>Razón Social</label>
               <input required name="celular" class="form-control form-control-sm text-uppercase" [disabled]="true"
                 [(ngModel)]="empresa.razon_social" placeholder="Ingrese su razon social.">
             </div>
           </div>
           <div class="col-md-12 text-center">
             <div class="form-group">
-              <input type="checkbox" class=" form-check-input" name="obligar_persona"
-                [(ngModel)]="empresa.obligar_persona">
-              <label for="razon_social">Obligar Persona</label>
+              <input type="checkbox" class=" form-check-input" name="obligar_rut" [(ngModel)]="empresa.obligar_rut">
+              <label>Obligar RUT</label>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div class="form-group">
+              <input type="checkbox" class=" form-check-input" name="obligar_nombre"
+                [(ngModel)]="empresa.obligar_nombre">
+              <label>Obligar Nombre</label>
             </div>
           </div>
           <div class="col-md-12 text-center">
             <div class="form-group">
               <input type="checkbox" class=" form-check-input" name="obligar_correo"
                 [(ngModel)]="empresa.obligar_correo">
-              <label for="razon_social">Obligar Email</label>
+              <label>Obligar Email</label>
             </div>
           </div>
           <div class="col-md-12 text-center">
             <div class="form-group">
               <input type="checkbox" class=" form-check-input" name="obligar_celular"
                 [(ngModel)]="empresa.obligar_celular">
-              <label for="razon_social">Obligar Teléfono</label>
+              <label>Obligar Teléfono</label>
             </div>
           </div>
           <div class="col-md-12">

@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Fila } from 'src/app/entidades/Fila';
 import { Sucursal } from 'src/app/entidades/Sucursal';
 import { Totem } from 'src/app/entidades/Totem';
+import { TotemFila } from 'src/app/entidades/TotemFila';
 import { UtilService } from 'src/app/servicios/util.service';
+import { FilaService } from '../../fila/fila.service';
 import { SucursalService } from '../../sucursal/sucursal.service';
 import { TotemService } from '../totem.service';
 
@@ -19,6 +22,8 @@ export class TotemFormularioComponent implements OnInit {
   totem: Totem = new Totem();
   cargando: boolean = false;
   esEdicion: boolean = false;
+  filas: Array<Fila> = new Array();
+  totemFilas: Array<TotemFila> = new Array();
 
   constructor(
     private router: Router,
@@ -26,7 +31,8 @@ export class TotemFormularioComponent implements OnInit {
     public totemService: TotemService,
     public utilService: UtilService,
     public toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public filaService: FilaService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +58,17 @@ export class TotemFormularioComponent implements OnInit {
   despuesDeListarSucursales(data) {
     this.sucursales = data;
     this.totem.codigo_sucursal = this.totem.codigo_sucursal || (this.sucursales[0] && this.sucursales[0].codigo);
+    this.listarFilas();
+  }
+
+  listarFilas() {
+    this.cargando = true;
+    this.filas = new Array();
+    this.filaService.listarFilas({ sucursal: this.totem.codigo_sucursal }, this);
+  }
+
+  despuesDeListarFilas(data) {
+    this.filas = data;
     this.cargando = false;
   }
 

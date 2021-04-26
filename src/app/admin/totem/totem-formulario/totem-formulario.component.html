@@ -21,7 +21,8 @@
                     <div class="col-md-6">
                         <label>Seleccione la Sucursal</label>
                         <select class="form-control form-control-sm " aria-label="Default select example"
-                            [(ngModel)]="totem.codigo_sucursal" name="sucursalSeleccionada" required>
+                            [(ngModel)]="totem.codigo_sucursal" (ngModelChange)="listarFilas()"
+                            name="sucursalSeleccionada" required>
                             <option value="" disabled selected>Seleccione la Sucursal</option>
                             <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}}
                                 --
@@ -36,12 +37,34 @@
                     <input required name="ubicacion" class="form-control form-control-sm text-uppercase"
                         [(ngModel)]="totem.ubicacion" placeholder="p.e: Entrada Principal" required>
                 </div>
-                <div class="text-center">
-                    <div id="cargando" hidden class="spinner-border text-success" role="status">
-                        <span class="sr-only"></span>
-                    </div>
-                </div>
             </form>
+
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Sucursal</th>
+                            <th>Descripcón</th>
+                            <th>Tiempo Estimado Minutos</th>
+                            <th class="text-center">Seleccionar</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #ffffff;">
+                        <tr *ngFor="let fila of filas; let i = index;">
+                            <td>{{fila.codigo}}</td>
+                            <td>{{fila.codigo_sucursal}}</td>
+                            <td>{{fila.descripcion}}</td>
+                            <td>{{fila.tiempo_estimado_minutos}} min</td>
+                            <td class="text-center">
+                                <input type="checkbox" name="recordarClave-{{i}}" [(ngModel)]="fila['seleccionado']"
+                                    class="form-control form-control-sm">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

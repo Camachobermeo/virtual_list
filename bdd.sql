@@ -52,10 +52,10 @@
  add column costo_estimado numeric;
 
   CREATE TABLE totem_fila(
-    secuencial serial not null primary key,
     codigo_totem text not null,
     codigo_fila text not null,
     estado boolean not null default false,
+    CONSTRAINT totem_fila_pk PRIMARY KEY (codigo_totem, codigo_fila),
     CONSTRAINT totem_fila_fila_fk FOREIGN KEY (codigo_fila)
       REFERENCES fila (codigo) MATCH FULL
       ON UPDATE CASCADE ON DELETE NO ACTION,

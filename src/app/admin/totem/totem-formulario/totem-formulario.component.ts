@@ -37,11 +37,12 @@ export class TotemFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargando = true;
-    this.sucursalService.listarSucursales({}, this);
     this.totem.codigo = this.route.snapshot.paramMap.get("codigo");
     if (this.totem.codigo) {
       this.esEdicion = true;
       this.obtenerTotem();
+    } else {
+      this.sucursalService.listarSucursales({}, this);
     }
   }
 
@@ -51,8 +52,9 @@ export class TotemFormularioComponent implements OnInit {
   }
 
   despuesDeObtenerTotem(data) {
-    this.totem = data;
-    this.cargando = false;
+    this.totem = new Totem(data.resultado);
+    this.totemFilas = data.filas || new Array();
+    this.sucursalService.listarSucursales({}, this);
   }
 
   despuesDeListarSucursales(data) {
@@ -75,7 +77,13 @@ export class TotemFormularioComponent implements OnInit {
           element['seleccionado'] = true;
         });
       } else {
-
+        if (this.totemFilas) {
+          this.filas.forEach(element => {
+            let encontrado = this.totemFilas.find(tf => tf.codigo_fila == element.codigo);
+            if (encontrado)
+              element['seleccionado'] = true;
+          });
+        }
       }
     }
     this.cargando = false;

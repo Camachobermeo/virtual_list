@@ -41,7 +41,7 @@ export class TotemService {
     this.api.post("obtenerTotem.php", parametro)
       .then(respuesta => {
         if (respuesta && respuesta.resultado) {
-          contexto.despuesDeObtenerTotem(respuesta.resultado);
+          contexto.despuesDeObtenerTotem(respuesta);
         } else {
           this.toastr.error((respuesta && respuesta.mensaje) || "Error desconocido")
           contexto.cargando=false;

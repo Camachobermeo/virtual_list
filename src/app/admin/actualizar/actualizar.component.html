@@ -15,9 +15,8 @@
                         <label>Sucursal</label>
                         <select class="form-control form-control-sm" disabled aria-label="Default select example"
                             [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" required>
-                            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}}
-                                --
-                                {{sucursal.direccion}}
+                            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">
+                                {{sucursal.codigo}} - {{sucursal.direccion}}
                             </option>
                         </select>
                     </div>
@@ -27,8 +26,11 @@
                         <label>Seleccione la Fila</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
                             [(ngModel)]="fila" name="fila">
-                            <option *ngFor="let fila of filas" [ngValue]="fila.codigo">{{fila.codigo}} --
-                                {{fila.descripcion}}
+                            <option [ngValue]="null">
+                                TODAS
+                            </option>
+                            <option *ngFor="let fila of filas" [ngValue]="fila.codigo">
+                                {{fila.codigo}} - {{fila.descripcion}}
                             </option>
                         </select>
                     </div>
@@ -53,8 +55,8 @@
         <div class="row-container" style="background-color: #ffffff;">
             <div class="col-md-12 text-center pb-2">
                 <button class="mb-2 mr-2 btn badge badge-pill badge-success">{{ticketSeleccionado?.estado}}</button>
-                <input class="form-control pt-5 pb-5" style="text-align: center; font-size: 50px;" type="text" name="ticketSeleccionado"
-                    [(ngModel)]="nombreTicket" disabled>
+                <input class="form-control pt-5 pb-5" style="text-align: center; font-size: 50px;" type="text"
+                    name="ticketSeleccionado" [(ngModel)]="nombreTicket" disabled>
                 <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado" (click)="atender('EN ATENCION')"
                     class="mb-2 mr-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
             </div>

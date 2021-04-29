@@ -28,8 +28,8 @@
             <label>Seleccione la Sucursal</label>
             <select class="form-control form-control-sm" aria-label="Default select example"
               [(ngModel)]="sucursalSeleccionada" name="sucursalSeleccionada" required>
-              <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">{{sucursal.codigo}} --
-                {{sucursal.direccion}}
+              <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal.codigo">
+                {{sucursal.codigo}} - {{sucursal.direccion}}
               </option>
             </select>
           </div>
@@ -39,8 +39,11 @@
             <label>Seleccione la Fila</label>
             <select class="form-control form-control-sm" aria-label="Default select example"
               [(ngModel)]="filaSeleccionada" name="filaSeleccionada">
-              <option *ngFor="let fila of filas" [ngValue]="fila.codigo">{{fila.codigo}} --
-                {{fila.descripcion}}
+              <option [ngValue]="null">
+                TODAS
+              </option>
+              <option *ngFor="let fila of filas" [ngValue]="fila.codigo">
+                {{fila.codigo}} - {{fila.descripcion}}
               </option>
             </select>
           </div>

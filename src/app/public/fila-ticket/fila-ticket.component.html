@@ -20,7 +20,11 @@
           <div class="widget-content-left">
             <div class="widget-heading">{{fila.codigo}}</div>
             <div class="widget-subheading">{{fila.descripcion}}</div>
-            <div class="widget-subheading">Tiempo de espera estimado: {{fila.tiempo_estimado_minutos}} min.</div>
+            <div class="widget-subheading">Personas en la Fila: {{fila.enFila || 0}} </div>
+            <div class="widget-subheading">Tiempo de espera estimado: {{fila.tiempoEnFila}} min.</div>
+            <div class="widget-heading" *ngIf="fila.ticketAtencion?.numeracion">Atendiendo A:
+              {{fila.codigo + "-" + fila.ticketAtencion.numeracion}} </div>
+            <div class="widget-heading" *ngIf="!fila.ticketAtencion?.numeracion">Ninguno en atención </div>
           </div>
           <div class="widget-content-right">
             <div class="widget-numbers text-success"><span class="fa fa-chevron-right"></span></div>

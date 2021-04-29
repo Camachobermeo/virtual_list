@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FilaService } from 'src/app/admin/fila/fila.service';
 import { Empresa } from 'src/app/entidades/Empresa';
 import { Sucursal } from 'src/app/entidades/Sucursal';
+import { Ticket } from 'src/app/entidades/Ticket';
+import { ApiRequestService } from 'src/app/servicios/api-request.service';
 import { UtilService } from 'src/app/servicios/util.service';
 import { environment } from 'src/environments/environment';
 
@@ -24,7 +26,8 @@ export class FilaTicketComponent implements OnInit {
   constructor(
     public filasService: FilaService,
     private route: ActivatedRoute,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private api: ApiRequestService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +46,39 @@ export class FilaTicketComponent implements OnInit {
   despuesDeListarFilas(data) {
     this.cargando = false;
     this.filas = data;
+
+    if (this.filas) {
+      this.filas.forEach(element => {
+        let tiempoEnFila = 0;
+        this.api.postSinLogin("obtenerTicketActual.php", { codigo: element.codigo, estado: 'EN ATENCION' })
+          .then(respuesta => {
+            if (respuesta && respuesta.estado) {
+
+              let ticketAtencion = respuesta.resultado || new Ticket();
+              element.ticketAtencion = ticketAtencion;
+
+              this.api.postSinLogin("obtenerTicketActual.php", { codigo: element.codigo, estado: null })
+                .then(respuesta => {
+
+                  if (respuesta && respuesta.estado) {
+                    let ultimoAtencion = ticketAtencion.numeracion;
+                    if (respuesta && respuesta.resultado) {
+                      let ultimoSacado = respuesta.resultado.numeracion;
+                      let enFila = (ultimoSacado || 0) - (ultimoAtencion || 0);
+                      enFila = Math.abs(enFila);
+                      element.enFila = enFila;
+                      if (element.cantidad_ventanillas && element.cantidad_ventanillas <= enFila) {
+                        tiempoEnFila = enFila * element.tiempo_estimado_minutos / element.cantidad_ventanillas;
+                      }
+                    }
+                  }
+                  element.tiempoEnFila = tiempoEnFila;
+                }).catch(err => this.utilService.handleError(err, this));
+            }
+          }).catch(err => this.utilService.handleError(err, this));
+      });
+    }
+
     setTimeout(() => {
       this.empresa = JSON.parse(localStorage.getItem("entidadEmpresa"));
       this.color = this.utilService.establecerColor(this.empresa.cabecera);

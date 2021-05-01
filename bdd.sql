@@ -191,3 +191,9 @@ CREATE TRIGGER actualizar_numero_ticket_programado
   ON ticket_programado
   FOR EACH ROW
   EXECUTE PROCEDURE actualizar_numero_ticket_programado();
+
+ ALTER TABLE ticket_programado
+ ADD COLUMN usuario text,
+  add CONSTRAINT usuario_ticket_programado_fk FOREIGN KEY (usuario)
+     REFERENCES usuario (username) MATCH FULL
+     ON UPDATE CASCADE ON DELETE NO ACTION;

@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sucursal</label>
                         <select class="form-control form-control-sm" disabled aria-label="Default select example"
@@ -21,7 +21,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Seleccione la Fila</label>
                         <select class="form-control form-control-sm" aria-label="Default select example"
@@ -33,13 +33,6 @@
                                 {{fila.codigo}} - {{fila.descripcion}}
                             </option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>FECHA</label>
-                        <input name="fecha_sacado" type="date" class="form-control form-control-sm  text-uppercasem"
-                            [(ngModel)]="fecha_sacado" required>
                     </div>
                 </div>
             </div>
@@ -59,6 +52,8 @@
                     name="ticketSeleccionado" [(ngModel)]="nombreTicket" disabled>
                 <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado" (click)="atender('EN ATENCION')"
                     class="mb-2 mr-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
+                <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado && ticketSeleccionado?.hora_cita"
+                    (click)="omitir(frmTickets)" class="mb-2 mr-2 btn badge badge-pill badge-warning">Omitir</button>
             </div>
         </div>
         <br>

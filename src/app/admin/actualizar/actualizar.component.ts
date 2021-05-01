@@ -18,7 +18,7 @@ import { ActualizarService } from './actualizar.service';
 })
 export class ActualizarComponent implements OnInit {
 
-  ticketSeleccionado: Ticket = new Ticket();
+  ticketSeleccionado: any = new Ticket();
   ultimoTicket: Ticket = new Ticket();
   nombreTicket: any = null;
 
@@ -26,7 +26,6 @@ export class ActualizarComponent implements OnInit {
   fila: any = null;
   usuario: Usuario = new Usuario();
   cargando: boolean = false;
-  fecha_sacado: any = null;
   sucursales: Array<Sucursal> = new Array();
   sucursalSeleccionada: any = null;
 
@@ -41,7 +40,6 @@ export class ActualizarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargando = true;
-    this.fecha_sacado = new Date().getFullYear() + "-" + (new Date().getMonth() >= 10 ? "" : "0") + (new Date().getMonth() + 1) + "-" + new Date().getDate();
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
     this.sucursalSeleccionada = this.usuario.codigo_sucursal;
     this.sucursalService.listarSucursales({}, this);
@@ -70,10 +68,25 @@ export class ActualizarComponent implements OnInit {
 
   listarTickets(form: NgForm) {
     this.cargando = true;
+    this.ticketSeleccionado = new Ticket();
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
       this.actualizarService.obtenerTicketLibreOEnAtencion(
-        { fecha_sacado: this.fecha_sacado, sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.username },
+        { sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.username },
+        this);
+    } else {
+      this.toastr.error("Complete los campos requeridos.", "Aviso");
+      this.cargando = false;
+    }
+  }
+
+  omitir(form: NgForm) {
+    this.cargando = true;
+    this.ticketSeleccionado = new Ticket();
+    let formularioTocado = this.utilService.establecerFormularioTocado(form);
+    if (form && form.valid && formularioTocado) {
+      this.actualizarService.omitir(
+        { sucursal: this.sucursalSeleccionada, fila: this.fila, usuario: this.usuario.username },
         this);
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
@@ -83,7 +96,8 @@ export class ActualizarComponent implements OnInit {
 
   despuesDeObtenerTicketLibreOEnAtencion(data) {
     this.ticketSeleccionado = data[0];
-    this.nombreTicket = this.ticketSeleccionado ? this.ticketSeleccionado.codigo_fila + "-" + this.ticketSeleccionado.numeracion : null;
+    let programado = this.ticketSeleccionado && this.ticketSeleccionado['hora_cita'] ? 'R-' : '';
+    this.nombreTicket = this.ticketSeleccionado ? programado + this.ticketSeleccionado.codigo_fila + "-" + this.ticketSeleccionado.numeracion : null;
     this.cargando = false;
   }
 
@@ -94,9 +108,15 @@ export class ActualizarComponent implements OnInit {
       } else {
         this.ultimoTicket = this.ticketSeleccionado;
         this.cargando = true;
-        this.ticketsService.cambiarEstadoTicket(
-          { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.username },
-          texto, this);
+        if (this.ticketSeleccionado['hora_cita']) {
+          this.ticketsService.cambiarEstadoTicketProgramado(
+            { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.username },
+            texto, this);
+        } else {
+          this.ticketsService.cambiarEstadoTicket(
+            { secuencial: this.ticketSeleccionado.secuencial, estado: texto, usuario: this.usuario.username },
+            texto, this);
+        }
       }
     } else {
       this.toastr.warning("No existe un ticket por atender.", "Aviso");

@@ -18,7 +18,7 @@ export class ListadoTicketsService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeListarTickets(respuesta.resultado);
         } else {
-          contexto.cargando=false;
+          contexto.cargando = false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
@@ -29,9 +29,20 @@ export class ListadoTicketsService {
         if (respuesta && respuesta.resultado) {
           contexto.despuesDeCambiarEstadoTicket(respuesta, estado);
         } else {
-          contexto.cargando=false;
+          contexto.cargando = false;
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
-  
+
+  cambiarEstadoTicketProgramado(parametro, estado, contexto) {
+    this.api.post("cambiarEstadoTicketProgramado.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeCambiarEstadoTicket(respuesta, estado);
+        } else {
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
+
 }

@@ -22,4 +22,15 @@ export class ActualizarService {
         }
       }).catch(err => this.utilService.handleError(err, contexto));
   }
+
+  omitir(parametro, contexto) {
+    this.api.post("omitirTicketLibre.php", parametro)
+      .then(respuesta => {
+        if (respuesta && respuesta.resultado) {
+          contexto.despuesDeObtenerTicketLibreOEnAtencion(respuesta.resultado);
+        } else {
+          contexto.cargando = false;
+        }
+      }).catch(err => this.utilService.handleError(err, contexto));
+  }
 }

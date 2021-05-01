@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppConfig } from './app-config';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Usuario } from '../entidades/Usuario';
 
 export interface ObjetoJWT {
     userId: string;
@@ -70,12 +71,12 @@ export class ApiRequestService {
     //PARAMETRO EMPRESA ES LA EMPRESA SELECCIONADA PARA REALIZAR LA OPERACION
     post(url: string, body: any): Promise<any> {
         if (this.hayTiempoSession()) {
-        localStorage.setItem("tiempo", "" + new Date().getTime());
-        let requestOptions = this.getRequestOptions(undefined, body);
-        return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
-            .toPromise()
-            .then(resp => resp)
-            .catch(err => this.handleError(err));
+            localStorage.setItem("tiempo", "" + new Date().getTime());
+            let requestOptions = this.getRequestOptions(undefined, body);
+            return this.http.request('POST', this.appConfig.baseApiPath + url, requestOptions)
+                .toPromise()
+                .then(resp => resp)
+                .catch(err => this.handleError(err));
         } else {
             this.cerrarSession();
         }
@@ -160,7 +161,9 @@ export class ApiRequestService {
 
     cerrarSession() {
         // this.autenticacionService.logout();
+        let usuario = JSON.parse(localStorage.getItem("usuarioRecordar")) || new Usuario();
         localStorage.clear();
+        localStorage.setItem("usuarioRecordar", JSON.stringify(usuario));
         sessionStorage.clear();
         this.router.navigate(["/login"]);
         location.reload();

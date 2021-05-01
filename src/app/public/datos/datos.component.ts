@@ -24,6 +24,7 @@ export class DatosComponent implements OnInit {
   ticketAtencion: Ticket = new Ticket();
   cargando: boolean = false;
   generado: boolean = false;
+  numeroValido: boolean = false;
   sucursalSeleccionada: string = "";
   sucursal: Sucursal = new Sucursal();
   filaCodigo: string = "";
@@ -89,30 +90,52 @@ export class DatosComponent implements OnInit {
   }
 
   generarTicket(form: NgForm) {
-    this.cargando = true;
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticket.codigo_fila = this.filaCodigo;
-      this.ticket['sucursal'] = this.sucursal.direccion;
-      this.ticket['fila'] = this.fila.descripcion;
-      this.ticket['url'] = location.href;
-      this.ticketService.generarTicket(this.ticket, this);
+      if (this.empresa.obligar_celular) {
+        if (this.numeroValido && this.ticket.telefono) {
+          this.puedeGenerar();
+        } else {
+          this.toastr.warning("El número de teléfono no es válido.", "Aviso");
+        }
+      } else {
+        this.puedeGenerar();
+      }
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
-      this.cargando = false;
     }
   }
 
-  programarTicket(form: NgForm) {
+  puedeGenerar() {
     this.cargando = true;
+    this.ticket.codigo_fila = this.filaCodigo;
+    this.ticket['sucursal'] = this.sucursal.direccion;
+    this.ticket['fila'] = this.fila.descripcion;
+    this.ticket['url'] = location.href;
+    this.ticketService.generarTicket(this.ticket, this);
+  }
+
+  programarTicket(form: NgForm) {
     let formularioTocado = this.utilService.establecerFormularioTocado(form);
     if (form && form.valid && formularioTocado) {
-      this.ticket.codigo_fila = this.filaCodigo;
-      this.router.navigate(["programar/" + this.sucursalSeleccionada + "/" + this.filaCodigo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
+      if (this.empresa.obligar_celular) {
+        if (this.numeroValido && this.ticket.telefono) {
+          this.puedeProgramar();
+        } else {
+          this.toastr.warning("El número de télefono no es válido.", "Aviso");
+        }
+      } else {
+        this.puedeProgramar();
+      }
     } else {
       this.toastr.error("Complete los campos requeridos.", "Aviso");
-      this.cargando = false;
     }
+  }
+
+  puedeProgramar() {
+    this.cargando = true;
+    this.ticket.codigo_fila = this.filaCodigo;
+    this.router.navigate(["programar/" + this.sucursalSeleccionada + "/" + this.filaCodigo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
   }
 
   despuesDeGenerarTicket(data) {
@@ -139,5 +162,15 @@ export class DatosComponent implements OnInit {
     WindowPrt.focus();
     setTimeout(function () { WindowPrt.print(); WindowPrt.close(); }, 1000);
   }
+
+  //#region [Telefono]
+  hasError(event) {
+    this.numeroValido = event;
+  }
+
+  getNumber(event) {
+    this.ticket.telefono = event;
+  }
+  //#endregion
 
 }

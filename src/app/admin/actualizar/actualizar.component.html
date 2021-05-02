@@ -43,17 +43,20 @@
         <div class="row-container" style="background-color: #ffffff;">
             <div class="col-md-12 text-center fs-1">
                 <label>TURNO:</label>
+                <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="mensajeTicketYaEstaEnAtencion">
+                    {{mensajeTicketYaEstaEnAtencion}}
+                </div>
             </div>
         </div>
         <div class="row-container" style="background-color: #ffffff;">
             <div class="col-md-12 text-center pb-2">
-                <button class="mb-2 mr-2 btn badge badge-pill badge-success">{{ticketSeleccionado?.estado}}</button>
+                <button class="mb-2 btn badge badge-pill badge-success">{{ticketSeleccionado?.estado}}</button>
                 <input class="form-control pt-5 pb-5" style="text-align: center; font-size: 50px;" type="text"
                     name="ticketSeleccionado" [(ngModel)]="nombreTicket" disabled>
                 <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado" (click)="atender('EN ATENCION')"
-                    class="mb-2 mr-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
+                    class="m-2 btn badge badge-pill badge-primary">Iniciar Atención</button>
                 <button *ngIf="ticketSeleccionado && !ticketSeleccionado?.estado && ticketSeleccionado?.hora_cita"
-                    (click)="omitir(frmTickets)" class="mb-2 mr-2 btn badge badge-pill badge-warning">Omitir</button>
+                    (click)="omitir(frmTickets)" class="m-2 btn badge badge-pill badge-warning">Omitir</button>
             </div>
         </div>
         <br>

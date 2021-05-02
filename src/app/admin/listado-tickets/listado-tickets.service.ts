@@ -26,7 +26,7 @@ export class ListadoTicketsService {
   cambiarEstadoTicket(parametro, estado, contexto) {
     this.api.post("cambiarEstadoTicket.php", parametro)
       .then(respuesta => {
-        if (respuesta && respuesta.resultado) {
+        if (respuesta && (respuesta.resultado || respuesta.objeto)) {
           contexto.despuesDeCambiarEstadoTicket(respuesta, estado);
         } else {
           contexto.cargando = false;
@@ -37,7 +37,7 @@ export class ListadoTicketsService {
   cambiarEstadoTicketProgramado(parametro, estado, contexto) {
     this.api.post("cambiarEstadoTicketProgramado.php", parametro)
       .then(respuesta => {
-        if (respuesta && respuesta.resultado) {
+        if (respuesta && (respuesta.resultado || respuesta.objeto)) {
           contexto.despuesDeCambiarEstadoTicket(respuesta, estado);
         } else {
           contexto.cargando = false;

@@ -19,8 +19,9 @@ import { ActualizarService } from './actualizar.service';
 export class ActualizarComponent implements OnInit {
 
   ticketSeleccionado: any = new Ticket();
-  ultimoTicket: Ticket = new Ticket();
+  ultimoTicket: Ticket = null;
   nombreTicket: any = null;
+  mensajeTicketYaEstaEnAtencion: any = null;
 
   filas: Array<Fila> = new Array();
   fila: any = null;
@@ -102,6 +103,7 @@ export class ActualizarComponent implements OnInit {
   }
 
   atender(texto) {
+    this.mensajeTicketYaEstaEnAtencion = null;
     if (this.ticketSeleccionado) {
       if (texto == 'ATENDIDO' && !this.ticketSeleccionado.estado) {
         this.toastr.warning("Debe iniciar atención del ticket mostrado en pantalla.", "Aviso");
@@ -124,22 +126,36 @@ export class ActualizarComponent implements OnInit {
   }
 
   retroceder() {
+    this.mensajeTicketYaEstaEnAtencion = null;
     if (this.ultimoTicket) {
       this.cargando = true;
-      this.ticketsService.cambiarEstadoTicket(
-        { secuencial: this.ultimoTicket.secuencial, estado: null, usuario: this.usuario.username },
-        '', this);
+      if (this.ultimoTicket['hora_cita']) {
+        this.ticketsService.cambiarEstadoTicketProgramado(
+          { secuencial: this.ultimoTicket.secuencial, estado: null, usuario: this.usuario.username },
+          '', this);
+      } else {
+        this.ticketsService.cambiarEstadoTicket(
+          { secuencial: this.ultimoTicket.secuencial, estado: null, usuario: this.usuario.username },
+          '', this);
+      }
     } else {
-      this.toastr.warning("No existe un ticket por atender.", "Aviso");
+      this.toastr.warning("No existe un ticket atendido recientemente.", "Aviso");
     }
   }
 
   despuesDeCambiarEstadoTicket(data, estado) {
     if (estado) {
-      this.toastr.success(data.mensaje, "Aviso");
-      this.cargando = false;
-      this.ticketSeleccionado.estado = estado;
-      this.ticketSeleccionado.usuario = this.usuario.username;
+      if (estado == 'EN ATENCION' && data.objeto) {
+        this.mensajeTicketYaEstaEnAtencion = "El ticket " + this.nombreTicket + " ya está siendo atendido por: " + data.objeto.usuario;
+        this.toastr.warning(data.mensaje, "Aviso");
+        document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
+        setTimeout(function () { this.mensajeTicketYaEstaEnAtencion = null; }, 3000);
+      } else {
+        this.toastr.success(data.mensaje, "Aviso");
+        this.ticketSeleccionado.estado = estado;
+        this.ticketSeleccionado.usuario = this.usuario.username;
+        this.cargando = false;
+      }
       if (estado == 'ATENDIDO') {
         document.getElementById("recargar") ? document.getElementById("recargar").click() : null;
       }

@@ -118,6 +118,7 @@ CREATE TABLE ticket_programado(
       ON UPDATE CASCADE ON DELETE NO ACTION
  );
 
+
  ALTER TABLE ticket_programado
  add column estado text;
 
@@ -197,3 +198,14 @@ CREATE TRIGGER actualizar_numero_ticket_programado
   add CONSTRAINT usuario_ticket_programado_fk FOREIGN KEY (usuario)
      REFERENCES usuario (username) MATCH FULL
      ON UPDATE CASCADE ON DELETE NO ACTION;
+
+CREATE TABLE recordatorio(
+     secuencial serial not null primary key,
+     tipo_envio text not null,
+     contenido text not null,
+     codigo_fila text not null,
+     numeracion integer not null,
+     direccion_envio text not null,
+     fecha_hora_envio timestamp not null,
+     estado boolean not null default false
+ );

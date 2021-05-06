@@ -94,11 +94,6 @@
         <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
           más.</small>
       </div>
-      <!-- <div class="col-md-12 mb-3" *ngIf="empresa.obligar_celular">
-        <label>Telefono</label>
-        <input type="text" class="form-control form-control-sm" name="telefono" [(ngModel)]="ticket.telefono"
-          placeholder="Telefono" [required]="empresa.obligar_celular">
-      </div> -->
       <div class="col-md-12 mb-3" *ngIf="empresa.obligar_celular">
         <label>Telefono</label>
         <input type="text" class="form-control form-control-sm" [ngClass]="{'has-error':numeroValido == false }"

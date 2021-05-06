@@ -108,7 +108,6 @@ export class ProgramarTicketComponent implements OnInit {
     this.cargando = true;
     this.ticket['sucursal'] = this.sucursal.direccion;
     this.ticket['fila'] = this.fila.descripcion;
-    this.ticket['url'] = location.href;
     this.ticketService.generarTicketProgramado(this.ticket, this);
   }
 

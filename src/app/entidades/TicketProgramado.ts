@@ -14,6 +14,8 @@ export class TicketProgramado {
     public inicio_atencion: Date = null;
     public fin_atencion: Date = null;
     public numeracion: number = 0;
+    public minutos: number = 0;
+    public url: string = "";
 
     constructor(data?) {
         data ? this.hydrate(data) : null;
@@ -33,6 +35,8 @@ export class TicketProgramado {
         this.inicio_atencion = data.inicio_atencion ? data.inicio_atencion : this.inicio_atencion;
         this.fin_atencion = data.fin_atencion ? data.fin_atencion : this.fin_atencion;
         this.numeracion = data.numeracion ? data.numeracion : this.numeracion;
+        this.minutos = data.minutos ? data.minutos : this.minutos;
+        this.url = data.url ? data.url : this.url;
     }
 
 }

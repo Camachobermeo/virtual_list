@@ -112,6 +112,7 @@ export class DatosComponent implements OnInit {
     this.ticket['sucursal'] = this.sucursal.direccion;
     this.ticket['fila'] = this.fila.descripcion;
     this.ticket['url'] = location.href;
+    this.ticket['minutos'] = this.tiempoEnFila;
     this.ticketService.generarTicket(this.ticket, this);
   }
 
@@ -135,6 +136,8 @@ export class DatosComponent implements OnInit {
   puedeProgramar() {
     this.cargando = true;
     this.ticket.codigo_fila = this.filaCodigo;
+    this.ticket['url'] = location.href;
+    this.ticket['minutos'] = this.tiempoEnFila;
     this.router.navigate(["programar/" + this.sucursalSeleccionada + "/" + this.filaCodigo], { queryParams: { ticket: JSON.stringify(this.ticket) } });
   }
 

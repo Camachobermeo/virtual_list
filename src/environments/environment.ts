@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  empresa: '0750980179001',
-  url: "http://localhost/virtual-list-backend/"
+  empresa: '0706234283001',
+  url: "http://localhost:8080/virtual-list-backend/"
 };
 
 /*

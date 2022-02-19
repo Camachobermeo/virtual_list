@@ -15,8 +15,8 @@
     </div>
     <div class="col-lg-6 col-xl-4" style="cursor: pointer;" routerLink="/fila/{{sucursalSeleccionada}}/{{fila.codigo}}"
       *ngFor="let fila of filas">
-      <div class="card mb-3 widget-content">
-        <div class="widget-content-wrapper">
+      <div class="card mb-3 widget-content {{empresa.cabecera}} {{color}}">
+        <div class="widget-content-wrapper" style="color: white;">
           <div class="widget-content-left">
             <div class="widget-heading">{{fila.codigo}}</div>
             <div class="widget-subheading">{{fila.descripcion}}</div>

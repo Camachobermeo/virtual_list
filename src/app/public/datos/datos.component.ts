@@ -86,6 +86,8 @@ export class DatosComponent implements OnInit {
         this.tiempoEnFila = 0;
       }
     }
+    // AQUI IMPRIMIR Y REGRESAR A LA PAGINA ANTERIOR
+    this.printer();
     this.cargando = false;
   }
 
@@ -156,14 +158,17 @@ export class DatosComponent implements OnInit {
   }
 
   printer() {
-    let printContent = "<html><head><title></title><link rel='stylesheet' href='assets/main.css' type='text/css' /></head><body >";
-    printContent = printContent + document.getElementById("print").innerHTML;
-    printContent = printContent + "</body></html>";
-    const WindowPrt = window.open('', '', 'left=0,top=50,width=900,height=900,toolbar=0,scrollbars=0,status=0');
-    WindowPrt.document.write(printContent);
-    WindowPrt.document.close();
-    WindowPrt.focus();
-    setTimeout(function () { WindowPrt.print(); WindowPrt.close(); }, 1000);
+    if (document.getElementById("print")) {
+      let printContent = "<html><head><title></title><link rel='stylesheet' href='assets/main.css' type='text/css' /></head><body >";
+      printContent = printContent + document.getElementById("print").innerHTML;
+      printContent = printContent + "</body></html>";
+      const WindowPrt = window.open('', '', 'left=0,top=50,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+      WindowPrt.document.write(printContent);
+      WindowPrt.document.close();
+      WindowPrt.focus();
+      setTimeout(function () { WindowPrt.print(); WindowPrt.close(); }, 1000);
+      this.router.navigate(["/"], {});
+    }
   }
 
   //#region [Telefono]

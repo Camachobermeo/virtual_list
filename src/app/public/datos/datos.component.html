@@ -89,7 +89,7 @@
       <div class="col-md-12 mb-3" *ngIf="empresa.obligar_correo">
         <label for="exampleInputEmail1">Correo Electronico</label>
         <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" [(ngModel)]="ticket.email"
-          aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email"
+          aria-describedby="emailHelp" placeholder="Ejm: example_123@gmail.com" name="email" [email]="true"
           [required]="empresa.obligar_correo">
         <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie
           más.</small>

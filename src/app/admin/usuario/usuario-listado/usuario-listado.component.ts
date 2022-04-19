@@ -30,6 +30,7 @@ export class UsuarioListadoComponent implements OnInit {
 
   despuesDeListarUsuarios(data) {
     this.usuarios = data;
+    console.log(this.usuarios)
     this.cargando = false;
   }
 

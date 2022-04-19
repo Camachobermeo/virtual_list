@@ -99,7 +99,7 @@
         <input type="text" class="form-control form-control-sm" [ngClass]="{'has-error':numeroValido == false }"
           name="telefono" [(ngModel)]="ticket.telefono" [required]="empresa.obligar_celular"
           (ng2TelOutput)="getNumber($event)" (hasError)="hasError($event)" ng2TelInput
-          [ng2TelInputOptions]="{initialCountry: 'cl'}" />
+          [ng2TelInputOptions]="{initialCountry: 'ec'}" />
       </div>
       <div class="col-md-12 mb-3 text-center">
         <input type="checkbox" class="form-check-input" name="recordatorio" id="exampleCheck1"

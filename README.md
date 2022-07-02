@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## BASE DE DATOS
+
+EJECUTAR LOS SCPRITS EN LA RUTA (PROYECTO_PRACTICAS_PPI\BASE_DATOS)
+
+PRIEMRO EL SCRIPT `bdd.sql` Y LUEGO EL SCRIPT FUNCIONES, SE ENCUENTRA UBICADO EN LA RUTA (PROYECTO_PRACTICAS_PPI\BASE_DATOS\FUNCIONES) `trigger.sql`
